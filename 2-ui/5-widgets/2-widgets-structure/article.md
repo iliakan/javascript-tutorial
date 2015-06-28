@@ -206,7 +206,7 @@ function Menu(options) {
   var elem;
 
   function getElem() {
-    if (!elem) render();
+    if (!elem) return render();
     return elem;
   }
 
@@ -228,7 +228,8 @@ function Menu(options) {
         toggle();
       }
     }
-
+    
+    return elem;
   }
 
   function renderItems() {
