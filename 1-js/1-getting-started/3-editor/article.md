@@ -44,7 +44,8 @@
 Достойны внимания:
 
 <ul>
-<li><a href="http://www.sublimetext.com">Sublime Text</a> (кросс-платформенный, shareware).</li>
+<li><a href="http://www.sublimetext.com/">Sublime Text</a> (кросс-платформенный, shareware).</li>
+<li><a href="https://atom.io/">Atom</a> (кросс-платформенный, free).</li>
 <li><a href="http://www.scintilla.org/">SciTe</a> простой, легкий и очень быстрый (Windows, бесплатный).</li>
 <li><a href="http://sourceforge.net/projects/notepad-plus/">Notepad++</a> (Windows, бесплатный).</li>
 <li>Vim, Emacs. Если умеете их готовить.</li>
