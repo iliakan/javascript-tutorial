@@ -1,6 +1,10 @@
-// Required:
-// npm i -g webpack
-// npm i babel-loader
+// Для использования нужен Node.JS
+// Поставьте его: 
+//   npm i -g webpack
+// Поставьте babel-loader: 
+//   npm i babel-loader
+// Запустите его в директории с файлами: 
+//   webpack
 
 module.exports = {
   entry: './main',

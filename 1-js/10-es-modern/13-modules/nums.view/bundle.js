@@ -48,7 +48,7 @@
 
 	var _nums = __webpack_require__(1);
 
-	console.log(_nums.one + _nums.two);
+	document.write('Сумма импортов: ' + (_nums.one + _nums.two));
 
 /***/ },
 /* 1 */

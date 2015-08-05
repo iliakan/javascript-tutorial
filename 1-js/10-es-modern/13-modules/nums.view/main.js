@@ -1,3 +1,3 @@
 import {one, two} from './nums';
 
-console.log(one + two);
+document.write(`Сумма импортов: ${one + two}`);
