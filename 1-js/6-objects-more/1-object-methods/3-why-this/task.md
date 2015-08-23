@@ -8,7 +8,7 @@
 //+ run no-beautify
 "use strict"
 
-var obj, f;
+var obj, method;
 
 obj = {
   go: function() { alert(this); }
