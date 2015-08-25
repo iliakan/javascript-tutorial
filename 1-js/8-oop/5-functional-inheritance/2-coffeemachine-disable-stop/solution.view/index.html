@@ -48,9 +48,11 @@
       };
 
     }
-
+    
     var coffeeMachine = new CoffeeMachine(10000);
+    coffeeMachine.enable();
     coffeeMachine.run();
+    coffeeMachine.disable(); // остановит работу, ничего не выведет
   </script>
 
 </body>
