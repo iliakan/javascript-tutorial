@@ -169,7 +169,7 @@ class User {
 *!*
   // вычисляемое название метода
 */!* 
-  ["test".toUpperCase()]: true
+  ["test".toUpperCase()]: true // В классе же не может быть свойств!
 
 };
 
