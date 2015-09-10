@@ -169,7 +169,9 @@ class User {
 *!*
   // вычисляемое название метода
 */!* 
-  ["test".toUpperCase()]: true
+  ["test".toUpperCase()]() {
+    alert("PASSED!");
+  }
 
 };
 
@@ -177,7 +179,7 @@ let user = new User("Вася", "Пупков");
 alert( user.fullName ); // Вася Пупков
 user.fullName = "Иван Петров";
 alert( user.fullName ); // Иван Петров
-alert( user.TEST ); // true
+user.TEST(); // PASSED!
 ```
 
 При чтении `fullName` будет вызван метод `get fullName()`, при присвоении -- метод `set fullName` с новым значением.
