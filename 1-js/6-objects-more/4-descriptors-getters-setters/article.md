@@ -24,7 +24,8 @@ Object.defineProperty(obj, prop, descriptor)
 <dt>`prop`</dt>
 <dd>Имя свойства, которое нужно объявить или модифицировать.</dd>
 <dt>`descriptor`</dt>
-<dd>Дескриптор -- объект, который описывает поведение свойства. 
+<dd>Дескриптор -- объект, который описывает поведение свойства.</dd>
+</dl>
 
 В нём могут быть следующие поля:
 
@@ -294,8 +295,9 @@ alert( pete.age );      // и возраст
 ## Другие методы работы со свойствами
 
 <dl>
-<dt>[Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/defineProperties)</dt>
-<dd>Позволяет объявить несколько свойств сразу:
+<dt>[Object.defineProperties(obj,descriptors)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/defineProperties)</dt>
+<dd>Позволяет объявить несколько свойств сразу:</dd>
+</dl>
 
 ```js
 //+ run
@@ -326,9 +328,10 @@ Object.defineProperties(user, {
 alert( user.fullName ); // Петя Иванов
 ```
 
-</dd>
+<dl>
 <dt>[Object.keys(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys), [Object.getOwnPropertyNames(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames)</dt>
-<dd>Возвращают массив -- список свойств объекта.
+<dd>Возвращают массив -- список свойств объекта.</dd>
+</dl>
 
 `Object.keys` возвращает только `enumerable`-свойства.
 
@@ -351,10 +354,10 @@ alert( Object.keys(obj) ); // a,b
 alert( Object.getOwnPropertyNames(obj) ); // a, internal, b
 */!*
 ```
-
-</dd>
+<dl>
 <dt>[Object.getOwnPropertyDescriptor(obj, prop)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)</dt>
-<dd>Возвращает дескриптор для свойства `obj[prop]`.
+<dd>Возвращает дескриптор для свойства `obj[prop]`.</dd>
+</dl>
 
 Полученный дескриптор можно изменить и использовать `defineProperty` для сохранения изменений, например:
 
@@ -387,9 +390,6 @@ Object.defineProperty(obj, 'test', descriptor);
 
 obj.test; // Preved :)
 ```
-
-</dd>
-</dl>
 
 ...И несколько методов, которые используются очень редко:
 <dl>
