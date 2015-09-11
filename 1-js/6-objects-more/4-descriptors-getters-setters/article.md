@@ -294,9 +294,10 @@ alert( pete.age );      // и возраст
 
 ## Другие методы работы со свойствами
 
-<dl>
-<dt>[Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/defineProperties)</dt>
-<dd>Позволяет объявить несколько свойств сразу:
+[Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/defineProperties)
+
+Позволяет объявить несколько свойств сразу:
+
 
 ```js
 //+ run
@@ -327,9 +328,10 @@ Object.defineProperties(user, {
 alert( user.fullName ); // Петя Иванов
 ```
 
-</dd>
-<dt>[Object.keys(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys), [Object.getOwnPropertyNames(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames)</dt>
-<dd>Возвращают массив -- список свойств объекта.
+
+[Object.keys(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys), [Object.getOwnPropertyNames(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames)
+Возвращают массив -- список свойств объекта.
+
 
 `Object.keys` возвращает только `enumerable`-свойства.
 
@@ -353,9 +355,10 @@ alert( Object.getOwnPropertyNames(obj) ); // a, internal, b
 */!*
 ```
 
-</dd>
-<dt>[Object.getOwnPropertyDescriptor(obj, prop)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)</dt>
-<dd>Возвращает дескриптор для свойства `obj[prop]`.
+
+[Object.getOwnPropertyDescriptor(obj, prop)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)
+Возвращает дескриптор для свойства `obj[prop]`.
+
 
 Полученный дескриптор можно изменить и использовать `defineProperty` для сохранения изменений, например:
 
@@ -389,18 +392,17 @@ Object.defineProperty(obj, 'test', descriptor);
 obj.test; // Preved :)
 ```
 
-</dd>
-</dl>
 
 ...И несколько методов, которые используются очень редко:
-<dl>
-<dt>[Object.preventExtensions(obj)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions)</dt>
-<dd>Запрещает добавление свойств в объект.</dd>
-<dt>[Object.seal(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/seal)</dt>
-<dd>Запрещает добавление и удаление свойств, все текущие свойства делает `configurable: false`.</dd>
-<dt>[Object.freeze(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/freeze)</dt>
-<dd>Запрещает добавление, удаление и изменение свойств, все текущие свойства делает `configurable: false, writable: false`.</dd>
-<dt>[Object.isExtensible(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isExtensible), [Object.isSealed(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isSealed), [Object.isFrozen(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isFrozen)</dt>
-<dd>Возвращают `true`, если на объекте были вызваны методы `Object.preventExtensions/seal/freeze`.</dd>
-</dl>
+
+[Object.preventExtensions(obj)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions)
+
+<p>Запрещает добавление свойств в объект.</p>
+[Object.seal(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/seal)
+<p>Запрещает добавление и удаление свойств, все текущие свойства делает `configurable: false`.</p>
+[Object.freeze(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/freeze)
+<p>Запрещает добавление, удаление и изменение свойств, все текущие свойства делает `configurable: false, writable: false`.</p>
+[Object.isExtensible(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isExtensible), [Object.isSealed(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isSealed), [Object.isFrozen(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isFrozen)
+<p>Возвращают `true`, если на объекте были вызваны методы `Object.preventExtensions/seal/freeze`.</p>
+
 
