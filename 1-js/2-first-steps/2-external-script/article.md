@@ -218,7 +218,7 @@
 
 Выглядит это примерно так:
 ```js
-function addScript(src);
+function addScript(src){
   var script = document.createElement('script');
   script.src = src;
 *!*
