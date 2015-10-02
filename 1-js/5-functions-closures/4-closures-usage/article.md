@@ -99,7 +99,7 @@ function makeCounter() {
   };
 
   counter.reset = function() {
-    currentCount = 0;
+    currentCount = 1;
   };
 
   return counter;
