@@ -107,7 +107,7 @@ let admin = { isAdmin: true };
 Object.assign(user, visitor, admin);
 
 // user <- visitor <- admin
-alert( JSON.stringify(user) ); // user: Вася, visits: true, isAdmin: true
+alert( JSON.stringify(user) ); // name: Вася, visits: true, isAdmin: true
 ```
 
 Его также можно использовать для 1-уровневого клонирования объекта:
