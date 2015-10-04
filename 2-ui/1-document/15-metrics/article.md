@@ -222,7 +222,7 @@ element.style.height = element.scrollHeight + 'px';
 
 Свойства `scrollLeft/scrollTop` -- ширина/высота невидимой, прокрученной в данный момент, части элемента слева и сверху.
 
-Следующее иллюстрация показывает значения `scrollHeight` и `scrollTop` для блока с вертикальной прокруткой.
+Следующая иллюстрация показывает значения `scrollHeight` и `scrollTop` для блока с вертикальной прокруткой.
 
 <img src="metric-scroll-top.png">
 
