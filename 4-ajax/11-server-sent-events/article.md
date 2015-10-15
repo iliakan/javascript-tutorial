@@ -253,7 +253,7 @@ var source = new EventSource(src[, credentials]); // src - адрес с люб�
 <li>Свойства объекта:
 <dl>
 <dt>`readyState`</dt>
-<dd>Текущее состояние соединения, одно из `EventSource.CLOSING (=0)`, `EventSource.OPEN (=1)` или `EventSource.CLOSED (=2)`.</dd>
+<dd>Текущее состояние соединения, одно из `EventSource.CONNECTING (=0)`, `EventSource.OPEN (=1)` или `EventSource.CLOSED (=2)`.</dd>
 <dt>`lastEventId`</dt>
 <dd>Последнее полученное `id`, если есть. При возобновлении соединения браузер указывает это значение в заголовке `Last-Event-ID`.</dd>
 <dt>`url`, `withCredentials`</dt>
