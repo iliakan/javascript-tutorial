@@ -99,7 +99,7 @@
 <script>
   var iframeTag = document.body.children[0];
 
-  var iframeWindow = iframe.contentWindow; // окно из тега
+  var iframeWindow = iframeTag.contentWindow; // окно из тега
 
   alert( frames[0] === iframeWindow ); // true, окно из коллекции frames
   alert( frames.i == iframeWindow ); // true, окно из frames по имени
