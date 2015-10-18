@@ -21,7 +21,7 @@
 Например:
 
 ```js
-//+ run untrusted refresh
+//+ run untrusted refresh no-strict
 var a = 5; // объявление var создаёт свойство window.a
 alert( window.a ); // 5
 ```
