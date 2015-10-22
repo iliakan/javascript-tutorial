@@ -187,9 +187,8 @@ person.любимый стиль музыки = 'Джаз'; // ??? ошибка
 
 ```js
 //+ run
-var person = {
-  age: 25
-};
+var person = {};
+person.age = 25;
 var key = 'age';
 
 alert( person[key] ); // выведет person['age']
