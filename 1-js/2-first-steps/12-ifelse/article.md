@@ -181,7 +181,7 @@ alert( message );
 ```js
 if (age < 3) {
   message = 'Здравствуй, малыш!';
-} else if (a < 18) {
+} else if (age < 18) {
   message = 'Привет!';
 } else if (age < 100) {
   message = 'Здравствуйте!';
