@@ -359,7 +359,7 @@ function showWarning(options) {
   var width = options.width || 200; // по умолчанию
   var height = options.height || 100;
 
-  var title = options.title || "Предупреждение";
+  var contents = options.contents || "Предупреждение";
 
   // ...
 }
