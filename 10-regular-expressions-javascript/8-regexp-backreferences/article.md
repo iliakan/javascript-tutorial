@@ -36,9 +36,9 @@ alert( name ); // Пушкин, Александр
 
 ```js
 //+ run
-str = "He said: \"She's the one!\".";
+var str = "He said: \"She's the one!\".";
 
-reg = /['"](.*?)['"]/g;
+var reg = /['"](.*?)['"]/g;
 
 // Результат не соответствует замыслу
 alert( str.match(reg) ); // "She'
@@ -50,9 +50,9 @@ alert( str.match(reg) ); // "She'
 
 ```js
 //+ run
-str = "He said: \"She's the one!\".";
+var str = "He said: \"She's the one!\".";
 
-reg = /(['"])(.*?)\1/g;
+var reg = /(['"])(.*?)\1/g;
 
 alert( str.match(reg) ); // "She's the one!"
 ```

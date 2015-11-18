@@ -16,7 +16,7 @@
 
 ```js
 //+ run
-alert( 'Gogogo now!'.match(/(go)+/i ); // "Gogogo"
+alert( 'Gogogo now!'.match(/(go)+/i) ); // "Gogogo"
 ```
 
 Без скобок, шаблон <code class="pattern">/go+/</code> означал бы <code class="subject">g</code>, после которого идёт одна или более <code class="subject">o</code>, например: <code class="match">goooo</code>. А скобки "группируют" <code class="pattern">(go)</code> вместе.
@@ -77,7 +77,7 @@ while ((match = reg.exec(str)) !== null) {
 //+ run
 var str = '<span class="my">';
 
-reg = /<(([a-z]+)\s*([^>]*))>/;
+var reg = /<(([a-z]+)\s*([^>]*))>/;
 
 alert( str.match(reg) ); // <span class="my">, span, s
 ```
@@ -98,7 +98,7 @@ alert( str.match(reg) ); // <span class="my">, span, s
 
 ```js
 //+ run
-match = 'a'.match(/a(z)?(c)?/)
+var match = 'a'.match(/a(z)?(c)?/)
 
 alert( match.length ); // 3
 alert( match[0] ); // a
@@ -112,7 +112,7 @@ alert( match[2] ); // undefined
 
 ```js
 //+ run
-match = 'ack'.match(/a(z)?(c)?/)
+var match = 'ack'.match(/a(z)?(c)?/)
 
 alert( match.length ); // 3
 alert( match[0] ); // ac, всё совпадение
