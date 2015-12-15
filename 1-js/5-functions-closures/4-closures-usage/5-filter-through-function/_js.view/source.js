@@ -1,4 +1,4 @@
-function filter(arr, fuc) {
+function filter(arr, func) {
   // ...ваш код...
 }
 
