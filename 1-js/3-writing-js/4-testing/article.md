@@ -271,7 +271,7 @@ describe("pow", function() {
 
 [iframe height=300 src="pow-4" edit border="1"]
 
-В будущем мы сможем в добавить другие тесты `it` и блоки `describe` со своими вспомогательными функциями.
+В будущем мы сможем добавить другие тесты `it` и блоки `describe` со своими вспомогательными функциями.
 
 [smart header="before/after и beforeEach/afterEach"]
 В каждом блоке `describe` можно также задать функции `before/after`, которые будут выполнены до/после запуска тестов, а также `beforeEach/afterEach`, которые выполняются до/после каждого `it`. 
