@@ -84,7 +84,7 @@ alert( arr ); // 1,2,3 <-- результат Array.prototype.toString
 <img src="native-prototypes-array-tostring.png">
 
 
-[smart header="Вызов методов через `apply` из прототипа"]
+[smart header="Вызов методов через `call` и `apply` из прототипа"]
 
 Ранее мы говорили о применении методов массивов к "псевдомассивам", например, можно использовать `[].join` для `arguments`:
 
