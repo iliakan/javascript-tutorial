@@ -20,7 +20,7 @@ function Calculator() {
       return NaN;
     }
 
-    return methods[op](+a, +b);
+    return methods[op](a, b);
   }
 
   this.addMethod = function(name, func) {
