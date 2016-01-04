@@ -443,7 +443,7 @@ function showMessage(message) {
 }
 ```
 
-Серверный код можно писать на любой платформе. В нашем случае это будет Node.JS, с использованием модуля [ws](http://einaros.github.com/ws/):
+Серверный код можно писать на любой платформе. В нашем случае это будет Node.JS, с использованием модуля [ws](https://github.com/websockets/ws):
 
 ```js
 var WebSocketServer = new require('ws');
