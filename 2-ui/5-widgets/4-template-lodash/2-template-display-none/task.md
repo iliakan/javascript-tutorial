@@ -1,6 +1,8 @@
-# Шаблон в div с display:none?
+importance: 5
 
-[importance 5]
+---
+
+# Шаблон в div с display:none?
 
 Что лучше для размещения шаблона -- <code>&lt;script&gt;</code> с нестандартным `type` или `<div>` с `display:none`?
 

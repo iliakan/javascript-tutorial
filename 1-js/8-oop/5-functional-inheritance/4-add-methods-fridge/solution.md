@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function Machine(power) {
   this._power = power;
   this._enabled = false;

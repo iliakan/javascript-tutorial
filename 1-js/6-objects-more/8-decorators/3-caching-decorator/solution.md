@@ -1,17 +1,16 @@
 Запоминать результаты вызова функции будем в замыкании, в объекте `cache: { ключ:значение }`.
 
-```js
-//+ run no-beautify
-function f(x) { 
+```js run no-beautify
+function f(x) {
   return Math.random()*x;
 }
 
 *!*
-function makeCaching(f) { 
-  var cache = {};  
+function makeCaching(f) {
+  var cache = {};
 
   return function(x) {
-    if (!(x in cache)) {   
+    if (!(x in cache)) {
       cache[x] = f.call(this, x);
     }
     return cache[x];

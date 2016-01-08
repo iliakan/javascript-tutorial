@@ -1,6 +1,8 @@
-# Перепишите на jQuery
+importance: 5
 
-[importance 5]
+---
+
+# Перепишите на jQuery
 
 Перепишите делегирование на jQuery.
 

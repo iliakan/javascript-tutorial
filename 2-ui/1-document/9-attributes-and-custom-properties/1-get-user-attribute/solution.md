@@ -1,7 +1,6 @@
 
 
-```html
-<!--+ run height=100 -->
+```html run height=100
 <body>
 
   <div id="widget" data-widget-name="menu">Выберите жанр</div>

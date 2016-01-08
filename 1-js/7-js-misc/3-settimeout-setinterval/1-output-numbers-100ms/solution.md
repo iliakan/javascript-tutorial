@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function printNumbersInterval() {
   var i = 1;
   var timerId = setInterval(function() {

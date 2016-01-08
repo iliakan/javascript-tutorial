@@ -1,16 +1,16 @@
-# Мышь: IE8-, исправление события 
+# Мышь: IE8-, исправление события
 
 Ранее мы говорили о различных несовместимостях при работе с событиями для IE8-. Самая главная -- это, конечно, назначение событий при помощи `attachEvent/detachEvent` вместо `addEventListener/removeEventListener` и отсутствие фазы перехвата. Но и в самом объекте события есть различия.
 
 Что касается событий мыши, различия в свойствах можно легко исправить при помощи функции `fixEvent`, которая описана в этой главе.
+
 [cut]
 
-[warn header="Только IE8-"]
+```warn header="Только IE8-"
 Эта глава и описанная далее функция `fixEvent` нужны только для поддержки IE8-.
 
 Если IE8- для Вас неактуален, то пролистывайте дальше, это читать Вам не надо.
-[/warn]
-
+```
 
 Функция `fixEvent` предназначена для запуска в начале обработчика, вот так:
 
@@ -25,13 +25,12 @@ elem.onclick = function(event) {
 ```
 
 Она добавлит объекту события в IE8- следующие стандартные свойства:
-<ul>
-<li>`target`</li>
-<li>`currentTarget` -- если обработчик назначен не через `attachEvent`.</li>
-<li>`relatedTarget` -- для `mouseover/mouseout` и `mouseenter/mouseleave`.</li>
-<li>`pageX/pageY`</li>
-<li>`which`</li>
-</ul>
+
+- `target`
+- `currentTarget` -- если обработчик назначен не через `attachEvent`.
+- `relatedTarget` -- для `mouseover/mouseout` и `mouseenter/mouseleave`.
+- `pageX/pageY`
+- `which`
 
 Код функции:
 

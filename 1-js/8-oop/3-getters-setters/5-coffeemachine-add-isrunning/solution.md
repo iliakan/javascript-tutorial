@@ -1,7 +1,6 @@
 Код решения модифицирует функцию `run` и добавляет приватный идентификатор таймера `timerId`, по наличию которого мы судим о состоянии кофеварки:
 
-```js
-//+ run
+```js run
 function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
 

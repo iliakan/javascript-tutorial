@@ -1,6 +1,8 @@
-# Нерабочие margin?
+importance: 3
 
-[importance 3]
+---
+
+# Нерабочие margin?
 
 В примере ниже находится блок `.block` фиксированной высоты, а в нём -- прямоугольник `.spacer`.
 
@@ -10,9 +12,7 @@
 
 Однако, как видите, это не получается. Почему? Как поправить?
 
-```html
-<!--+ autorun run  no-beautify -->
-  
+```html autorun run no-beautify
 <style>
   .block {
     height: 150px;
@@ -25,7 +25,7 @@
     margin-left: 20%;
     margin-right: 20%;
 
-*!*   
+*!*
     height: 80%;
     margin-top: 10%;
     margin-bottom: 10%;
@@ -35,7 +35,7 @@
     background: #FFF;
   }
 </style>
- 
+
 <div class="block">
   <div class="spacer"></div>
 </div>

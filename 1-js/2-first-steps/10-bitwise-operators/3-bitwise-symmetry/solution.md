@@ -1,4 +1,4 @@
-Операция над числами, в конечном итоге, сводится к битам. 
+Операция над числами, в конечном итоге, сводится к битам.
 
 Посмотрим, можно ли поменять местами биты слева и справа.
 
@@ -6,16 +6,16 @@
 <table>
 <thead>
 <tr>
-<th>`a`</th>
-<th>`b`</th>
+<th><code>a</code></th>
+<th><code>b</code></th>
 <th>результат</th>
 </tr>
 </thead>
 <tbody>
-<tr><td>`0`</td><td>`0`</td><td>`0`</td></tr>
-<tr><td>`0`</td><td>`1`</td><td>`1`</td></tr>
-<tr><td>`1`</td><td>`0`</td><td>`1`</td></tr>
-<tr><td>`1`</td><td>`1`</td><td>`0`</td></tr>
+<tr><td><code>0</code></td><td><code>0</code></td><td><code>0</code></td></tr>
+<tr><td><code>0</code></td><td><code>1</code></td><td><code>1</code></td></tr>
+<tr><td><code>1</code></td><td><code>0</code></td><td><code>1</code></td></tr>
+<tr><td><code>1</code></td><td><code>1</code></td><td><code>0</code></td></tr>
 </tbody>
 </table>
 

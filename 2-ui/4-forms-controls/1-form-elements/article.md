@@ -10,20 +10,18 @@
 
 Например:
 
-```js
-//+ no-beautify
+```js no-beautify
 document.forms.my -- форма с именем 'my'
 document.forms[0] -- первая форма в документе
 ```
 
 **Любой *элемент* формы `form` можно получить аналогичным образом, используя свойство `form.elements`.**
 
-<img src="form.png">
+![](form.png)
 
 Например:
 
-```html
-<!--+ run height=40 -->
+```html run height=40
 <body>
   <form name="my">
     <input name="one" value="1">
@@ -42,8 +40,7 @@ document.forms[0] -- первая форма в документе
 
 **Может быть несколько элементов с *одинаковым именем*. В таком случае `form.elements[name]` вернет коллекцию элементов**, например:
 
-```html
-<!--+ run height=40 -->
+```html run height=40
 <body>
 <form>
   <input type="radio" name="*!*age*/!*" value="10">
@@ -65,8 +62,7 @@ alert(elems[0].value); // 10, первый input
 **Свойство `elements` также есть у элементов `<fieldset>`.**
 Вот пример:
 
-```html
-<!--+ run height=80 -->
+```html run height=80
 <body>
   <form>
     <fieldset name="set">
@@ -88,15 +84,14 @@ alert(elems[0].value); // 10, первый input
 
 Спецификация: [HTML5 Forms](https://html.spec.whatwg.org/multipage/forms.html).
 
-[warn header="Доступ `form.name` тоже работает, но с особенностями"]
+````warn header="Доступ `form.name` тоже работает, но с особенностями"
 Получить доступ к элементам формы можно не только через `form.elements[name/index]`, но и проще: `form[index/name]`.
- 
+
 Этот способ короче, так как обладает одной неприятной особенностью: если к элементу обратиться по его `name`, а потом свойство `name` изменить, то он по-прежнему будет доступен под старым именем.
 
 Звучит странно, поэтому посмотрим на примере.
 
-```html
-<!--+ run height=40 -->
+```html run height=40
 <form name="myform">
   <input name="text">
 </form>
@@ -114,8 +109,7 @@ alert(elems[0].value); // 10, первый input
   alert( form.text ); //  INPUT (а должно быть undefined!)
 </script>
 ```
-
-[/warn]
+````
 
 ## Ссылка на форму element.form
 
@@ -123,8 +117,7 @@ alert(elems[0].value); // 10, первый input
 
 Пример:
 
-```html
-<!--+ run height=40 -->
+```html run height=40
 <body>
 <form>
   <input type="text" name="*!*surname*/!*">
@@ -146,49 +139,41 @@ alert(elem.form == form); // true
 
 ## Элемент label
 
-Элемент `label` -- один из самых важных в формах. 
+Элемент `label` -- один из самых важных в формах.
 
 **Клик на `label` засчитывается как фокусировка или клик на элементе формы, к которому он относится.**
 
 Это позволяет посетителям кликать на большой красивой метке, а не на маленьком квадратике `input type=checkbox` (`radio`). Конечно, это очень удобно.
- 
+
 Есть два способа показать, какой элемент относится к `label`:
 
-<ol>
-<li>Дать метке атрибут `for`, равный `id` соответствующего `input`:
+1. Дать метке атрибут `for`, равный `id` соответствующего `input`:
 
-```html
-<!--+ autorun -->
-<table>
-  <tr>
-    <td>
-      <label for="agree">Согласен с правилами</label>
-    </td>
-    <td>
-      <input id="agree" type="checkbox">
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <label for="not-a-robot">Я не робот</label>
-    </td>
-    <td>
-      <input id="not-a-robot" type="checkbox">
-    </td>
-  </tr>
-</table>
-```
+    ```html autorun
+    <table>
+      <tr>
+        <td>
+          <label for="agree">Согласен с правилами</label>
+        </td>
+        <td>
+          <input id="agree" type="checkbox">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="not-a-robot">Я не робот</label>
+        </td>
+        <td>
+          <input id="not-a-robot" type="checkbox">
+        </td>
+      </tr>
+    </table>
+    ```
+2. Завернуть элемент в `label`. В этом случае можно обойтись без дополнительных атрибутов:
 
-</li>
-<li>Завернуть элемент в `label`. В этом случае можно обойтись без дополнительных атрибутов:
-
-```html
-<!--+ autorun  no-beautify -->
-<label>Кликни меня <input type="checkbox"></label>
-```
-
-</li>
-</ol>
+    ```html autorun no-beautify
+    <label>Кликни меня <input type="checkbox"></label>
+    ```
 
 ## Элементы input и textarea
 
@@ -199,9 +184,9 @@ input.value = "Новое значение";
 textarea.value = "Новый текст";
 ```
 
-[warn header="Не используйте `textarea.innerHTML`"]
+```warn header="Не используйте `textarea.innerHTML`"
 Для элементов `textarea` также доступно свойство `innerHTML`, но лучше им не пользоваться: оно хранит только HTML, изначально присутствовавший в элементе, и не меняется при изменении значения.
-[/warn]
+```
 
 Исключения -- `input type="checkbox"` и `input type="radio"`
 
@@ -229,8 +214,7 @@ select.selectedIndex = 0; // первая опция
 
 Пример:
 
-```html
-<!--+ run -->
+```html run
 <form name="form">
   <select name="genre" *!*multiple*/!*>
     <option value="blues" selected>Мягкий блюз</option>
@@ -256,7 +240,7 @@ for (var i = 0; i < select.options.length; i++) {
 
 Спецификация: [the select element](https://html.spec.whatwg.org/multipage/forms.html#the-select-element).
 
-[smart header="`new Option`"]
+````smart header="`new Option`"
 В стандарте [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) есть любопытный короткий синтаксис для создания элемента с тегом `option`:
 
 ```js
@@ -264,11 +248,10 @@ option = new Option(text, value, defaultSelected, selected);
 ```
 
 Параметры:
-<ul>
-<li>`text` -- содержимое,</li>
-<li>`value` -- значение,</li>
-<li>`defaultSelected` и `selected` поставьте в `true`, чтобы сделать элемент выбранным.</li>
-</ul>
+
+- `text` -- содержимое,
+- `value` -- значение,
+- `defaultSelected` и `selected` поставьте в `true`, чтобы сделать элемент выбранным.
 
 Его можно использовать вместо `document.createElement('option')`, например:
 
@@ -282,35 +265,30 @@ var option = new Option("Текст", "value");
 ```js
 var option = new Option("Текст", "value", true, true);
 ```
+````
 
-[/smart]
-
-[smart header="Дополнительные свойства `option`"]
-
+```smart header="Дополнительные свойства `option`"
 У элементов `option` также есть особые свойства, которые могут оказаться полезными (см. [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element)):
 
-<dl>
-<dt>`selected`</dt>
-<dd>выбрана ли опция</dd>
-<dt>`index`</dt>
-<dd>номер опции в списке селекта</dd>
-<dt>`text`</dt>
-<dd>Текстовое содержимое опции (то, что видит посетитель).</dd>
-</dl>
+`selected`
+: выбрана ли опция
 
-[/smart]
+`index`
+: номер опции в списке селекта
 
+`text`
+: Текстовое содержимое опции (то, что видит посетитель).
+```
 
 ## Итого
 
 Свойства для навигации по формам:
 
-<dl>
-<dt>`document.forms`</dt>
-<dd>Форму можно получить как `document.forms[name/index]`.</dd>
-<dt>`form.elements`</dt>
-<dd>Элементы в форме: `form.elements[name/index]`. Каждый элемент имеет ссылку на форму в свойстве `form`. Свойство `elements` также есть у `<fieldset>`.</dd>
-</dl>
+`document.forms`
+: Форму можно получить как `document.forms[name/index]`.
+
+`form.elements`
+: Элементы в форме: `form.elements[name/index]`. Каждый элемент имеет ссылку на форму в свойстве `form`. Свойство `elements` также есть у `<fieldset>`.
 
 Значение элементов читается/ставится через `value` или `checked`.
 

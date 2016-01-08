@@ -1,1 +1,3 @@
-[edit src="solution"]Открыть решение в новом окне[/edit]
+
+[edit src="solution" title="Открыть решение в новом окне"]
+

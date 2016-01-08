@@ -5,6 +5,7 @@
 Они поддерживаются всеми современными браузерами, но не IE8-. Впрочем, даже в IE8 их поддерживает, но только для DOM-объектов (используются при работе со страницей, это сейчас вне нашего рассмотрения).
 
 [cut]
+
 ## Дескрипторы в примерах
 
 Основной метод для управления свойствами -- [Object.defineProperty](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/defineProperty).
@@ -18,25 +19,24 @@ Object.defineProperty(obj, prop, descriptor)
 ```
 
 Аргументы:
-<dl>
-<dt>`obj`</dt>
-<dd>Объект, в котором объявляется свойство.</dd>
-<dt>`prop`</dt>
-<dd>Имя свойства, которое нужно объявить или модифицировать.</dd>
-<dt>`descriptor`</dt>
-<dd>Дескриптор -- объект, который описывает поведение свойства.</dd>
-</dl>
+
+`obj`
+: Объект, в котором объявляется свойство.
+
+`prop`
+: Имя свойства, которое нужно объявить или модифицировать.
+
+`descriptor`
+: Дескриптор -- объект, который описывает поведение свойства.
 
 В нём могут быть следующие поля:
 
-<ul>
-<li>`value` -- значение свойства, по умолчанию `undefined`</li>
-<li>`writable` -- значение свойства можно менять, если `true`. По умолчанию `false`.</li>
-<li>`configurable` -- если `true`, то свойство можно удалять, а также менять его в дальнейшем при помощи новых вызовов `defineProperty`. По умолчанию `false`.</li>
-<li>`enumerable` -- если `true`, то свойство просматривается в цикле `for..in` и методе `Object.keys()`. По умолчанию `false`.</li>
-<li>`get` -- функция, которая возвращает значение свойства. По умолчанию `undefined`.</li>
-<li>`set` -- функция, которая записывает значение свойства. По умолчанию `undefined`.</li>
-</ul>
+- `value` -- значение свойства, по умолчанию `undefined`
+- `writable` -- значение свойства можно менять, если `true`. По умолчанию `false`.
+- `configurable` -- если `true`, то свойство можно удалять, а также менять его в дальнейшем при помощи новых вызовов `defineProperty`. По умолчанию `false`.
+- `enumerable` -- если `true`, то свойство просматривается в цикле `for..in` и методе `Object.keys()`. По умолчанию `false`.
+- `get` -- функция, которая возвращает значение свойства. По умолчанию `undefined`.
+- `set` -- функция, которая записывает значение свойства. По умолчанию `undefined`.
 
 Чтобы избежать конфликта, запрещено одновременно указывать значение `value` и функции `get/set`. Либо значение, либо функции для его чтения-записи, одно из двух. Также запрещено и не имеет смысла указывать `writable` при наличии `get/set`-функций.
 
@@ -46,8 +46,7 @@ Object.defineProperty(obj, prop, descriptor)
 
 Два таких вызова работают одинаково:
 
-```js
-//+ no-beautify
+```js no-beautify
 var user = {};
 
 // 1. простое присваивание
@@ -63,8 +62,7 @@ Object.defineProperty(user, "name", { value: "Вася", configurable: true, wri
 
 Для того, чтобы сделать свойство неизменяемым, изменим его флаги `writable` и `configurable`:
 
-```js
-//+ run
+```js run
 *!*
 "use strict";
 */!*
@@ -74,7 +72,7 @@ var user = {};
 Object.defineProperty(user, "name", {
   value: "Вася",
 *!*
-  writable: false, // запретить присвоение "user.name=" 
+  writable: false, // запретить присвоение "user.name="
   configurable: false // запретить удаление "delete user.name"
 */!*
 });
@@ -95,8 +93,7 @@ user.name = "Петя";
 
 К сожалению, свойство `toString`, объявленное обычным способом, будет видно в цикле `for..in`, например:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 var user = {
   name: "Вася",
   toString: function() { return this.name; }
@@ -111,8 +108,7 @@ for(var key in user) alert(key);  // name, toString
 
 `Object.defineProperty` может исключить `toString` из списка итерации, поставив ему флаг `enumerable: false`. По стандарту, у встроенного `toString` этот флаг уже стоит.
 
-```js
-//+ run no-beautify
+```js run no-beautify
 var user = {
   name: "Вася",
   toString: function() { return this.name; }
@@ -132,12 +128,11 @@ for(var key in user) alert(key);  // name
 
 Дескриптор позволяет задать свойство, которое на самом деле работает как функция. Для этого в нём нужно указать эту функцию в `get`.
 
-Например, у объекта `user` есть обычные свойства: имя `firstName` и фамилия `surname`. 
+Например, у объекта `user` есть обычные свойства: имя `firstName` и фамилия `surname`.
 
 Создадим свойство `fullName`, которое на самом деле является функцией:
 
-```js
-//+ run
+```js run
 var user = {
   firstName: "Вася",
   surname: "Петров"
@@ -160,8 +155,7 @@ alert(user.fullName); // Вася Петров
 
 Например, добавим возможность присвоения `user.fullName` к примеру выше:
 
-```js
-//+ run
+```js run
 var user = {
   firstName: "Вася",
   surname: "Петров"
@@ -185,7 +179,7 @@ Object.defineProperty(user, "fullName", {
 *!*
 user.fullName = "Петя Иванов";
 */!*
-alert( user.firstName ); // Петя 
+alert( user.firstName ); // Петя
 alert( user.surname ); // Иванов
 ```
 
@@ -193,12 +187,11 @@ alert( user.surname ); // Иванов
 
 Если мы создаём объект при помощи синтаксиса `{ ... }`,  то задать свойства-функции можно прямо в его определении.
 
-Для этого используется особый синтаксис: `get свойство` или `set свойство`. 
+Для этого используется особый синтаксис: `get свойство` или `set свойство`.
 
 Например, ниже объявлен геттер-сеттер `fullName`:
 
-```js
-//+ run
+```js run
 var user = {
   firstName: "Вася",
   surname: "Петров",
@@ -259,14 +252,13 @@ function User(name, birthday) {
 var pete = new User("Петя", new Date(1987, 6, 1));
 ```
 
-Что теперь делать со старым кодом, который выводит свойство `age`? 
+Что теперь делать со старым кодом, который выводит свойство `age`?
 
 Можно, конечно, найти все места и поправить их, но это долго, а иногда и невозможно, скажем, если вы взаимодействуете со сторонней библиотекой, код в которой -- чужой и влезать в него нежелательно.
 
 Добавление `get`-функции `age` позволяет обойти проблему легко и непринуждённо:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 function User(name, birthday) {
   this.name = name;
   this.birthday = birthday;
@@ -294,113 +286,106 @@ alert( pete.age );      // и возраст
 
 ## Другие методы работы со свойствами
 
-<dl>
-<dt>[Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/defineProperties)</dt>
-<dd>Позволяет объявить несколько свойств сразу:
+[Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/defineProperties)
+: Позволяет объявить несколько свойств сразу:
 
-```js
-//+ run
-var user = {}
+    ```js run
+    var user = {}
 
-Object.defineProperties(user, {
-*!*
-  firstName: {
-*/!*
-    value: "Петя"
-  },
+    Object.defineProperties(user, {
+    *!*
+      firstName: {
+    */!*
+        value: "Петя"
+      },
 
-*!*
-  surname: {
-*/!*
-    value: "Иванов"
-  },
+    *!*
+      surname: {
+    */!*
+        value: "Иванов"
+      },
 
-*!*
-  fullName: {
-*/!*
-    get: function() {
-      return this.firstName + ' ' + this.surname;
-    }
-  }
-});
+    *!*
+      fullName: {
+    */!*
+        get: function() {
+          return this.firstName + ' ' + this.surname;
+        }
+      }
+    });
 
-alert( user.fullName ); // Петя Иванов
-```
+    alert( user.fullName ); // Петя Иванов
+    ```
 
-</dd>
-<dt>[Object.keys(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys), [Object.getOwnPropertyNames(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames)</dt>
-<dd>Возвращают массив -- список свойств объекта.
+[Object.keys(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys), [Object.getOwnPropertyNames(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames)
+: Возвращают массив -- список свойств объекта.
 
 `Object.keys` возвращает только `enumerable`-свойства.
 
 `Object.getOwnPropertyNames` -- возвращает все:
 
-```js
-//+ run
-var obj = {
-  a: 1,
-  b: 2,
-  internal: 3
-};
+    ```js run
+    var obj = {
+      a: 1,
+      b: 2,
+      internal: 3
+    };
 
-Object.defineProperty(obj, "internal", {
-  enumerable: false
-});
+    Object.defineProperty(obj, "internal", {
+      enumerable: false
+    });
 
-*!*
-alert( Object.keys(obj) ); // a,b 
-alert( Object.getOwnPropertyNames(obj) ); // a, internal, b
-*/!*
-```
+    *!*
+    alert( Object.keys(obj) ); // a,b
+    alert( Object.getOwnPropertyNames(obj) ); // a, internal, b
+    */!*
+    ```
 
-</dd>
-<dt>[Object.getOwnPropertyDescriptor(obj, prop)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)</dt>
-<dd>Возвращает дескриптор для свойства `obj[prop]`.
+[Object.getOwnPropertyDescriptor(obj, prop)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)
+: Возвращает дескриптор для свойства `obj[prop]`.
 
-Полученный дескриптор можно изменить и использовать `defineProperty` для сохранения изменений, например:
+    Полученный дескриптор можно изменить и использовать `defineProperty` для сохранения изменений, например:
 
-```js
-//+ run
-var obj = {
-  test: 5
-};
-*!*
-var descriptor = Object.getOwnPropertyDescriptor(obj, 'test');
-*/!*
+    ```js run
+    var obj = {
+      test: 5
+    };
+    *!*
+    var descriptor = Object.getOwnPropertyDescriptor(obj, 'test');
+    */!*
 
-*!*
-// заменим value на геттер, для этого...
-*/!*
-delete descriptor.value; // ..нужно убрать value/writable
-delete descriptor.writable;
-descriptor.get = function() { // и поставить get
-  alert( "Preved :)" );
-};
+    *!*
+    // заменим value на геттер, для этого...
+    */!*
+    delete descriptor.value; // ..нужно убрать value/writable
+    delete descriptor.writable;
+    descriptor.get = function() { // и поставить get
+      alert( "Preved :)" );
+    };
 
-*!*
-// поставим новое свойство вместо старого
-*/!*
+    *!*
+    // поставим новое свойство вместо старого
+    */!*
 
-// если не удалить - defineProperty объединит старый дескриптор с новым
-delete obj.test;
+    // если не удалить - defineProperty объединит старый дескриптор с новым
+    delete obj.test;
 
-Object.defineProperty(obj, 'test', descriptor);
+    Object.defineProperty(obj, 'test', descriptor);
 
-obj.test; // Preved :)
-```
-
-</dd>
-</dl>
+    obj.test; // Preved :)
+    ```
 
 ...И несколько методов, которые используются очень редко:
-<dl>
-<dt>[Object.preventExtensions(obj)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions)</dt>
-<dd>Запрещает добавление свойств в объект.</dd>
-<dt>[Object.seal(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/seal)</dt>
-<dd>Запрещает добавление и удаление свойств, все текущие свойства делает `configurable: false`.</dd>
-<dt>[Object.freeze(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/freeze)</dt>
-<dd>Запрещает добавление, удаление и изменение свойств, все текущие свойства делает `configurable: false, writable: false`.</dd>
-<dt>[Object.isExtensible(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isExtensible), [Object.isSealed(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isSealed), [Object.isFrozen(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isFrozen)</dt>
-<dd>Возвращают `true`, если на объекте были вызваны методы `Object.preventExtensions/seal/freeze`.</dd>
-</dl>
+
+[Object.preventExtensions(obj)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions)
+: Запрещает добавление свойств в объект.
+
+[Object.seal(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/seal)
+: Запрещает добавление и удаление свойств, все текущие свойства делает `configurable: false`.
+
+[Object.freeze(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/freeze)
+: Запрещает добавление, удаление и изменение свойств, все текущие свойства делает `configurable: false, writable: false`.
+
+[Object.isExtensible(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isExtensible), [Object.isSealed(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isSealed), [Object.isFrozen(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isFrozen)
+: Возвращают `true`, если на объекте были вызваны методы `Object.preventExtensions/seal/freeze`.
 

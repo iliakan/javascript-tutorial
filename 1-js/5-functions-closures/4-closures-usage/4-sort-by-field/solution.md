@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 var users = [{
   name: "Вася",
   surname: 'Иванов',

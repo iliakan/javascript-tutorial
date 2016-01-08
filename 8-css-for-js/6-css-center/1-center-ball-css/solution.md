@@ -10,4 +10,4 @@
 }
 ```
 
-[edit src="solution"]Полный код решения[/edit]
+[edit src="solution" title="Полный код решения"]

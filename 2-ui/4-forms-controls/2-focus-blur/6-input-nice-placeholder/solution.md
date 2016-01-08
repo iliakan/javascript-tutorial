@@ -2,7 +2,7 @@
 
 Для вёрстки можно использовать отрицательный `margin` у текста с подсказкой.
 
-Решение в плане вёрстка есть в решении задачи [](/task/position-text-into-input).
+Решение в плане вёрстка есть в решении задачи <info:task/position-text-into-input>.
 
 # Решение
 
@@ -19,4 +19,4 @@ input.onfocus = function() {
 }
 ```
 
-[edit src="solution"]Открыть полный код решения[/edit]
+[edit src="solution" title="Открыть полный код решения"]

@@ -2,8 +2,7 @@
 
 Для проверки, сначала приведем строку `str` к нижнему регистру, а затем уже будем искать.
 
-```js
-//+ run
+```js run
 function checkSpam(str) {
   var lowerStr = str.toLowerCase();
 

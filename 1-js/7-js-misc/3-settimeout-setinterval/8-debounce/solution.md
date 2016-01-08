@@ -1,7 +1,6 @@
 
 
-```js
-//+ run no-beautify
+```js run no-beautify
 function debounce(f, ms) {
 
   var state = null;

@@ -1,6 +1,6 @@
 `Origin` нужен, потому что `Referer` передаётся не всегда. В частности, при запросе с HTTPS на HTTP -- нет `Referer`.
 
-Политика [Content Security Policy](http://en.wikipedia.org/wiki/Content_Security_Policy) может запрещать пересылку `Referer`. 
+Политика [Content Security Policy](http://en.wikipedia.org/wiki/Content_Security_Policy) может запрещать пересылку `Referer`.
 
 По стандарту `Referer` является необязательным HTTP-заголовком, в некоторых браузерах есть настройки, которые запрещают его слать.
 

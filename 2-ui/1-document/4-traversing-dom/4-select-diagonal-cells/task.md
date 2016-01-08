@@ -1,6 +1,8 @@
-# Выделите ячейки по диагонали
+importance: 5
 
-[importance 5]
+---
+
+# Выделите ячейки по диагонали
 
 Напишите код, который выделит все ячейки в таблице по диагонали.
 
@@ -12,6 +14,6 @@ td.style.backgroundColor = 'red';
 ```
 
 Должно получиться так:
-[iframe src="solution" height=180]
 
+[iframe src="solution" height=180]
 

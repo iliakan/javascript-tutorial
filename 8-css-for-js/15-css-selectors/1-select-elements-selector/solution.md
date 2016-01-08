@@ -1,6 +1,4 @@
 
 
-```html
-<!--+ src="index.html" -->
-```
+[html src="index.html"]
 

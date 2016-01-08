@@ -1,10 +1,12 @@
-# Что выведет instanceof?
+importance: 5
 
-[importance 5]
+---
+
+# Что выведет instanceof?
 
 В коде ниже создаётся простейшая иерархия классов: `Animal -> Rabbit`.
 
-Что выведет [instanceof](/instanceof)?  
+Что выведет [instanceof](/instanceof)?
 
 Распознает ли он `rabbit` как `Animal`, `Rabbit` и к тому же `Object`?
 

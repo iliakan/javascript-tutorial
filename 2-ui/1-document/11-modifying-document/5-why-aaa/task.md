@@ -1,11 +1,12 @@
-# Почему остаётся "ааа" ?
+importance: 1
 
-[importance 1]
+---
+
+# Почему остаётся "ааа" ?
 
 Запустите этот пример. Почему вызов `removeChild` не удалил текст `"aaa"`?
 
-```html
-<!--+ height=100 run -->
+```html height=100 run
 <table>
   aaa
   <tr>

@@ -1,7 +1,6 @@
 **Ответ: пустая строка.**
 
-```js
-//+ run
+```js run
 var name = "";
 
 var user = {

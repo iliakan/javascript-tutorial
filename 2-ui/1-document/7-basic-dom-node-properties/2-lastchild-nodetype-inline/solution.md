@@ -2,8 +2,7 @@
 
 Так что результат будет `1` (узел-элемент).
 
-```html
-<!--+ run height=60 -->
+```html run height=60
 <!DOCTYPE HTML>
 <html>
 

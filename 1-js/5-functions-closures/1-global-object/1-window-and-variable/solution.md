@@ -1,7 +1,6 @@
 Ответ: `1`.
 
-```js
-//+ run no-strict untrusted refresh
+```js run no-strict untrusted refresh
 if ("a" in window) {
   var a = 1;
 }

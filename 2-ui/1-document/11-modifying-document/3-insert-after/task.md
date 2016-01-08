@@ -1,6 +1,8 @@
-# insertAfter
+importance: 5
 
-[importance 5]
+---
+
+# insertAfter
 
 Напишите функцию `insertAfter(elem, refElem)`, которая добавит `elem` после узла `refElem`.
 

@@ -1,7 +1,6 @@
 # Первый вариант
 
-```js
-//+ run
+```js run
 function sumArgs() {
   // скопируем reduce из массива
   arguments.reduce = [].reduce;
@@ -17,8 +16,7 @@ alert( sumArgs(4, 5, 6) ); // 15
 
 Метод `call` здесь вполне подойдёт, так как требуется вызвать `reduce` в контексте `arguments` с одним аргументом.
 
-```js
-//+ run
+```js run
 function sumArgs() {
   // запустим reduce из массива напрямую
   return [].reduce.call(arguments, function(a, b) {

@@ -2,8 +2,7 @@
 
 Он проверяет наследование с учётом цепочки прототипов.
 
-```js
-//+ run
+```js run
 function Animal() {}
 
 function Rabbit() {}

@@ -1,13 +1,14 @@
-# vertical-align + table-cell + position = ?
+importance: 5
 
-[importance 5]
+---
+
+# vertical-align + table-cell + position = ?
 
 В коде ниже используется вертикальное центрирование при помощи `table-cell + vertical-align`.
 
 Почему оно не работает? Нажмите на просмотр, чтобы увидеть (стрелка должна быть в центре по вертикали).
 
-```html
-<!--+ run height=70  no-beautify -->
+```html run height=70 no-beautify
 <style>
   .arrow {
     position: absolute;

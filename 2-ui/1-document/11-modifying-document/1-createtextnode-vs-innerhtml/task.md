@@ -1,8 +1,10 @@
+importance: 5
+
+---
+
 # createTextNode vs innerHTML
 
-[importance 5]
-
-Есть *пустой* узел DOM `elem`. 
+Есть *пустой* узел DOM `elem`.
 
 **Одинаковый ли результат дадут эти скрипты?**
 

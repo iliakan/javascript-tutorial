@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function printNumbersTimeout20_100() {
   var i = 1;
   var timerId = setTimeout(function go() {

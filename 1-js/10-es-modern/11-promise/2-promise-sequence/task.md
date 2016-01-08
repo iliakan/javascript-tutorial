@@ -3,8 +3,7 @@
 
 Есть массив URL:
 
-```js
-//+ run
+```js run
 'use strict';
 
 let urls = [
@@ -19,7 +18,7 @@ let urls = [
 
 ```js
 Promise.all( urls.map(httpGet) )
-  .then(alert); 
+  .then(alert);
 ```
 
 В этой задаче загрузку нужно реализовать последовательно.

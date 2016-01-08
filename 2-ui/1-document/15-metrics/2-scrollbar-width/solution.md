@@ -1,7 +1,6 @@
 Создадим элемент с прокруткой, но без `border` и `padding`. Тогда разница между его полной шириной `offsetWidth` и внутренней `clientWidth` будет равна как раз прокрутке:
 
-```js
-//+ run
+```js run
 // создадим элемент с прокруткой
 var div = document.createElement('div');
 
@@ -10,7 +9,7 @@ div.style.width = '50px';
 div.style.height = '50px';
 
 // при display:none размеры нельзя узнать
-// нужно, чтобы элемент был видим, 
+// нужно, чтобы элемент был видим,
 // visibility:hidden - можно, т.к. сохраняет геометрию
 div.style.visibility = 'hidden';
 

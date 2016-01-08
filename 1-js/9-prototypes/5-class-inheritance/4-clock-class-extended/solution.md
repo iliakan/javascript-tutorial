@@ -1,5 +1,4 @@
 Наследник:
 
-```js
-//+ src="extended-clock.js"
-```
+[js src="extended-clock.js"]
+

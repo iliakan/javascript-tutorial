@@ -1,13 +1,14 @@
-# Поставьте класс ссылкам
+importance: 3
 
-[importance 3]
+---
+
+# Поставьте класс ссылкам
 
 Сделайте желтыми внешние ссылки, добавив им класс `external`.
 
 Все ссылки без `href`, без протокола и начинающиеся с `http://internal.com` считаются внутренними.
 
-```html
-<!--+ run -->
+```html run
 <style>
   .external {
     background-color: yellow
@@ -25,7 +26,7 @@
 </ul>
 ```
 
+Результат:
 
-Результат: 
 [iframe border=1 height=180 src="solution"]
 

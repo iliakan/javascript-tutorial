@@ -4,4 +4,4 @@
 
 Её график:
 
-<img src="bezier-up.png">
+![](bezier-up.png)

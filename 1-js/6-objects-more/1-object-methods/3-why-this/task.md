@@ -1,11 +1,12 @@
-# Почему this присваивается именно так?
+importance: 3
 
-[importance 3]
+---
+
+# Почему this присваивается именно так?
 
 Вызовы `(1)` и `(2)` в примере ниже работают не так, как `(3)` и `(4)`:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 "use strict"
 
 var obj, method;

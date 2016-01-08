@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function sum() {
   return [].reduce.call(arguments, function(a, b) {
     return a + b;

@@ -1,20 +1,21 @@
-# Добавить рамку, сохранив ширину
+importance: 4
 
-[importance 4]
+---
+
+# Добавить рамку, сохранив ширину
 
 Есть две колонки `30%/70%`:
 
-```html
-<!--+ autorun height=70 run play  no-beautify -->
+```html autorun height=70 run play no-beautify
 <style>
   .left {
-    float:left; 
-    width:30%; 
+    float:left;
+    width:30%;
     background: #aef;
   }
 
   .right {
-    float:right; 
+    float:right;
     width:70%;
     background: tan;
   }
@@ -30,7 +31,7 @@
 
 Добавьте к правой колонке рамку `border-left` и отступ `padding-left`.
 
-Двухколоночная вёрстка при этом не должна сломаться! 
+Двухколоночная вёрстка при этом не должна сломаться!
 
-Желательно не трогать свойство `width` ни слева ни справа и не создавать дополнительных элементов. 
+Желательно не трогать свойство `width` ни слева ни справа и не создавать дополнительных элементов.
 

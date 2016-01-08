@@ -1,6 +1,8 @@
-# Функция min
+importance: 1
 
-[importance 1]
+---
+
+# Функция min
 
 Задача "Hello World" для функций :)
 

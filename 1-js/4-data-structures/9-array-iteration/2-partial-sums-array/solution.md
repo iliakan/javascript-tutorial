@@ -2,8 +2,7 @@
 
 Неправильный вариант может выглядеть так:
 
-```js
-//+ run
+```js run
 function getSums(arr) {
   var result = [];
   if (!arr.length) return result;
@@ -12,7 +11,7 @@ function getSums(arr) {
     result.push(sum);
     return sum + item;
   });
-    
+
   return result;
 }
 
@@ -27,17 +26,16 @@ alert(getSums([1,2,3,4,5])); // результат: *!*1,3,6,10*/!*
 
 Исправим это:
 
-```js
-//+ run
+```js run
 function getSums(arr) {
   var result = [];
   if (!arr.length) return result;
-  
+
   *!*var totalSum*/!* = arr.reduce(function(sum, item) {
     result.push(sum);
     return sum + item;
   });
-  *!*result.push(totalSum);*/!*  
+  *!*result.push(totalSum);*/!*
 
   return result;
 }

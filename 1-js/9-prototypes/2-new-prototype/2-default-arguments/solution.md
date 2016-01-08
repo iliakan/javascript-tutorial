@@ -1,7 +1,6 @@
 Можно прототипно унаследовать от `options` и добавлять/менять опции в наследнике:
 
-```js
-//+ run
+```js run
 function Menu(options) {
   options = Object.create(options);
   options.width = options.width || 300;

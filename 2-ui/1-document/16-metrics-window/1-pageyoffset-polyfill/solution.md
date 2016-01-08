@@ -1,13 +1,11 @@
 В стандартном режиме IE8 можно получить текущую прокрутку так:
 
-```js
-//+ run
+```js run
 alert( document.documentElement.scrollTop );
 ```
 
 Самым простым, но неверным было бы такое решение:
-```js
-//+ run
+```js run
 // "полифилл"
 window.pageYOffset = document.documentElement.scrollTop;
 
@@ -15,12 +13,11 @@ window.pageYOffset = document.documentElement.scrollTop;
 alert( window.pageYOffset );
 ```
 
-Код выше не учитывает текущую прокрутку. Он присваивает `window.pageYOffset` текущую прокрутку, но при её изменении -- не обновляет это свойство автоматически, а поэтому -- бесполезен. 
+Код выше не учитывает текущую прокрутку. Он присваивает `window.pageYOffset` текущую прокрутку, но при её изменении -- не обновляет это свойство автоматически, а поэтому -- бесполезен.
 
 Более правильное решение -- сделать это свойство геттером. При этом в IE8 для DOM-объектов работает `Object.defineProperty`:
 
-```js
-//+ run
+```js run
 // полифилл
 Object.defineProperty(window, 'pageYOffset', {
   get: function() {
@@ -31,9 +28,4 @@ Object.defineProperty(window, 'pageYOffset', {
 // использование полифилла
 alert( window.pageYOffset );
 ```
-
-
-
-
-
 

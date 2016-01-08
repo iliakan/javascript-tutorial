@@ -1,6 +1,8 @@
-# removeChildren
+importance: 5
 
-[importance 5]
+---
+
+# removeChildren
 
 Напишите функцию `removeChildren`, которая удаляет всех потомков элемента.
 
@@ -27,3 +29,4 @@
   removeChildren(ol); // очищает список
 </script>
 ```
+

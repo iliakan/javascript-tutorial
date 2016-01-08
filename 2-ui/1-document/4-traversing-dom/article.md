@@ -1,3 +1,9 @@
+libs:
+  - d3
+  - domtree
+
+---
+
 # Навигация по DOM-элементам
 
 DOM позволяет делать что угодно с HTML-элементом и его содержимым, но для этого нужно сначала нужный элемент получить.
@@ -8,32 +14,30 @@ DOM позволяет делать что угодно с HTML-элементо
 
 Так выглядят основные ссылки, по которым можно переходить между узлами DOM:
 
-<img src="dom-links.png">
+![](dom-links.png)
 
 Посмотрим на них повнимательнее.
 
-## Сверху documentElement и body   
+## Сверху documentElement и body
 
 Самые верхние элементы дерева доступны напрямую из `document`.
 
-<dl>
-<dt>`<HTML>` = `document.documentElement`</dt>
-<dd>Первая точка входа -- `document.documentElement`. Это свойство ссылается на DOM-объект для тега `<html>`.</dd>
-<dt>`<BODY>` = `document.body`</dt>
-<dd>Вторая точка входа -- `document.body`, который соответствует тегу `<body>`.</dd>
-</dl>
+`<HTML>` = `document.documentElement`
+: Первая точка входа -- `document.documentElement`. Это свойство ссылается на DOM-объект для тега `<html>`.
+
+`<BODY>` = `document.body`
+: Вторая точка входа -- `document.body`, который соответствует тегу `<body>`.
 
 В современных браузерах (кроме IE8-) также есть `document.head` -- прямая ссылка на `<head>`
 
-[warn header="Есть одна тонкость: `document.body` может быть равен `null`"]
+````warn header="Есть одна тонкость: `document.body` может быть равен `null`"
 Нельзя получить доступ к элементу, которого еще не существует в момент выполнения скрипта.
 
 В частности, если скрипт находится в `<head>`, то в нём недоступен `document.body`.
 
 Поэтому в следующем примере первый `alert` выведет `null`:
 
-```html
-<!--+ run -->
+```html run
 <!DOCTYPE HTML>
 <html>
 
@@ -55,28 +59,24 @@ DOM позволяет делать что угодно с HTML-элементо
 
 </html>
 ```
-[/warn]
+````
 
-[smart header="В DOM активно используется `null`"]
+```smart header="В DOM активно используется `null`"
 В мире DOM в качестве значения, обозначающего "нет такого элемента" или "узел не найден", используется не `undefined`, а `null`.
-[/smart]
-
+```
 
 ## Дети: childNodes, firstChild, lastChild
 
 Здесь и далее мы будем использовать два принципиально разных термина.
 
-<ul>
-<li>**Дочерние элементы (или дети)** -- элементы, которые лежат *непосредственно* внутри данного. Например, внутри `<HTML>` обычно лежат `<HEAD>` и `<BODY>`.</li>
-<li>**Потомки** -- все элементы, которые лежат внутри данного, вместе с их детьми, детьми их детей и так далее. То есть, всё поддерево DOM.</li>
-</ul>
+- **Дочерние элементы (или дети)** -- элементы, которые лежат *непосредственно* внутри данного. Например, внутри `<HTML>` обычно лежат `<HEAD>` и `<BODY>`.
+- **Потомки** -- все элементы, которые лежат внутри данного, вместе с их детьми, детьми их детей и так далее. То есть, всё поддерево DOM.
 
 Псевдо-массив `childNodes` хранит все дочерние элементы, включая текстовые.
 
 Пример ниже последовательно выведет дочерние элементы `document.body`:
 
-```html
-<!--+ run -->
+```html run
 <!DOCTYPE HTML>
 <html>
 
@@ -90,7 +90,7 @@ DOM позволяет делать что угодно с HTML-элементо
   <div>Конец</div>
 
   <script>
-*!* 
+*!*
     for (var i = 0; i < document.body.childNodes.length; i++) {
       alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
     }
@@ -106,11 +106,11 @@ DOM позволяет делать что угодно с HTML-элементо
 
 Пробельный узел будет в *итоговом документе*, но его еще нет на момент выполнения скрипта.
 
-[warn header="Список детей -- только для чтения!"]
-Скажем больше -- все навигационные свойства, которые перечислены в этой главе -- только для чтения. Нельзя просто заменить элемент присвоением `childNodes[i] = ...`. 
+```warn header="Список детей -- только для чтения!"
+Скажем больше -- все навигационные свойства, которые перечислены в этой главе -- только для чтения. Нельзя просто заменить элемент присвоением `childNodes[i] = ...`.
 
 Изменение DOM осуществляется другими методами, которые мы рассмотрим далее, все навигационные ссылки при этом обновляются автоматически.
-[/warn]
+```
 
 Свойства `firstChild` и `lastChild` обеспечивают быстрый доступ к первому и последнему элементу.
 
@@ -126,8 +126,7 @@ DOM-коллекции, такие как `childNodes` и другие, кото
 
 В них нет методов массивов, таких как `forEach`, `map`, `push`, `pop` и других.
 
-```js
-//+ run
+```js run
 var elems = document.documentElement.childNodes;
 
 *!*
@@ -143,44 +142,35 @@ elems.forEach(function(elem) { // нет такого метода!
 
 Это возможно, основных варианта два:
 
-<ol>
-<li>Применить метод массива через `call/apply`:
+1. Применить метод массива через `call/apply`:
 
-```js
-//+ run
-var elems = document.documentElement.childNodes;
+    ```js run
+    var elems = document.documentElement.childNodes;
 
-*!*
-[].forEach.call(elems, function(elem) {
-*/!*
-  alert( elem ); // HEAD, текст, BODY
-});
-```
+    *!*
+    [].forEach.call(elems, function(elem) {
+    */!*
+      alert( elem ); // HEAD, текст, BODY
+    });
+    ```
+2. При помощи [Array.prototype.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) сделать из коллекции массив.
 
-</li>
-<li>При помощи [Array.prototype.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) сделать из коллекции массив.
+    Обычно вызов `arr.slice(a, b)` делает новый массив и копирует туда элементы `arr` с индексами от `a` до `b-1` включительно. Если же вызвать его без аргументов `arr.slice()`, то он делает новый массив и копирует туда все элементы  `arr`.
 
-Обычно вызов `arr.slice(a, b)` делает новый массив и копирует туда элементы `arr` с индексами от `a` до `b-1` включительно. Если же вызвать его без аргументов `arr.slice()`, то он делает новый массив и копирует туда все элементы  `arr`. 
+    Это работает и для коллекции:
 
-Это работает и для коллекции:
+    ```js run
+    var elems = document.documentElement.childNodes;
+    *!*
+    elems = Array.prototype.slice.call(elems); // теперь elems - массив
+    */!*
 
-```js
-//+ run
-var elems = document.documentElement.childNodes;
-*!*
-elems = Array.prototype.slice.call(elems); // теперь elems - массив
-*/!*
+    elems.forEach(function(elem) {
+      alert( elem.tagName ); // HEAD, текст, BODY
+    });
+    ```
 
-elems.forEach(function(elem) {
-  alert( elem.tagName ); // HEAD, текст, BODY
-});
-```
-
-</li>
-</ol>
-
-
-[warn header="Нельзя перебирать коллекцию через `for..in`"]
+````warn header="Нельзя перебирать коллекцию через `for..in`"
 Ранее мы говорили, что не рекомендуется использовать для перебора массива цикл `for..in`.
 
 **Коллекции -- наглядный пример, почему нельзя. Они похожи на массивы, но у них есть свои свойства и методы, которых в массивах нет.**
@@ -189,8 +179,7 @@ elems.forEach(function(elem) {
 
 Но в примере ниже `alert` сработает не три, а целых 5 раз!
 
-```js
-//+ run
+```js run
 var elems = document.documentElement.childNodes;
 
 for (var key in elems) {
@@ -198,18 +187,16 @@ for (var key in elems) {
 }
 ```
 
-Цикл `for..in` выведет не только ожидаемые индексы `0`, `1`, `2`, по которым лежат узлы в коллекции, но и свойство `length` (в коллекции оно enumerable), а также функцию `item(n)` -- она никогда не используется, возвращает `n-й` элемент коллекции, проще обратиться по индексу `[n]`. 
+Цикл `for..in` выведет не только ожидаемые индексы `0`, `1`, `2`, по которым лежат узлы в коллекции, но и свойство `length` (в коллекции оно enumerable), а также функцию `item(n)` -- она никогда не используется, возвращает `n-й` элемент коллекции, проще обратиться по индексу `[n]`.
 
 В реальном коде нам нужны только элементы, мы же будем работать с ними, а служебные свойства -- не нужны. Поэтому желательно использовать `for(var i=0; i<elems.length; i++)`.
-[/warn]
-
+````
 
 ## Соседи и родитель
 
 Доступ к элементам слева и справа данного можно получить по ссылкам `previousSibling` / `nextSibling`.
 
 Родитель доступен через `parentNode`. Если долго идти от одного элемента к другому, то рано или поздно дойдёшь до корня DOM, то есть до `document.documentElement`, а затем и `document`.
-
 
 ## Навигация только по элементам
 
@@ -219,38 +206,33 @@ for (var key in elems) {
 
 Поэтому посмотрим на дополнительный набор ссылок, которые их не учитывают:
 
-<img src="dom-links-elements.png">
+![](dom-links-elements.png)
 
 Эти ссылки похожи на те, что раньше, только в ряде мест стоит слово `Element`:
 
-<ul>
-<li>`children` -- только дочерние узлы-элементы, то есть соответствующие тегам.</li>
-<li>`firstElementChild`, `lastElementChild` -- соответственно, первый и последний дети-элементы.</li>
-<li>`previousElementSibling`, `nextElementSibling` -- соседи-элементы.</li>
-<li>`parentElement` -- родитель-элемент.</li>
-</ul>
- 
-[smart header="Зачем `parentElement`? Неужели бывают родители не-элементы?"]
-Свойство `elem.parentNode` возвращает родитель элемента. 
+- `children` -- только дочерние узлы-элементы, то есть соответствующие тегам.
+- `firstElementChild`, `lastElementChild` -- соответственно, первый и последний дети-элементы.
+- `previousElementSibling`, `nextElementSibling` -- соседи-элементы.
+- `parentElement` -- родитель-элемент.
+
+````smart header="Зачем `parentElement`? Неужели бывают родители не-элементы?"
+Свойство `elem.parentNode` возвращает родитель элемента.
 
 Оно всегда равно `parentElement`, кроме одного исключения:
 
-```js
-//+ run
+```js run
 alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
 ```
 
 Иногда это имеет значение, если хочется перебрать всех предков и вызвать какой-то метод, а на документе его нет.
-[/smart]
+````
 
-Модифицируем предыдущий пример, применив `children` вместо `childNodes`. 
+Модифицируем предыдущий пример, применив `children` вместо `childNodes`.
 
 Теперь он будет выводить не все узлы, а только узлы-элементы:
 
-
-```html
-<!--+ run -->
+```html run
 <!DOCTYPE HTML>
 <html>
 
@@ -264,7 +246,7 @@ alert( document.documentElement.parentElement ); // null
   <div>Конец</div>
 
   <script>
-*!* 
+*!*
     for (var i = 0; i < document.body.children.length; i++) {
       alert( document.body.children[i] ); // DIV, UL, DIV, SCRIPT
     }
@@ -283,65 +265,49 @@ elem.firstElementChild === elem.children[0]
 elem.lastElementChild === elem.children[elem.children.length - 1]
 ```
 
-
-[warn header="В IE8- поддерживается только `children`"]
+```warn header="В IE8- поддерживается только `children`"
 Других навигационных свойств в этих браузерах нет. Впрочем, как мы увидим далее, можно легко сделать полифилл, и они, всё же, будут.
-[/warn]
+```
 
-
-[warn header="В IE8- в `children` присутствуют узлы-комментарии"]
+```warn header="В IE8- в `children` присутствуют узлы-комментарии"
 С точки зрения стандарта это ошибка, но IE8- также включает в `children` узлы, соответствующие HTML-комментариям.
 
 Это может привести к сюрпризам при использовании свойства `children`, поэтому HTML-комментарии либо убирают либо используют фреймворк, к примеру, jQuery, который даёт свои методы перебора и отфильтрует их.
-[/warn]
+```
 
 ## Особые ссылки для таблиц [#dom-navigation-tables]
 
 У конкретных элементов DOM могут быть свои дополнительные ссылки для большего удобства навигации.
 
-Здесь мы рассмотрим таблицу, так как это важный частный случай и просто для примера. 
+Здесь мы рассмотрим таблицу, так как это важный частный случай и просто для примера.
 
 В списке ниже выделены наиболее полезные:
 
-<dl>
-<dt>`TABLE`</dt>
-<dd>
-<ul>
-<li>**`table.rows`** -- коллекция строк `TR` таблицы.</li>
-<li>`table.caption/tHead/tFoot` -- ссылки на элементы таблицы `CAPTION`, `THEAD`, `TFOOT`.</li>
-<li>`table.tBodies` -- коллекция элементов таблицы `TBODY`, по спецификации их может быть несколько.</li>
-</ul></dd>
-<dt>`THEAD/TFOOT/TBODY`</dt>
-<dd>
-<ul>
-<li>`tbody.rows` -- коллекция строк `TR` секции.</li>
-</ul></dd>
-<dt>`TR`</dt>
-<dd>
-<ul>
-<li>**`tr.cells`** -- коллекция ячеек `TD/TH`</li>
-<li>**`tr.sectionRowIndex`** -- номер строки в текущей секции `THEAD/TBODY`</li>
-<li>`tr.rowIndex` -- номер строки в таблице</li>
-</ul>
-</dd>
-<dt>`TD/TH`</dt>
-<dd>
-<ul>
-<li>**`td.cellIndex`** -- номер ячейки в строке</li>
-</ul>
-</dd>
-</dl>
+`TABLE`
+: - **`table.rows`** -- коллекция строк `TR` таблицы.
+- `table.caption/tHead/tFoot` -- ссылки на элементы таблицы `CAPTION`, `THEAD`, `TFOOT`.
+- `table.tBodies` -- коллекция элементов таблицы `TBODY`, по спецификации их может быть несколько.
+
+`THEAD/TFOOT/TBODY`
+: - `tbody.rows` -- коллекция строк `TR` секции.
+
+`TR`
+: - **`tr.cells`** -- коллекция ячеек `TD/TH`
+- **`tr.sectionRowIndex`** -- номер строки в текущей секции `THEAD/TBODY`
+- `tr.rowIndex` -- номер строки в таблице
+
+`TD/TH`
+: - **`td.cellIndex`** -- номер ячейки в строке
 
 Пример использования:
 
-```html
-<!--+ run height=100 -->
+```html run height=100
 <table>
-  <tr> 
-    <td>один</td> <td>два</td>    
+  <tr>
+    <td>один</td> <td>два</td>
   </tr>
-  <tr> 
-    <td>три</td>  <td>четыре</td> 
+  <tr>
+    <td>три</td>  <td>четыре</td>
   </tr>
 </table>
 
@@ -356,16 +322,16 @@ alert( table.*!*rows[0].cells[0]*/!*.innerHTML ) // "один"
 
 Даже если эти свойства не нужны вам прямо сейчас, имейте их в виду на будущее, когда понадобится пройтись по таблице.
 
-Конечно же, таблицы -- не исключение. 
+Конечно же, таблицы -- не исключение.
 
 Аналогичные полезные свойства есть у HTML-форм, они позволяют из формы получить все её элементы, а из них -- в свою очередь, форму. Мы рассмотрим их позже.
 
-[online]
+```online
 # Интерактивное путешествие
 
 Для того, чтобы убедиться, что вы разобрались с навигацией по DOM-ссылкам -- вашему вниманию предлагается интерактивное путешествие по DOM.
 
-Ниже вы найдёте документ (в ифрейме), и кнопки для перехода по нему. 
+Ниже вы найдёте документ (в ифрейме), и кнопки для перехода по нему.
 
 Изначальный элемент -- `<html>`. Попробуйте по ссылкам найти "информацию". Или ещё чего-нибудь.
 
@@ -382,15 +348,15 @@ alert( table.*!*rows[0].cells[0]*/!*.innerHTML ) // "один"
 <div id="travel-dom-control">
 
 Навигация:
-<ul>
-<li><input type="button" data-travel-dir="parentNode" value="Вверх (parentNode)">
+
+- <input type="button" data-travel-dir="parentNode" value="Вверх (parentNode)">
   <ul>
-    <li><input type="button" data-travel-dir="previousSibling" value="previousSibling"></li>
-    <li><b>Здесь стоите вы <code data-travel-prop="nodeText"></code></b>
+    <li><input type="button" data-travel-dir="previousSibling" value="previousSibling">
+    - <b>Здесь стоите вы <code data-travel-prop="nodeText"></code></b>
       <ul>
-        <li><input type="button" data-travel-dir="firstChild" value="firstChild"></li>
-        <li><input type="button" data-travel-dir="lastChild" value="lastChild"></li>
-      </ul>
+        <li><input type="button" data-travel-dir="firstChild" value="firstChild">
+        - <input type="button" data-travel-dir="lastChild" value="lastChild">
+
     </li>
     <li><input type="button" data-travel-dir="nextSibling" value="nextSibling"></li>
   </ul>
@@ -399,35 +365,17 @@ alert( table.*!*rows[0].cells[0]*/!*.innerHTML ) // "один"
 
 <div id="travel-dom-comment"></div>
 
-
 </div>
 
 <script src="/script/travel.js"></script>
-[/online]
+```
 
 # Итого
 
 В DOM доступна навигация по соседним узлам через ссылки:
-<ul>
-<li>По любым узлам.</li>
-<li>Только по элементам.</li>
-</ul>
+
+- По любым узлам.
+- Только по элементам.
 
 Также некоторые виды элементов предоставляют дополнительные ссылки для большего удобства, например у таблиц есть свойства для доступа к строкам/ячейкам.
-
-[libs]
-d3
-domtree
-[/libs]
-[head]
-
-<style>
-#travel-dom-comment { 
-  font-style: italic;
-}
-#travel-dom-control ul {
-  margin: 6px 0;
-}
-</style>
-[/head]
 

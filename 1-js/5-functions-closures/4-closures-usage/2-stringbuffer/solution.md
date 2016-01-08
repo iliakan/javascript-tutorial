@@ -1,7 +1,6 @@
 Текущее значение текста удобно хранить в замыкании, в локальной переменной `makeBuffer`:
 
-```js
-//+ run
+```js run
 function makeBuffer() {
   var text = '';
 

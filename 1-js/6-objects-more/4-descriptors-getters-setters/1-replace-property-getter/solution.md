@@ -1,6 +1,5 @@
 
-```js
-//+ run
+```js run
 function User(fullName) {
   this.fullName = fullName;
 
@@ -29,7 +28,6 @@ function User(fullName) {
       }
 
     }
-
 
   });
 }

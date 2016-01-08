@@ -1,11 +1,12 @@
-# Шаблон для таблицы с пользователями
+importance: 5
 
-[importance 5]
+---
+
+# Шаблон для таблицы с пользователями
 
 Есть данные:
 
-```js
-//+ no-beautify
+```js no-beautify
 var users = [
   {name: "Вася", age: 10},
   {name: "Петя", age: 15},
@@ -20,6 +21,4 @@ var users = [
 Результат:
 
 [iframe src="solution" height=180]
-
-
 

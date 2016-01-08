@@ -3,10 +3,9 @@
 Часть шаблона может быть заключена в скобки <code class="pattern">(...)</code>. Такие выделенные части шаблона называют "скобочными выражениями" или "скобочными группами".
 
 У такого выделения есть два эффекта:
-<ol>
-<li>Он позволяет выделить часть совпадения в отдельный элемент массива при поиске через [String#match](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/match) или [RegExp#exec](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec).</li>
-<li>Если поставить квантификатор после скобки, то он применится *ко всей скобке*, а не всего лишь к одному символу.</li>
-</ol>
+
+1. Он позволяет выделить часть совпадения в отдельный элемент массива при поиске через [String#match](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/match) или [RegExp#exec](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec).
+2. Если поставить квантификатор после скобки, то он применится *ко всей скобке*, а не всего лишь к одному символу.
 
 [cut]
 
@@ -14,26 +13,23 @@
 
 В примере ниже, шаблон <code class="pattern">(go)+</code> находит один или более повторяющихся <code class="pattern">'go'</code>:
 
-```js
-//+ run
+```js run
 alert( 'Gogogo now!'.match(/(go)+/i) ); // "Gogogo"
 ```
 
 Без скобок, шаблон <code class="pattern">/go+/</code> означал бы <code class="subject">g</code>, после которого идёт одна или более <code class="subject">o</code>, например: <code class="match">goooo</code>. А скобки "группируют" <code class="pattern">(go)</code> вместе.
 
-
 ## Содержимое группы
 
 Скобки нумеруются слева направо. Поисковой движок запоминает содержимое каждой скобки и позволяет обращаться к нему -- в шаблоне и строке замены и, конечно же, в результатах.
 
-Например, найти HTML-тег можно шаблоном <code class="pattern">&lt;.*?&gt;</code>. 
+Например, найти HTML-тег можно шаблоном <code class="pattern">&lt;.*?&gt;</code>.
 
 После поиска мы захотим что-то сделать с результатом. Для удобства заключим содержимое `<...>` в скобки: <code class="pattern">&lt;(.*?)&gt;</code>. Тогда оно будет доступно отдельно.
 
 При поиске методом [String#match](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/match) в результирующем массиве будет сначала всё совпадение, а далее -- скобочные группы. В шаблоне <code class="pattern">&lt;(.*?)&gt;</code> скобочная группа только одна:
 
-```js
-//+ run
+```js run
 var str = '<h1>Привет, мир!</h1>';
 var reg = /<(.*?)>/;
 
@@ -44,8 +40,7 @@ alert( str.match(reg) ); // массив: <h1>, h1
 
 Для того, чтобы искать и с флагом `/.../g` и со скобочными группами, используется метод [RegExp#exec](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec):
 
-```js
-//+ run
+```js run
 var str = '<h1>Привет, мир!</h1>';
 var reg = /<(.*?)>/g;
 
@@ -65,16 +60,13 @@ while ((match = reg.exec(str)) !== null) {
 
 Например, при поиске тега в <code class="subject">&lt;span class="my"&gt;</code> нас может интересовать:
 
-<ol>
-<li>Содержимое тега целиком: `span class="my"`.</li>
-<li>В отдельную переменную для удобства хотелось бы поместить тег: `span`.</li>
-<li>Также может быть удобно отдельно выделить атрибуты `class="my"`.</li>
-</ol>
+1. Содержимое тега целиком: `span class="my"`.
+2. В отдельную переменную для удобства хотелось бы поместить тег: `span`.
+3. Также может быть удобно отдельно выделить атрибуты `class="my"`.
 
 Добавим скобки в регулярное выражение:
 
-```js
-//+ run
+```js run
 var str = '<span class="my">';
 
 var reg = /<(([a-z]+)\s*([^>]*))>/;
@@ -84,7 +76,7 @@ alert( str.match(reg) ); // <span class="my">, span, s
 
 Вот так выглядят скобочные группы:
 
-<img src="regexp-nested-groups.png">
+![](regexp-nested-groups.png)
 
 На нулевом месте -- всегда совпадение полностью, далее -- группы. Нумерация всегда идёт слева направо, по открывающей скобке.
 
@@ -96,8 +88,7 @@ alert( str.match(reg) ); // <span class="my">, span, s
 
 Если напустить его на строку из одной буквы `"a"`, то результат будет таков:
 
-```js
-//+ run
+```js run
 var match = 'a'.match(/a(z)?(c)?/)
 
 alert( match.length ); // 3
@@ -110,8 +101,7 @@ alert( match[2] ); // undefined
 
 А теперь более сложная ситуация, строка <code class="subject">ack</code>:
 
-```js
-//+ run
+```js run
 var match = 'ack'.match(/a(z)?(c)?/)
 
 alert( match.length ); // 3
@@ -124,18 +114,17 @@ alert( match[2] ); // c
 
 ## Исключение из запоминания через ?:
 
-Бывает так, что скобки нужны, чтобы квантификатор правильно применился, а вот запоминать её в массиве не нужно. 
+Бывает так, что скобки нужны, чтобы квантификатор правильно применился, а вот запоминать её в массиве не нужно.
 
 Скобочную группу можно исключить из запоминаемых и нумеруемых, добавив в её начало <code class="pattern">?:</code>.
 
-Например, мы хотим найти <code class="pattern">(go)+</code>, но содержимое скобок (`go`) в отдельный элемент массива выделять не хотим. 
+Например, мы хотим найти <code class="pattern">(go)+</code>, но содержимое скобок (`go`) в отдельный элемент массива выделять не хотим.
 
 Для этого нужно сразу после открывающей скобки поставить `?:`, то есть: <code class="pattern">(?:go)+</code>.
 
 Например:
 
-```js
-//+ run
+```js run
 var str = "Gogo John!";
 *!*
 var reg = /(?:go)+ (\w+)/i;

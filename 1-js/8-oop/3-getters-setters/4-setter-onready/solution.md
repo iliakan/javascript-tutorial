@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
 
@@ -54,16 +53,13 @@ coffeeMachine.setOnReady(function() {
 ```
 
 Обратите внимание на два момента в решении:
-<ol>
-<li>В сеттере `setOnReady` параметр называется `newOnReady`. Мы не можем назвать его `onReady`, так как тогда изнутри сеттера мы никак не доберёмся до внешнего (старого значения):
 
-```js
-// нерабочий вариант
-this.setOnReady = function(onReady) {
-  onReady = onReady; // ??? внешняя переменная onReady недоступна
-};
-```
+1. В сеттере `setOnReady` параметр называется `newOnReady`. Мы не можем назвать его `onReady`, так как тогда изнутри сеттера мы никак не доберёмся до внешнего (старого значения):
 
-</li>
-<li>Чтобы `setOnReady` можно было вызывать в любое время, в `setTimeout` передаётся не `onReady`, а анонимная функция `function() { onReady() }`, которая возьмёт текущий (установленный последним) `onReady` из замыкания.</li>
-</ol>
+    ```js
+    // нерабочий вариант
+    this.setOnReady = function(onReady) {
+      onReady = onReady; // ??? внешняя переменная onReady недоступна
+    };
+    ```
+2. Чтобы `setOnReady` можно было вызывать в любое время, в `setTimeout` передаётся не `onReady`, а анонимная функция `function() { onReady() }`, которая возьмёт текущий (установленный последним) `onReady` из замыкания.

@@ -2,7 +2,8 @@
 
 Мы умеем перебирать коллекцию, получать нужный элемент по номеру. Достаточно ли этого?
 
-Конечно нет! По коллекции нужно путешествовать. Получать детей, искать родителей, выбирать элементы по условию, и чтобы это было удобно. 
+Конечно нет! По коллекции нужно путешествовать. Получать детей, искать родителей, выбирать элементы по условию, и чтобы это было удобно.
+
 [cut]
 
 ## Шпаргалка по методам
@@ -10,14 +11,12 @@
 Методов для навигации по коллекции много. Их гораздо проще воспринять, если разбить на группы.
 
 Итак, на картинке ниже:
-<ul>
-<li>По центру -- действия с текущей коллекцией: фильтрация, добавление, изменение и т.п.</li>
-<li>Сверху -- методы для доступа к родителям.</li>
-<li>Снизу -- для поиска среди потомков.</li>
-<li>Слева/справа -- для поиска соседей.</li>
-</ul>
 
-[pre]
+- По центру -- действия с текущей коллекцией: фильтрация, добавление, изменение и т.п.
+- Сверху -- методы для доступа к родителям.
+- Снизу -- для поиска среди потомков.
+- Слева/справа -- для поиска соседей.
+
 <style>
 .jqt-td {
   border: 2px solid #F79646;
@@ -34,7 +33,6 @@
 }
 </style>
 
-
 <table class="jqt-table">
 <tr>
 <td>&nbsp;</td>
@@ -49,25 +47,25 @@
 <tr>
 <td class="jqt-td">
 <a href="http://api.jquery.com/prev">prev</a>
-<a href="http://api.jquery.com/prevAll">prevAll</a> 
+<a href="http://api.jquery.com/prevAll">prevAll</a>
 <a href="http://api.jquery.com/prevUntil">prevUntil</a><br>
 <a href="http://api.jquery.com/siblings">siblings</a>
 </td>
 <td class="jqt-td" style="border-color: red">
-<a href="http://api.jquery.com/filter">filter</a> 
+<a href="http://api.jquery.com/filter">filter</a>
 <a href="http://api.jquery.com/not">not</a>
 <a href="http://api.jquery.com/has">has</a><br>
-<a href="http://api.jquery.com/eq">eq</a> 
+<a href="http://api.jquery.com/eq">eq</a>
 <a href="http://api.jquery.com/first">first</a>
 <a href="http://api.jquery.com/last">last</a>
 <a href="http://api.jquery.com/slice">slice</a><br>
-<a href="http://api.jquery.com/is">is</a> 
+<a href="http://api.jquery.com/is">is</a>
 <a href="http://api.jquery.com/add">add</a>
 <a href="http://api.jquery.com/add">map</a>
 </td>
 <td class="jqt-td">
-<a href="http://api.jquery.com/next">next</a> 
-<a href="http://api.jquery.com/nextAll">nextAll</a> 
+<a href="http://api.jquery.com/next">next</a>
+<a href="http://api.jquery.com/nextAll">nextAll</a>
 <a href="http://api.jquery.com/nextUntil">nextUntil</a><br>
 <a href="http://api.jquery.com/siblings">siblings</a>
 </td>
@@ -76,13 +74,12 @@
 <td>&nbsp;</td>
 <td class="jqt-td">
 <a href="http://api.jquery.com/find">find</a><br>
-<a href="http://api.jquery.com/children">children</a> 
+<a href="http://api.jquery.com/children">children</a>
 <a href="http://api.jquery.com/contents">contents</a>
 </td>
 <td>&nbsp;</td>
 </tr>
 </table>
-[/pre]
 
 Так как методов много, то запомнить их все сложно, да и не нужно. Достаточно знать, какие есть, а при необходимости -- обратиться к этой странице или к [официальной документации](http://api.jquery.com/category/traversing/).
 
@@ -90,272 +87,245 @@
 
 ## По текущей коллекции
 
-<dl>
-<dt><a href="http://api.jquery.com/filter">filter(фильтр)</a>, <a href="http://api.jquery.com/not">not(фильтр)</a>, <a href="http://api.jquery.com/has">has(фильтр)</a></dt>
-<dd>Возвращают отфильтрованную коллекцию, содержащую только элементы...
-<ul>
-<li>для `filter` -- подходящие под фильтр,</li>
-<li>для `not` -- не подходящие под фильтр,</li>
-<li>для `has` -- содержащие потомка, подходящего под фильтр.</li>
-</ul>
+<a href="http://api.jquery.com/filter">filter(фильтр)</a>, <a href="http://api.jquery.com/not">not(фильтр)</a>, <a href="http://api.jquery.com/has">has(фильтр)</a>
+: Возвращают отфильтрованную коллекцию, содержащую только элементы...
 
-```html
-<!--+ jquery run -->
-<ul>
-  <li><code>filter</code>: <i>только подходящие</i>.</li>
-  <li><code>not</code>: <em>не подходящие</em>.</li>
-  <li><code>has</code>: <i>по потомкам</i>.</li>
-  <li>...</li>
-</ul>
+- для `filter` -- подходящие под фильтр,
+- для `not` -- не подходящие под фильтр,
+- для `has` -- содержащие потомка, подходящего под фильтр.
 
-<script>
-  var list = $('li');
+    ```html jquery run
+    <ul>
+      <li><code>filter</code>: <i>только подходящие</i>.</li>
+      <li><code>not</code>: <em>не подходящие</em>.</li>
+      <li><code>has</code>: <i>по потомкам</i>.</li>
+      <li>...</li>
+    </ul>
 
-  // вызовом css('color', ..) поставим цвет элементам:
+    <script>
+      var list = $('li');
 
-*!*
-  list.filter(':even').css('color', 'blue'); // ФИЛЬТР: чётные 
-  list.not(':even').css('color', 'green'); // НЕ чётные
-  list.has('em').css('background', 'pink'); // СОДЕРЖАТ em
-*/!*
-</script>
-```
+      // вызовом css('color', ..) поставим цвет элементам:
 
-В качестве фильтра может быть использована также функция, принимающая элемент как `this` и возвращающая `true/false`:
+    *!*
+      list.filter(':even').css('color', 'blue'); // ФИЛЬТР: чётные
+      list.not(':even').css('color', 'green'); // НЕ чётные
+      list.has('em').css('background', 'pink'); // СОДЕРЖАТ em
+    */!*
+    </script>
+    ```
 
-```html
-<!--+ jquery run -->
-<ul>
-  <li><code>filter</code>: <i>только подходящие</i>.</li>
-  <li><code>not</code>: <em>не подходящие</em>.</li>
-  <li><code>has</code>: <i>по потомкам</i>.</li>
-  <li>...</li>
-</ul>
+    В качестве фильтра может быть использована также функция, принимающая элемент как `this` и возвращающая `true/false`:
 
-<script>
-  var list = $('li');
+    ```html jquery run
+    <ul>
+      <li><code>filter</code>: <i>только подходящие</i>.</li>
+      <li><code>not</code>: <em>не подходящие</em>.</li>
+      <li><code>has</code>: <i>по потомкам</i>.</li>
+      <li>...</li>
+    </ul>
 
-  // ФИЛЬТР: первый ребёнок - текстовый узел
-*!*
-  var result = list.filter(function() {
-    return this.firstChild.nodeType == 3;
-  });
-*/!*
+    <script>
+      var list = $('li');
 
-  alert( result.length ); // 1, это последний LI
-</script>
-```
+      // ФИЛЬТР: первый ребёнок - текстовый узел
+    *!*
+      var result = list.filter(function() {
+        return this.firstChild.nodeType == 3;
+      });
+    */!*
 
-</dd>
-<dt><a href="http://api.jquery.com/eq">eq(n)</a>, <a href="http://api.jquery.com/first">first</a>, <a href="http://api.jquery.com/last">last</a>, <a href="http://api.jquery.com/slice">slice(start, end)</a></dt>
-<dd>Возвращает новую коллекцию...
-<ul>
-<li>`eq(n)` -- с одним элементом по его номеру,</li>
-<li>`first/last` -- из первого/последнего элемента,</li>
-<li>`slice(start[, end])` -- из элементов с номера `start` до `end`.</li>
-</ul>
-</dd>
-<dt><a href="http://api.jquery.com/is">is(фильтр)</a></dt>
-<dd>Возвращает `true`, если *какой-нибудь* элемент из коллекции подходит под фильтр.
+      alert( result.length ); // 1, это последний LI
+    </script>
+    ```
 
-```html
-<!--+ jquery run -->
-<ul>
-  <li><code>filter</code>: <i>только подходящие</i>.</li>
-  <li><code>not</code>: <em>не подходящие</em>.</li>
-  <li><code>has</code>: <i>по потомкам</i>.</li>
-  <li class="other">...</li>
-</ul>
+<a href="http://api.jquery.com/eq">eq(n)</a>, <a href="http://api.jquery.com/first">first</a>, <a href="http://api.jquery.com/last">last</a>, <a href="http://api.jquery.com/slice">slice(start, end)</a>
+: Возвращает новую коллекцию...
 
-<script>
-  var list = $('ul').children();
+- `eq(n)` -- с одним элементом по его номеру,
+- `first/last` -- из первого/последнего элемента,
+- `slice(start[, end])` -- из элементов с номера `start` до `end`.
 
-*!*
-  alert( list.is('li') ); // true
-  alert( list.is('.other') ); // true
-  alert( list.is(':hidden') ); // false
-*/!*
-</script>
-```
+<a href="http://api.jquery.com/is">is(фильтр)</a>
+: Возвращает `true`, если *какой-нибудь* элемент из коллекции подходит под фильтр.
 
-</dd>
-<dt><a href="http://api.jquery.com/add">add(элементы)</a></dd>
-<dd>Возвращает новую коллекцию из элементов текущей и новых, по селектору.
+    ```html jquery run
+    <ul>
+      <li><code>filter</code>: <i>только подходящие</i>.</li>
+      <li><code>not</code>: <em>не подходящие</em>.</li>
+      <li><code>has</code>: <i>по потомкам</i>.</li>
+      <li class="other">...</li>
+    </ul>
 
-```html
-<!--+ jquery run -->
-<ul>
-  <li><code>filter</code>: <i>только подходящие</i>.</li>
-  <li><code>not</code>: <em>не подходящие</em>.</li>
-  <li><code>has</code>: <i>по потомкам</i>.</li>
-  <li class="other">...</li>
-</ul>
+    <script>
+      var list = $('ul').children();
 
-<script>
-  var elems = $('ul');
+    *!*
+      alert( list.is('li') ); // true
+      alert( list.is('.other') ); // true
+      alert( list.is(':hidden') ); // false
+    */!*
+    </script>
+    ```
 
-  // можно добавить элемент DOM
-  var li = document.getElementsByTagName('li')[0];
-*!*
-  elems = elems.add(li);
-*/!*
-  alert( elems.length ); // 2
+<a href="http://api.jquery.com/add">add(элементы)</a></dd>
+: Возвращает новую коллекцию из элементов текущей и новых, по селектору.
 
-*!*
-  elems = elems.add('.other'); // можно - по селектору
-*/!*
-  alert( elems.length ); // 3
+    ```html jquery run
+    <ul>
+      <li><code>filter</code>: <i>только подходящие</i>.</li>
+      <li><code>not</code>: <em>не подходящие</em>.</li>
+      <li><code>has</code>: <i>по потомкам</i>.</li>
+      <li class="other">...</li>
+    </ul>
 
-*!*
-  elems = elems.add($('li')); // можно - коллекцию
-*/!*
-  alert( elems.length ); // 5, дубликаты удаляются
-</script>
-```
+    <script>
+      var elems = $('ul');
 
-Важно: эта функция не меняет текущую коллекцию, она создаёт новую из существующих и добавленных элементов.
+      // можно добавить элемент DOM
+      var li = document.getElementsByTagName('li')[0];
+    *!*
+      elems = elems.add(li);
+    */!*
+      alert( elems.length ); // 2
 
-</dd>
-<dt><a href="http://api.jquery.com/add">map(функция)</a></dt>
-<dd>Этот метод стоит особняком. Он не меняет коллекцию, не ищет в ней, а пропускает её через функцию и возвращает результаты.
+    *!*
+      elems = elems.add('.other'); // можно - по селектору
+    */!*
+      alert( elems.length ); // 3
 
-```html
-<!--+ jquery run -->
-<ul>
-  <li><code>filter</code>: <i>только подходящие</i>.</li>
-  <li><code>not</code>: <em>не подходящие</em>.</li>
-  <li><code>has</code>: <i>по потомкам</i>.</li>
-  <li class="other">...</li>
-</ul>
+    *!*
+      elems = elems.add($('li')); // можно - коллекцию
+    */!*
+      alert( elems.length ); // 5, дубликаты удаляются
+    </script>
+    ```
 
-<script>
-  $('code')
-    .css('color', 'red') // подсветить CODE красным
-*!*
-    .map(function() {
-      return this.parentNode; // получить коллекцию родителей CODE
-    })
-*/!*
-    .css('color', 'green'); // подсветить их зелёным
-</script>
-```
+    Важно: эта функция не меняет текущую коллекцию, она создаёт новую из существующих и добавленных элементов.
 
-</dd>
-</dl>
+<dt><a href="http://api.jquery.com/add">map(функция)</a>
+: Этот метод стоит особняком. Он не меняет коллекцию, не ищет в ней, а пропускает её через функцию и возвращает результаты.
+
+    ```html jquery run
+    <ul>
+      <li><code>filter</code>: <i>только подходящие</i>.</li>
+      <li><code>not</code>: <em>не подходящие</em>.</li>
+      <li><code>has</code>: <i>по потомкам</i>.</li>
+      <li class="other">...</li>
+    </ul>
+
+    <script>
+      $('code')
+        .css('color', 'red') // подсветить CODE красным
+    *!*
+        .map(function() {
+          return this.parentNode; // получить коллекцию родителей CODE
+        })
+    */!*
+        .css('color', 'green'); // подсветить их зелёным
+    </script>
+    ```
 
 Заметим две приятные особенности:
-<ul>
-<li>Большинство методов, которые осуществляют фильтрацию, могут принимать как селектор так и фильтрующую функцию. jQuery любит функции.</li>
-<li>Большинство методов, которые принимают элементы, могут получать их в виде jQuery-коллекции или селектора. Главное, чтобы найти по этому можно было.</li>
-</ul>
+
+- Большинство методов, которые осуществляют фильтрацию, могут принимать как селектор так и фильтрующую функцию. jQuery любит функции.
+- Большинство методов, которые принимают элементы, могут получать их в виде jQuery-коллекции или селектора. Главное, чтобы найти по этому можно было.
 
 ## По родителям
 
-<dl>
-<dt>[parent()](http://api.jquery.com/parent/), [parents(фильтр)](http://api.jquery.com/parents/), [parentsUntil(стоп, фильтр)](http://api.jquery.com/parentsUntil/)</dt>
-<dd>Родители -- один `parent`, все `parents(фильтр)` (с фильтром по селектору) и до определённого `parentsUntil(где остановиться, селектор для элементов)`.</dd>
-<dt>[closest(фильтр, элемент-контейнер)](http://api.jquery.com/closest/)</dt>
-<dd>Ищет одного, ближайшего, родителя, подходящего под селектор.
+[parent()](http://api.jquery.com/parent/), [parents(фильтр)](http://api.jquery.com/parents/), [parentsUntil(стоп, фильтр)](http://api.jquery.com/parentsUntil/)
+: Родители -- один `parent`, все `parents(фильтр)` (с фильтром по селектору) и до определённого `parentsUntil(где остановиться, селектор для элементов)`.
 
-Второй, необязательный, аргумент `элемент-контейнер`, если он передан, ограничивает поиск. jQuery будет идти вверх до тех пор, пока не встретит этот DOM-элемент.
+[closest(фильтр, элемент-контейнер)](http://api.jquery.com/closest/)
+: Ищет одного, ближайшего, родителя, подходящего под селектор.
 
-```html
-<!--+ run -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    Второй, необязательный, аргумент `элемент-контейнер`, если он передан, ограничивает поиск. jQuery будет идти вверх до тех пор, пока не встретит этот DOM-элемент.
 
-<ul id="1">
-  <li><a href="http://blog.jquery.com">jQuery Blog</a></li>
-  <li><a href="http://sizzlejs.com">Sizzle</a></li>
-</ul>
+    ```html run
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<script>
-  var link = $('a[href*="blog"]'); // ссылка, атрибут href содержит "blog"
+    <ul id="1">
+      <li><a href="http://blog.jquery.com">jQuery Blog</a></li>
+      <li><a href="http://sizzlejs.com">Sizzle</a></li>
+    </ul>
 
-*!*
-  var ul = link.closest('ul'); // ближайший сверху UL
-*/!*
-  alert( ul[0].id ); // 1
+    <script>
+      var link = $('a[href*="blog"]'); // ссылка, атрибут href содержит "blog"
 
-*!*
-  var li = $('li')[0];
-  ul = link.closest('ul', li); // ближайший сверху UL, но внутри LI
-*/!*
-  alert( ul.length ); // 0, нет таких
-</script>
-```
+    *!*
+      var ul = link.closest('ul'); // ближайший сверху UL
+    */!*
+      alert( ul[0].id ); // 1
 
-</dd>
-</dl>
+    *!*
+      var li = $('li')[0];
+      ul = link.closest('ul', li); // ближайший сверху UL, но внутри LI
+    */!*
+      alert( ul.length ); // 0, нет таких
+    </script>
+    ```
 
 ## По потомкам
 
-<dl>
-<dt>[find(селектор)](http://api.jquery.com/find/)</dt>
-<dd>Ищет в потомках по селектору.
+[find(селектор)](http://api.jquery.com/find/)
+: Ищет в потомках по селектору.
 
-```js
-// для каждого LI искать CODE среди потомков, вернуть их коллекцию
-$('li').find('code');
-```
+    ```js
+    // для каждого LI искать CODE среди потомков, вернуть их коллекцию
+    $('li').find('code');
+    ```
 
-</dd>
-<dt>[children(селектор)](http://api.jquery.com/children/), [contents()](http://api.jquery.com/contents/)</dt>
-<dd>Выбирает детей по селектору, без аргументов -- всех детей:
+[children(селектор)](http://api.jquery.com/children/), [contents()](http://api.jquery.com/contents/)
+: Выбирает детей по селектору, без аргументов -- всех детей:
 
-```html
-<!--+ jquery run -->
-<ul>
-  <li><code>filter</code>: <i>только подходящие</i>.</li>
-  <li><code>not</code>: <em>не подходящие</em>.</li>
-  <li><code>has</code>: <i>по потомкам</i>.</li>
-  <li class="other">...</li>
-</ul>
+    ```html jquery run
+    <ul>
+      <li><code>filter</code>: <i>только подходящие</i>.</li>
+      <li><code>not</code>: <em>не подходящие</em>.</li>
+      <li><code>has</code>: <i>по потомкам</i>.</li>
+      <li class="other">...</li>
+    </ul>
 
-<script>
-  $('li')
-*!*
-    .children('code') // вернуть всех детей LI, подходящих под селектор code  
-*/!*
-    .css('color', 'red'); // подсветить
-</script>
-```
+    <script>
+      $('li')
+    *!*
+        .children('code') // вернуть всех детей LI, подходящих под селектор code
+    */!*
+        .css('color', 'red'); // подсветить
+    </script>
+    ```
 
-Метод [contents()](http://api.jquery.com/contents/) -- также возвращает детей, но в отличие от `children` -- узлы всех типов, включая текстовые и комментарии, а не только узлы-элементы.
+    Метод [contents()](http://api.jquery.com/contents/) -- также возвращает детей, но в отличие от `children` -- узлы всех типов, включая текстовые и комментарии, а не только узлы-элементы.
 
-```html
-<!--+ jquery run -->
-<ul>
-  <li><code>filter</code>: <i>только подходящие</i>.</li>
-  <li><code>not</code>: <em>не подходящие</em>.</li>
-  <li><code>has</code>: <i>по потомкам</i>.</li>
-  <li class="other">...</li>
-</ul>
+    ```html jquery run
+    <ul>
+      <li><code>filter</code>: <i>только подходящие</i>.</li>
+      <li><code>not</code>: <em>не подходящие</em>.</li>
+      <li><code>has</code>: <i>по потомкам</i>.</li>
+      <li class="other">...</li>
+    </ul>
 
-<script>
-  $('li')
-*!*
-    .contents() // все узлы-дети LI
-*/!*
-    .map(function() { // обернуть текстовые узлы в скобки
-      if (this.nodeType == 3) this.data = "(" + this.data + ")"
-    });
-</script>
-```
-
-</dd>
-</dl>
+    <script>
+      $('li')
+    *!*
+        .contents() // все узлы-дети LI
+    */!*
+        .map(function() { // обернуть текстовые узлы в скобки
+          if (this.nodeType == 3) this.data = "(" + this.data + ")"
+        });
+    </script>
+    ```
 
 ## По соседям
 
-<dl>
-<dt><a href="http://api.jquery.com/prev">prev()</a>, <a href="http://api.jquery.com/prevAll">prevAll(фильтр)</a>, <a href="http://api.jquery.com/prevUntil">prevUntil(элемент, фильтр)</a></dt>
-<dd>Получить левого соседа `prev`, всех левых соседей `prevAll` или всех левых соседей `prevUntil` до указанного (`элемент`), подходящих под фильтр.</dd>
-<dt><a href="http://api.jquery.com/next">next()</a>, <a href="http://api.jquery.com/nextAll">nextAll(фильтр)</a>, <a href="http://api.jquery.com/nextUntil">nextUntil(элемент, фильтр)</a></dt>
-<dd>То же самое, но правые соседи.</dd>
-<dt><a href="http://api.jquery.com/siblings">siblings()</a></dt>
-<dd>Получить коллекцию всех соседей.</dd>
-</dl>
+<a href="http://api.jquery.com/prev">prev()</a>, <a href="http://api.jquery.com/prevAll">prevAll(фильтр)</a>, <a href="http://api.jquery.com/prevUntil">prevUntil(элемент, фильтр)</a>
+: Получить левого соседа `prev`, всех левых соседей `prevAll` или всех левых соседей `prevUntil` до указанного (`элемент`), подходящих под фильтр.
 
+<a href="http://api.jquery.com/next">next()</a>, <a href="http://api.jquery.com/nextAll">nextAll(фильтр)</a>, <a href="http://api.jquery.com/nextUntil">nextUntil(элемент, фильтр)</a>
+: То же самое, но правые соседи.
+
+<a href="http://api.jquery.com/siblings">siblings()</a>
+: Получить коллекцию всех соседей.
 
 ## Стек селекторов: методы end и addBack
 
@@ -369,19 +339,17 @@ $('li').find('code');
 
 Можно сделать это так:
 
-```js
-//+ no-beautify
+```js no-beautify
 $('form')
   .find(':checkbox')
   .each(function() { ... }); // сделать что-то с элементами коллекции
 ```
 
-...И теперь хотим поискать в этой же форме что-то ещё. 
+...И теперь хотим поискать в этой же форме что-то ещё.
 
 Самый очевидный способ это сделать -- сохранить `$('form')` в переменной:
 
-```js
-//+ no-beautify
+```js no-beautify
 var form = $('form');
 
 form
@@ -397,8 +365,7 @@ form
 
 jQuery, при вызове `find` сохраняет предыдущую найденную коллекцию, к которой можно вернуться вызовом `end()`:
 
-```js
-//+ no-beautify
+```js no-beautify
 $('form')
   .find(':checkbox') // нашли чекбоксы внутри
   .each(function() { ... }) // обработали
@@ -410,13 +377,12 @@ $('form')
 ```
 
 **Метод [addBack(selector)](http://api.jquery.com/addBack/) добавляет элементы из предыдущей коллекции к текущей.**
- 
+
 Если указать селектор, то он отфильтрует их.
 
 Этот метод бывает очень удобен, когда какую-то операцию нужно сделать как с детьми, так и с самим элементом, например:
 
-```js
-//+ no-beautify
+```js no-beautify
 $('ul')       // коллекция: UL
   .children() // получить коллекцию LI
   .addBack()  // добавить к ней сам UL
@@ -439,23 +405,13 @@ $(':first-child', elem);
 
 Все эти способы неэффективны. Особенно первые два.
 
-<ol>
-<li>Первый проходит всех детей, по псевдо-фильтру выбирая нужного.</li>
-<li>Второй копирует детей в коллекцию, а потом получает из неё первый элемент.</li>
-<li>Третий запускает `querySelectorAll(':first-child)` (на самом деле там чуть сложнее, но не суть важно) в контексте `elem`. Здесь, с первого взгляда, нет копирования всех детей, но внутренний алгоритм браузера для выполнения `querySelectorAll` всё равно работает полным перебором. Впрочем, это будет намного быстрее, чем предыдущие решения.</li>
-</ol>
+1. Первый проходит всех детей, по псевдо-фильтру выбирая нужного.
+2. Второй копирует детей в коллекцию, а потом получает из неё первый элемент.
+3. Третий запускает `querySelectorAll(':first-child)` (на самом деле там чуть сложнее, но не суть важно) в контексте `elem`. Здесь, с первого взгляда, нет копирования всех детей, но внутренний алгоритм браузера для выполнения `querySelectorAll` всё равно работает полным перебором. Впрочем, это будет намного быстрее, чем предыдущие решения.
 
 Обычный же вызов `elem[0].children[0]` на порядки обгонит все вышеприведённые способы, особенно если детей много.
 
 Какой вывод из этого?
 
 **Там, где потеря в производительности некритична, используем jQuery -- для удобства. Это большинство случаев. Там, где она важна -- обращаемся к обычному DOM.**
-
-
-
-
-
-
-
-
 

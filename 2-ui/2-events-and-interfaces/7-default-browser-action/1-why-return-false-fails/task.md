@@ -1,11 +1,12 @@
-# Почему не работает return false?
+importance: 3
 
-[importance 3]
+---
+
+# Почему не работает return false?
 
 Почему в этом документе `return false` не работает?
 
-```html
-<!--+ autorun run -->
+```html autorun run
 <script>
   function handler() {
     alert( "..." );

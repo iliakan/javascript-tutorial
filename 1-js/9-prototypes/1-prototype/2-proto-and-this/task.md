@@ -1,6 +1,8 @@
-# Прототип и this
+importance: 5
 
-[importance 5]
+---
+
+# Прототип и this
 
 Сработает ли вызов `rabbit.eat()` ?
 

@@ -1,7 +1,6 @@
 Ответ: `Hello`.
 
-```js
-//+ run
+```js run
 function f() {
   alert( this );
 }

@@ -21,7 +21,7 @@
 ```css
 #view {
   /* padding + border = 3px */
-  
+
   padding: 2px;
   border: 1px solid black;
 }
@@ -41,7 +41,7 @@ CSS для `#area` заменяет поля границами:
 
 ```css
 /*+ no-beautify */
-#area:focus { 
+#area:focus {
   outline: none; /* убирает рамку при фокусе */
 }
 ```
@@ -96,5 +96,4 @@ function cancel() {
   view.style.display = 'block';
 }
 ```
-
 

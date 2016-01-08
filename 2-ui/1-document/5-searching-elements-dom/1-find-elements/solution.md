@@ -24,3 +24,4 @@ document.getElementsByName("info[0]")[0];
 // 7
 document.querySelector('form[name="search-person"] [name="info[0]"]');
 ```
+

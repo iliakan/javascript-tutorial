@@ -5,18 +5,18 @@
 Но нужна ли нам эта дополнительная задержка? Как правило, используя `setTimeout(func, 0)`, мы хотим перенести выполнение `func` на "ближайшее время после текущего кода", и какая-то дополнительная задержка нам не нужна. Если бы была нужна -- мы бы её указали вторым аргументом вместо `0`.
 
 [cut]
+
 ## Метод setImmediate(func)
 
 Для того, чтобы поставить функцию в очередь на выполнение без задержки, в Microsoft предложили метод [setImmediate(func)](http://msdn.microsoft.com/en-us/library/ie/hh773176.aspx). Он реализован в IE10+ и на платформе Node.JS.
 
 У `setImmediate` единственный аргумент -- это функция, выполнение которой нужно запланировать.
 
-В других браузерах `setImmediate` нет, но его можно эмулировать, используя, к примеру, метод [postMessage](https://developer.mozilla.org/en-US/docs/DOM/window.postMessage), предназначенный для пересылки сообщений от одного окна другому. Детали работы с `postMessage` вы найдёте в статье [](/cross-window-messaging-with-postmessage). Желательно читать её после освоения темы "События".
+В других браузерах `setImmediate` нет, но его можно эмулировать, используя, к примеру, метод [postMessage](https://developer.mozilla.org/en-US/docs/DOM/window.postMessage), предназначенный для пересылки сообщений от одного окна другому. Детали работы с `postMessage` вы найдёте в статье <info:cross-window-messaging-with-postmessage>. Желательно читать её после освоения темы "События".
 
 Полифилл для `setImmediate` через `postMessage`:
 
-```js
-//+ no-beautify
+```js no-beautify
 if (!window.setImmediate) window.setImmediate = (function() {
   var head = { }, tail = head; // очередь вызовов, 1-связный список
 
@@ -27,13 +27,13 @@ if (!window.setImmediate) window.setImmediate = (function() {
     head = head.next;
     var func = head.func;
     delete head.func;
-    func();      
+    func();
   }
 
   if(window.addEventListener) { // IE9+, другие браузеры
     window.addEventListener('message', onmessage);
   } else { // IE8
-    window.attachEvent( 'onmessage', onmessage ); 
+    window.attachEvent( 'onmessage', onmessage );
   }
 
   return function(func) {
@@ -43,7 +43,7 @@ if (!window.setImmediate) window.setImmediate = (function() {
 }());
 ```
 
-Есть и более сложные эмуляции, включая [MessageChannel](http://www.w3.org/TR/webmessaging/#channel-messaging) для работы с [Web Workers](http://www.w3.org/TR/workers/) и хитрый метод для поддержки IE8-: [](https://github.com/NobleJS/setImmediate). Все они по существу являются "хаками", направленными на то, чтобы обеспечить поддержку `setImmediate` в тех браузерах, где его нет.
+Есть и более сложные эмуляции, включая [MessageChannel](http://www.w3.org/TR/webmessaging/#channel-messaging) для работы с [Web Workers](http://www.w3.org/TR/workers/) и хитрый метод для поддержки IE8-: <https://github.com/NobleJS/setImmediate>. Все они по существу являются "хаками", направленными на то, чтобы обеспечить поддержку `setImmediate` в тех браузерах, где его нет.
 
 ## Тест производительности
 

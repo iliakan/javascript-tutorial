@@ -9,8 +9,7 @@
 Здесь регэксп <code class="pattern">[a-f0-9]{3}</code> заключён в скобки, чтобы квантификатор <code class="pattern">{1,2}</code> применялся целиком ко всей этой структуре.
 
 В действии:
-```js
-//+ run
+```js run
 var re = /#([a-f0-9]{3}){1,2}/gi;
 
 var str = "color: #3f3; background-color: #AA00ef; and: #abcd";
@@ -20,11 +19,11 @@ alert( str.match(re) ); // #3f3 #AA0ef #abc
 
 В последнем выражении <code class="subject">#abcd</code> было найдено совпадение <code class="match">#abc</code>. Чтобы этого не происходило, добавим в конец <code class="pattern">\b</code>:
 
-```js
-//+ run
+```js run
 var re = /#([a-f0-9]{3}){1,2}\b/gi;
 
 var str = "color: #3f3; background-color: #AA00ef; and: #abcd";
 
 alert( str.match(re) ); // #3f3 #AA0ef
 ```
+

@@ -8,13 +8,12 @@ Rabbit.prototype = Animal.prototype;
 
 Получится, что все животные прыгают, вот пример:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 function Animal(name) {
   this.name = name;
 }
 
-Animal.prototype.walk = function() { 
+Animal.prototype.walk = function() {
   alert("ходит " + this.name);
 };
 
@@ -25,7 +24,7 @@ function Rabbit(name) {
 Rabbit.prototype = Animal.prototype;
 */!*
 
-Rabbit.prototype.walk = function() { 
+Rabbit.prototype.walk = function() {
   alert("прыгает! и ходит: " + this.name);
 };
 

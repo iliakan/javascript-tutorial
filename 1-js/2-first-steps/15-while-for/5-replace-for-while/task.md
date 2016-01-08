@@ -1,11 +1,12 @@
-# Замените for на while
+importance: 5
 
-[importance 5]
+---
+
+# Замените for на while
 
 Перепишите код, заменив цикл `for` на `while`, без изменения поведения цикла.
 
-```js
-//+ run
+```js run
 for (var i = 0; i < 3; i++) {
   alert( "номер " + i + "!" );
 }

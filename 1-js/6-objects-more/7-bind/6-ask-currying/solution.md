@@ -2,8 +2,7 @@
 
 Первое решение -- передать в `ask` функции с привязанным контекстом и аргументами.
 
-```js
-//+ run
+```js run
 "use strict";
 
 function ask(question, answer, ok, fail) {
@@ -34,8 +33,7 @@ user.checkPassword();
 
 Второе решение -- это скопировать `this` в локальную переменную (чтобы внешняя перезапись не повлияла):
 
-```js
-//+ run
+```js run
 "use strict";
 
 function ask(question, answer, ok, fail) {

@@ -20,7 +20,5 @@ li:nth-child(odd):not(:first-child) {
 
 Получится так:
 
-```html
-<!--+ run src="index.html" -->
-```
+[html run src="index.html"]
 

@@ -1,16 +1,18 @@
-# Разница inline-block и float
+importance: 5
 
-[importance 5]
+---
+
+# Разница inline-block и float
 
 Галерея изображений состоит из картинок в рамках с подписями (возможно, с другой дополнительной информацией).
 
 Пример галереи:
-[iframe src="solution" height=400 link edit].
+
+[iframe src="solution" height=400 link edit]
 
 Технически вывод такой галереи можно реализовать при помощи списка UL/LI, где:
-<ol>
-<li>каждый LI имеет `display:inline-block`</li>
-<li>каждый LI имеет `float:left`</li>
-</ol>
+
+1. каждый LI имеет `display:inline-block`
+2. каждый LI имеет `float:left`
 
 Какие различия между этими подходами? Какой вариант выбрали бы вы?

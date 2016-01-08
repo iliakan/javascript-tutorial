@@ -1,17 +1,17 @@
 # GCC: интеграция с Google Closure Library
 
-Google Closure Compiler содержит ряд специальных возможностей для интеграции с Google Closure Library. 
+Google Closure Compiler содержит ряд специальных возможностей для интеграции с Google Closure Library.
 
 Здесь важны две вещи.
-<ol>
-<li>Для их использования возможно использовать минимум от Google Closure Library. Например, взять одну или несколько функций из библиотеки.</li>
-<li>GCC -- расширяемый компилятор, можно добавить к нему свои "фазы оптимизации" для интеграции с другими инструментами и фреймворками.</li>
-</ol>
+
+1. Для их использования возможно использовать минимум от Google Closure Library. Например, взять одну или несколько функций из библиотеки.
+2. GCC -- расширяемый компилятор, можно добавить к нему свои "фазы оптимизации" для интеграции с другими инструментами и фреймворками.
+
 [cut]
 
 Интеграция с Google Closure Library подключается флагом <code>--process_closure_primitives</code>, который по умолчанию установлен в <code>true</code>. То есть, она включена по умолчанию.
 
-Этот флаг запускает специальный проход компилятора, описанный классом <code>ProcessClosurePrimitives</code> и подключает дополнительную проверку типов <code>ClosureReverseAbstractInterpreter</code>. 
+Этот флаг запускает специальный проход компилятора, описанный классом <code>ProcessClosurePrimitives</code> и подключает дополнительную проверку типов <code>ClosureReverseAbstractInterpreter</code>.
 
 Мы рассмотрим все действия, которые при этом происходят, а также некоторые опции, которые безопасным образом используют символы Google Closure Library  без объявления флага.
 
@@ -69,7 +69,7 @@ Framework.sayCompiled = Framework.a = function() {
 };
 ```
 
-Компилятор переопределил <code>COMPILED</code> в <code>true</code> и произвел соответствующие оптимизации. 
+Компилятор переопределил <code>COMPILED</code> в <code>true</code> и произвел соответствующие оптимизации.
 
 ### Автоподстановка локали
 
@@ -91,9 +91,8 @@ Framework.sayCompiled = Framework.a = function() {
 
 Вызов <code>goog.exportSymbol</code> задаёт экспорт символа.
 
-Если подробнее, то код <code>goog.exportSymbol('a',myVar)</code> эквивалентен 
+Если подробнее, то код <code>goog.exportSymbol('a',myVar)</code> эквивалентен
 `window['a'] = myVar`.
-
 
 ### Автозамена классов CSS
 
@@ -102,7 +101,7 @@ Google Closure Library умеет преобразовывать классы CS
 Например, следующая функция задает такой список.
 
 ```js
- goog.setCssNameMapping({
+goog.setCssNameMapping({
    "goog-menu": "a",
    "goog-menu-disabled": "a-b",
    "CSS_LOGO": "b",
@@ -134,9 +133,9 @@ Google Closure Compiler производит соответствующие пр
 
 В Google Closure Library есть ряд функций для проверки типов. Например: <code>goog.isArray</code>, <code>goog.isString</code>, <code>goog.isNumber</code>, <code>goog.isDef</code> и т.п.
 
-Компилятор использует их для проверки типов, более подробно см. [](/gcc-check-types)
+Компилятор использует их для проверки типов, более подробно см. <info:gcc-check-types>
 
-Эта логика описана в классе <code>ClosureReverseAbstractInterpreter</code>. Названия функций, определяющих типы, жестко прописаны в Java-коде, поменять их на свои без модификации исходников нельзя. 
+Эта логика описана в классе <code>ClosureReverseAbstractInterpreter</code>. Названия функций, определяющих типы, жестко прописаны в Java-коде, поменять их на свои без модификации исходников нельзя.
 
 ### Автогенерация экспортов из аннотаций
 

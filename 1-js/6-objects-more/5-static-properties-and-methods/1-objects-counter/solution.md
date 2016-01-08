@@ -1,7 +1,6 @@
 Решение (как вариант):
 
-```js
-//+ run
+```js run
 function Article() {
   this.created = new Date;
 
@@ -10,7 +9,7 @@ function Article() {
   Article.last = this.created; // и запоминаем дату
 */!*
 }
-Article.count = 0; // начальное значение 
+Article.count = 0; // начальное значение
 // (нельзя оставить undefined, т.к. Article.count++ будет NaN)
 
 Article.showStats = function() {

@@ -7,8 +7,7 @@
 
 В действии:
 
-```js
-//+ run
+```js run
 var re = /\[(b|url|quote)\][\s\S]*?\[\/\1\]/g;
 
 var str1 = "..[url]http://ya.ru[/url]..";

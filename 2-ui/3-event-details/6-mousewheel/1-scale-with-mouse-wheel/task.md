@@ -1,6 +1,8 @@
-# Масштабирование колёсиком мыши
+importance: 5
 
-[importance 5]
+---
+
+# Масштабирование колёсиком мыши
 
 Сделайте так, чтобы при прокрутке колёсиком мыши над элементом, он масштабировался.
 
@@ -12,4 +14,5 @@ elem.style.transform = elem.style.WebkitTransform = elem.style.MsTransform = 'sc
 ```
 
 Результат в iframe:
+
 [iframe link border="1" src="solution" height="160"]

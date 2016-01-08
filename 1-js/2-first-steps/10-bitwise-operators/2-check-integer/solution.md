@@ -1,7 +1,6 @@
 Один из вариантов такой функции:
 
-```js
-//+ run
+```js run
 function isInteger(num) {
   return (num ^ 0) === num;
 }

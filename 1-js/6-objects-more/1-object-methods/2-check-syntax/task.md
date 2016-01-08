@@ -1,11 +1,12 @@
-# Проверка синтаксиса
+importance: 2
 
-[importance 2]
+---
+
+# Проверка синтаксиса
 
 Каков будет результат этого кода?
 
-```js
-//+ no-beautify
+```js no-beautify
 var obj = {
   go: function() { alert(this) }
 }

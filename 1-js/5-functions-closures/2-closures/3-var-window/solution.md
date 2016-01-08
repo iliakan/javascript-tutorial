@@ -1,7 +1,6 @@
 Результатом будет `undefined`, затем `5`.
 
-```js
-//+ run
+```js run
 function test() {
 
   alert( window );

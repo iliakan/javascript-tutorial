@@ -1,15 +1,16 @@
-# Кросс-браузерная эмуляция bind
+importance: 3
 
-[importance 3]
+---
+
+# Кросс-браузерная эмуляция bind
 
 Если вы вдруг захотите копнуть поглубже -- аналог `bind` для IE8- и старых версий других браузеров будет выглядеть следующим образом:
 
-```js
-//+ no-beautify
+```js no-beautify
 function bind(func, context /*, args*/) {
   var bindArgs = [].slice.call(arguments, 2); // (1)
   function wrapper() {                        // (2)
-    var args = [].slice.call(arguments); 
+    var args = [].slice.call(arguments);
     var unshiftArgs = bindArgs.concat(args);  // (3)
     return func.apply(context, unshiftArgs);  // (4)
   }

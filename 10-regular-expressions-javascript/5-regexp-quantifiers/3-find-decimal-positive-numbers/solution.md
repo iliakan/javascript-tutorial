@@ -8,11 +8,11 @@
 
 Итого, получилось регулярное выражение <code class="pattern">\d+(\.\d+)?</code>:
 
-```js
-//+ run
+```js run
 var re = /\d+(\.\d+)?/g
 
 var str = "1.5 0 12. 123.4.";
 
 alert( str.match(re) );   // 1.5, 0, 12, 123.4
 ```
+

@@ -9,8 +9,7 @@
 
 В действии:
 
-```js
-//+ run
+```js run
 var re = /<style(>|\s.*?>)/g;
 
 alert( "<style> <styler> <style test>".match(re) ); // <style>, <style test>

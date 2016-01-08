@@ -1,6 +1,8 @@
-# Что выведет этот alert?
+importance: 5
 
-[importance 5]
+---
+
+# Что выведет этот alert?
 
 Что выведет `alert`?
 

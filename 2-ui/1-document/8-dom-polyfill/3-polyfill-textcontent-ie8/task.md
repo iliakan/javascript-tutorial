@@ -1,6 +1,8 @@
-# Полифилл для textContent
+importance: 3
 
-[importance 3]
+---
+
+# Полифилл для textContent
 
 Свойство `textContent` не поддерживается IE8. Однако, там есть свойство `innerText`.
 

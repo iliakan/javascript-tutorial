@@ -1,6 +1,8 @@
-# Преобразование
+importance: 5
 
-[importance 5]
+---
+
+# Преобразование
 
 Объявлен объект с `toString` и `valueOf`.
 

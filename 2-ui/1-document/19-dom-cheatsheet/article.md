@@ -10,178 +10,182 @@
 
 ## Создание
 
-<dl>
-<dt>`document.createElement(tag)`</dt><dd>Создать элемент с тегом `tag`</dd>
-<dt>`document.createTextNode(txt)`</dt><dd>Создать текстовый узел с текстом `txt`</dd>
-<dt>`node.cloneNode(deep)`</dt><dd>Клонировать существующий узел, если `deep=false`, то без потомков.</dd>
-</dl>
+`document.createElement(tag)`
+: Создать элемент с тегом `tag`
+
+`document.createTextNode(txt)`
+: Создать текстовый узел с текстом `txt`
+
+`node.cloneNode(deep)`
+: Клонировать существующий узел, если `deep=false`, то без потомков.
 
 ## Свойства узлов
 
-<dl>
-<dt>`node.nodeType`</dt><dd>Тип узла: 1(элемент) / 3(текст) / другие.</dd>
-<dt>`elem.tagName`</dt><dd>Тег элемента.</dd>
-<dt>`elem.innerHTML`</dt><dd>HTML внутри элемента.</dd>
-<dt>`elem.outerHTML`</dt><dd>Весь HTML элемента, включая сам тег. На запись использовать с осторожностью, так как не модифицирует элемент, а вставляет новый вместо него.</dd>
-<dt>`node.data` / `node.nodeValue`</dt><dd>Содержимое узла любого типа, кроме элемента.</dd>
-<dt>`node.textContent`</dt><dd>Текстовое содержимое узла, для элементов содержит текст с вырезанными тегами (IE9+).</dd>
-<dt>`elem.hidden`</dt><dd>Если поставить `true`, то элемент будет скрыт (IE10+).</dd>
-</dl>
+`node.nodeType`
+: Тип узла: 1(элемент) / 3(текст) / другие.
+
+`elem.tagName`
+: Тег элемента.
+
+`elem.innerHTML`
+: HTML внутри элемента.
+
+`elem.outerHTML`
+: Весь HTML элемента, включая сам тег. На запись использовать с осторожностью, так как не модифицирует элемент, а вставляет новый вместо него.
+
+`node.data` / `node.nodeValue`
+: Содержимое узла любого типа, кроме элемента.
+
+`node.textContent`
+: Текстовое содержимое узла, для элементов содержит текст с вырезанными тегами (IE9+).
+
+`elem.hidden`
+: Если поставить `true`, то элемент будет скрыт (IE10+).
 
 ## Атрибуты
 
-<dl>
-<dt>`elem.getAttribute(name)`, `elem.hasAttribute(name)`, `elem.setAttribute(name, value)`</dt>
-<dd>Чтение атрибута, проверка наличия и запись.</dd>
-<dt>`elem.dataset.*`</dt><dd>Значения атрибутов вида `data-*` (IE10+).</dd>
-</dl>
+`elem.getAttribute(name)`, `elem.hasAttribute(name)`, `elem.setAttribute(name, value)`
+: Чтение атрибута, проверка наличия и запись.
+
+`elem.dataset.*`
+: Значения атрибутов вида `data-*` (IE10+).
 
 ## Ссылки
 
-<dl>
-<dt>`document.documentElement`</dt>
-<dd>Элемент `<HTML>`</dd>
-<dt>`document.body`</dt>
-<dd>Элемент `<BODY>`</dd>
-<dt>`document.head`</dt>
-<dd>Элемент `<HEAD>` (IE9+)</dd>
-</dl>
+`document.documentElement`
+: Элемент `<HTML>`
+
+`document.body`
+: Элемент `<BODY>`
+
+`document.head`
+: Элемент `<HEAD>` (IE9+)
 
 По всем узлам:
-<ul>
-<li>`parentNode`</li>
-<li>`nextSibling` `previousSibling`</li>
-<li>`childNodes` `firstChild` `lastChild`</li>
-</ul>
+
+- `parentNode`
+- `nextSibling` `previousSibling`
+- `childNodes` `firstChild` `lastChild`
 
 Только по элементам:
 
-<ul>
-<li>`parentElement`</li>
-<li>`nextElementSibling` `previousElementSibling`</li>
-<li>`children`, `firstElementChild` `lastElementChild`</li>
-</ul>
+- `parentElement`
+- `nextElementSibling` `previousElementSibling`
+- `children`, `firstElementChild` `lastElementChild`
 
 Все они IE9+, кроме `children`, который работает в IE8-, но содержит не только элементы, но и комментарии (ошибка в браузере).
 
 Дополнительно у некоторых типов элементов могут быть и другие ссылки, свойства, коллекции для навигации,
 например для таблиц:
 
-<dl>
-<dt>`table.rows[N]`</dt>
-<dd>строка `TR` номер `N`.</dd>
-<dt>`tr.cells[N]`</dt>
-<dd>ячейка `TH/TD` номер `N`.</dd>
-<dt>`tr.sectionRowIndex`</dt>
-<dd>номер строки в таблице в секции `THEAD/TBODY`.<dd>
-<dt>`td.cellIndex`</dt>
-<dd>номер ячейки в строке.</dd>
-</dl>
+`table.rows[N]`
+: строка `TR` номер `N`.
+
+`tr.cells[N]`
+: ячейка `TH/TD` номер `N`.
+
+`tr.sectionRowIndex`
+: номер строки в таблице в секции `THEAD/TBODY`.<dd>
+`td.cellIndex`
+<dd>номер ячейки в строке.
 
 ## Поиск
 
+`*.querySelector(css)`
+: По селектору, только первый элемент
 
-<dl>
-<dt>`*.querySelector(css)`</dt>
-<dd>По селектору, только первый элемент</dd>
-<dt>`*.querySelectorAll(css)`</dt>
-<dd>По селектору CSS3, в IE8 по CSS 2.1</dd>
-<dt>`document.getElementById(id)`</dt>
-<dd>По уникальному `id`</dd>
-<dt>`document.getElementsByName(name)`</dt>
-<dd>По атрибуту `name`,  в IE9- работает только для элементов, где `name` предусмотрен стандартом.</dd>
-<dt>`*.getElementsByTagName(tag)`</dt>
-<dd>По тегу `tag`</dd>
-<dt>`*.getElementsByClassName(class)`</dt>
-<dd>По классу, IE9+, корректно работает с элементами, у которых несколько классов.</dd>
-</dl>
+`*.querySelectorAll(css)`
+: По селектору CSS3, в IE8 по CSS 2.1
+
+`document.getElementById(id)`
+: По уникальному `id`
+
+`document.getElementsByName(name)`
+: По атрибуту `name`,  в IE9- работает только для элементов, где `name` предусмотрен стандартом.
+
+`*.getElementsByTagName(tag)`
+: По тегу `tag`
+
+`*.getElementsByClassName(class)`
+: По классу, IE9+, корректно работает с элементами, у которых несколько классов.
 
 Вообще, обычно можно использовать только `querySelector/querySelectorAll`. Методы `getElement*` работают быстрее (за счёт более оптимальной внутренней реализации), но в 99% случаев это различие очень небольшое и роли не играет.
 
 Дополнительно есть методы:
-<dl>
-<dt>`elem.matches(css)`</dt>
-<dd>Проверяет, подходит ли элемент под CSS-селектор.</dd.
-<dt>`elem.closest(css)`</dt>
-<dd>Ищет ближайший элемент сверху по иерархии DOM, подходящий под CSS-селектор. Первым проверяется сам `elem`. Этот элемент возвращается.</dd>
-<dt>`elemA.contains(elemB)`</dt>
-<dd>Возвращает `true`, если `elemA` является предком (содержит) `elemB`.</dd>
-<dt>`elemA.compareDocumentPosition(elemB)`</dt>
-<dd>Возвращает битовую маску, которая включает в себя отношение вложенности между `elemA` и `elemB`, а также -- какой из элементов появляется в DOM первым.</dd>
 
-</dl>
+`elem.matches(css)`
+: Проверяет, подходит ли элемент под CSS-селектор.</dd.
+`elem.closest(css)`
+<dd>Ищет ближайший элемент сверху по иерархии DOM, подходящий под CSS-селектор. Первым проверяется сам `elem`. Этот элемент возвращается.
 
+`elemA.contains(elemB)`
+: Возвращает `true`, если `elemA` является предком (содержит) `elemB`.
+
+`elemA.compareDocumentPosition(elemB)`
+: Возвращает битовую маску, которая включает в себя отношение вложенности между `elemA` и `elemB`, а также -- какой из элементов появляется в DOM первым.
 
 ## Изменение
 
-<ul>
-<li>`parent.appendChild(newChild)`</li>
-<li>`parent.removeChild(child)`</li>
-<li>`parent.insertBefore(newChild, refNode)`</li>
-<li>`parent.insertAdjacentHTML("beforeBegin|afterBegin|beforeEnd|afterEnd", html)`</li>
-<li>`parent.insertAdjacentElement("beforeBegin|...|afterEnd", text)` (кроме FF)</li>
-<li>`parent.insertAdjacentText("beforeBegin|...|afterEnd", text)` (кроме FF)</li>
-<li>`document.write(...)`</li>
-</ul>
+- `parent.appendChild(newChild)`
+- `parent.removeChild(child)`
+- `parent.insertBefore(newChild, refNode)`
+- `parent.insertAdjacentHTML("beforeBegin|afterBegin|beforeEnd|afterEnd", html)`
+- `parent.insertAdjacentElement("beforeBegin|...|afterEnd", text)` (кроме FF)
+- `parent.insertAdjacentText("beforeBegin|...|afterEnd", text)` (кроме FF)
+- `document.write(...)`
 
 Скорее всего, понадобятся полифиллы для:
 
-<ul>
-<li>`node.append(...nodes)`</li>
-<li>`node.prepend(...nodes)`</li>
-<li>`node.after(...nodes)`,</li>
-<li>`node.before(...nodes)`</li>
-<li>`node.replaceWith(...nodes)`</li>
-</ul>
+- `node.append(...nodes)`
+- `node.prepend(...nodes)`
+- `node.after(...nodes)`,
+- `node.before(...nodes)`
+- `node.replaceWith(...nodes)`
 
 ## Классы и стили
 
-<dl>
-<dt>`elem.className`</dt>
-<dd>Атрибут `class`</dt>
-<dt>`elem.classList.add(class) remove(class) toggle(class) contains(class)`</dt>
-<dd>Управление классами, для IE9- есть [эмуляция](https://github.com/eligrey/classList.js/blob/master/classList.js).</dd>
-<dt>`elem.style`</dt>
-<dd>Стили в атрибуте `style` элемента</dd>
+`elem.className`
+: Атрибут `class`</dt>
+`elem.classList.add(class) remove(class) toggle(class) contains(class)`
+<dd>Управление классами, для IE9- есть [эмуляция](https://github.com/eligrey/classList.js/blob/master/classList.js).
+
+`elem.style`
+: Стили в атрибуте `style` элемента
+
 <dt>`getComputedStyle(elem, "")`</dd>
-<dd>Стиль, с учётом всего каскада, вычисленный и применённый (только чтение)</dd>
-</dl>
+: Стиль, с учётом всего каскада, вычисленный и применённый (только чтение)
 
 ## Размеры и прокрутка элемента
 
-<dl>
-<dt>`clientLeft/Top`</dt>
-<dd>Ширина левой/верхней рамки `border`</dd>
-<dt>`clientWidth/Height`</dt>
-<dd>Ширина/высота внутренней части элемента, включая содержимое и `padding`, не включая полосу прокрутки (если есть).</dd>
-<dt>`scrollWidth/Height`</dt>
-<dd>Ширина/высота внутренней части элемента, с учетом прокрутки.</dd>
-<dt>`scrollLeft/Top`</dt>
-<dd>Ширина/высота прокрученной области.</dd>
-<dt>`offsetWidth/Height`</dt>
-<dd>Полный размер элемента: ширина/высота, включая `border`.</dd>
-</dl>
+`clientLeft/Top`
+: Ширина левой/верхней рамки `border`
+
+`clientWidth/Height`
+: Ширина/высота внутренней части элемента, включая содержимое и `padding`, не включая полосу прокрутки (если есть).
+
+`scrollWidth/Height`
+: Ширина/высота внутренней части элемента, с учетом прокрутки.
+
+`scrollLeft/Top`
+: Ширина/высота прокрученной области.
+
+`offsetWidth/Height`
+: Полный размер элемента: ширина/высота, включая `border`.
 
 ## Размеры и прокрутка страницы
 
-<ul>
-<li>ширина/высота видимой области: `document.documentElement.clientHeight`</li>
-<li>прокрутка(чтение): `window.pageYOffset || document.documentElement.scrollTop`</li>
-<li>прокрутка(изменение):
-<ul>
-<li>`window.scrollBy(x,y)`: на x,y относительно текущей позиции.</li>
-<li>`window.scrollTo(pageX, pageY)`: на координаты в документе.</li>
-<li>`elem.scrollIntoView(true/false)`: прокрутить, чтобы `elem` стал видимым и оказался вверху окна(`true`) или внизу(`false`)</li>
-</ul>
-</li>
-</ul>
+- ширина/высота видимой области: `document.documentElement.clientHeight`
+- прокрутка(чтение): `window.pageYOffset || document.documentElement.scrollTop`
+- прокрутка(изменение):
+
+    - `window.scrollBy(x,y)`: на x,y относительно текущей позиции.
+    - `window.scrollTo(pageX, pageY)`: на координаты в документе.
+    - `elem.scrollIntoView(true/false)`: прокрутить, чтобы `elem` стал видимым и оказался вверху окна(`true`) или внизу(`false`)
 
 ## Координаты
 
-<ul>
-<li>относительно окна: `elem.getBoundingClientRect()`</li>
-<li>относительно документа: `elem.getBoundingClientRect()` + прокрутка страницы</li>
-<li>получить элемент по координатам: `document.elementFromPoint(clientX, clientY)`</li>
-</ul>
+- относительно окна: `elem.getBoundingClientRect()`
+- относительно документа: `elem.getBoundingClientRect()` + прокрутка страницы
+- получить элемент по координатам: `document.elementFromPoint(clientX, clientY)`
 
 Список намеренно сокращён, чтобы было проще найти то, что нужно.

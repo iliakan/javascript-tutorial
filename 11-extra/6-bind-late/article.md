@@ -1,25 +1,25 @@
 # Позднее связывание "bindLate"
 
-Обычный метод `bind` называется "ранним связыванием", поскольку фиксирует привязку сразу же. 
+Обычный метод `bind` называется "ранним связыванием", поскольку фиксирует привязку сразу же.
 
 Как только значения привязаны -- они уже не могут быть изменены. В том числе, если метод объекта, который привязали, кто-то переопределит -- "привязанная" функция этого не заметит.
 
 Позднее связывание -- более гибкое, оно позволяет переопределить привязанный метод когда угодно.
+
 [cut]
 
 ## Раннее связывание
 
 Например, попытаемся переопределить метод при раннем связывании:
 
-```js
-//+ run
-function bind(func, context) {  
-  return function() { 
-    return func.apply(context, arguments); 
+```js run
+function bind(func, context) {
+  return function() {
+    return func.apply(context, arguments);
   };
 }
 
-var user = {                
+var user = {
   sayHi: function() { alert('Привет!'); }
 }
 
@@ -49,12 +49,11 @@ userSayHi(); // *!*выведет "Привет!"*/!*
 var func = bindLate(obj, "method");
 ```
 
-<dl>
-<dt>`obj`</dt>
-<dd>Объект</dd>
-<dt>`method`</dt>
-<dd>Название метода (строка)</dd>
-</dl>
+`obj`
+: Объект
+
+`method`
+: Название метода (строка)
 
 Код:
 
@@ -68,15 +67,14 @@ function bindLate(context, funcName) {
 
 Этот вызов похож на обычный `bind`, один из вариантов которого как раз и выглядит как `bind(obj, "method")`, но работает по-другому.
 
-**Поиск метода в объекте: `context[funcName]`, осуществляется при вызове, самой обёрткой**. 
+**Поиск метода в объекте: `context[funcName]`, осуществляется при вызове, самой обёрткой**.
 
 **Поэтому, если метод переопределили -- будет использован всегда последний вариант.**
 
 В частности, пример, рассмотренный выше, станет работать правильно:
 
-```js
-//+ run
-function bindLate(context, funcName) { 
+```js run
+function bindLate(context, funcName) {
   return function() {
     return context[funcName].apply(context, arguments);
   };
@@ -103,9 +101,8 @@ userSayHi(); // *!*Здравствуйте!*/!*
 
 Например:
 
-```js
-//+ run
-function bindLate(context, funcName) { 
+```js run
+function bindLate(context, funcName) {
   return function() {
     return context[funcName].apply(context, arguments);
   };
@@ -116,7 +113,7 @@ var user = {  };
 
 // *!*..а привязка возможна!*/!*
 *!*
-var userSayHi = bindLate(user, 'sayHi'); 
+var userSayHi = bindLate(user, 'sayHi');
 */!*
 
 // по ходу выполнения добавили метод..
@@ -125,7 +122,7 @@ user.sayHi = function() { alert('Привет!'); }
 userSayHi(); // Метод работает: *!*Привет!*/!*
 ```
 
-В некотором смысле, позднее связывание всегда лучше, чем раннее. Оно удобнее и надежнее, так как всегда вызывает нужный метод, который в объекте сейчас. 
+В некотором смысле, позднее связывание всегда лучше, чем раннее. Оно удобнее и надежнее, так как всегда вызывает нужный метод, который в объекте сейчас.
 
 Но оно влечет и небольшие накладные расходы -- поиск метода при каждом вызове.
 
@@ -145,16 +142,3 @@ function bindLate(context, funcName) {
 }
 ```
 
-[head]
-<script>
-function bind(func, context /*, args*/) {
-  var bindArgs = [].slice.call(arguments, 2); // (1)
-  function wrapper() {                        // (2)
-    var args = [].slice.call(arguments); 
-    var unshiftArgs = bindArgs.concat(args);  // (3)
-    return func.apply(context, unshiftArgs);  // (4)
-  }
-  return wrapper;
-}
-</script>
-[/head]

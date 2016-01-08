@@ -41,7 +41,6 @@ function update() {
 Функция `clockStart` для запуска часов:
 
 ```js
-
 var timerId;
 
 function clockStart() { // запустить часы

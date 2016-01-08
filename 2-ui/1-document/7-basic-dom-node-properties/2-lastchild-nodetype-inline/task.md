@@ -1,6 +1,8 @@
-# В инлайн скрипте lastChild.nodeType 
+importance: 5
 
-[importance 5]
+---
+
+# В инлайн скрипте lastChild.nodeType
 
 Что выведет скрипт на этой странице?
 

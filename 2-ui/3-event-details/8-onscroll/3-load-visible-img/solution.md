@@ -18,7 +18,6 @@ function isVisible(elem) {
   return topVisible || bottomVisible;
 }
 
-
 *!*
 showVisible();
 window.onscroll = showVisible;
@@ -33,4 +32,4 @@ window.onscroll = showVisible;
 
 В решении также указан вариант с `isVisible`, который расширяет область видимости на +-1 страницу (высота страницы -- `document.documentElement.clientHeight`).
 
-[edit src="solution"]Открыть полное решение в песочнице[/edit]
+[edit src="solution" title="Открыть полное решение в песочнице"]

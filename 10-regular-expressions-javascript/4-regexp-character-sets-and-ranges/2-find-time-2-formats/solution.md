@@ -1,7 +1,6 @@
 Ответ: <code class="pattern">\d\d[-:]\d\d</code>.
 
-```js
-//+ run
+```js run
 var re = /\d\d[-:]\d\d/g;
 alert( "Завтрак в 09:00. Обед - в 21-30".match(re) );
 ```
