@@ -386,6 +386,12 @@ alert( pete.age );      // и возраст
 [Object.freeze(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/freeze)
 : Запрещает добавление, удаление и изменение свойств, все текущие свойства делает `configurable: false, writable: false`.
 
-[Object.isExtensible(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isExtensible), [Object.isSealed(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isSealed), [Object.isFrozen(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isFrozen)
-: Возвращают `true`, если на объекте были вызваны методы `Object.preventExtensions/seal/freeze`.
+[Object.isExtensible(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isExtensible)
+: Возвращает `false`, если добавление свойств объекта запрещено.
+
+[Object.isSealed(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isSealed)
+: Возвращает `true`, если добавление и удаление свойств объекта запрещено, и все текущие свойства являются `configurable: false`.
+
+[Object.isFrozen(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isFrozen)
+: Возвращает `true`, если добавление, удаление и изменение свойств объекта запрещено, и все текущие свойства являются `configurable: false, writable: false`.
 
