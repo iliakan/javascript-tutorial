@@ -320,9 +320,9 @@ alert( pete.age );      // и возраст
 [Object.keys(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/keys), [Object.getOwnPropertyNames(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames)
 : Возвращают массив -- список свойств объекта.
 
-`Object.keys` возвращает только `enumerable`-свойства.
+    `Object.keys` возвращает только `enumerable`-свойства.
 
-`Object.getOwnPropertyNames` -- возвращает все:
+    `Object.getOwnPropertyNames` -- возвращает все:
 
     ```js run
     var obj = {
