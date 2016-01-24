@@ -477,13 +477,13 @@ chatDiv.innerHTML += "Как дела?";
 Например:
 
 ```html run height="80"
-<input type="text" value="значение">
+<input type="text" id="elem" value="значение">
 
 <script>
   var input = document.body.children[0];
 
   alert( input.type ); // "text"
-  alert( input.id ); // "input"
+  alert( input.id ); // "elem"
   alert( input.value ); // значение
 </script>
 ```

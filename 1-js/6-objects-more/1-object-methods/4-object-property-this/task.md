@@ -7,14 +7,14 @@ importance: 5
 Что выведет `alert` в этом коде? Почему?
 
 ```js
-var name = "";
+var firstName = "";
 
 var user = {
-  name: "Василий",
+  firstName: "Василий",
 
   export: this
 };
 
-alert( user.export.name );
+alert( user.export.firstName );
 ```
 
