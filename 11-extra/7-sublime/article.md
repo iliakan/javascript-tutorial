@@ -11,7 +11,7 @@
 
 [Скачать шпаргалку в формате PDF](sheet.pdf)
 
-Эта шпаргалка -- под Mac, для Windows сочетания похожи, обычно вместо Mac-клавиши <code class="key">Cmd</code> под Windows будет <code class="key">Ctrl</code>. А если в сочетании есть и <code class="key">Cmd</code> и <code class="key">Ctrl</code>, то под Windows будет <code class="key">Ctrl</code> + <code class="key">Shift</code>.
+Эта шпаргалка -- под Mac, для Windows сочетания похожи, обычно вместо Mac-клавиши `key:Cmd` под Windows будет `key:Ctrl`. А если в сочетании есть и `key:Cmd` и `key:Ctrl`, то под Windows будет `key:Ctrl+Shift`.
 
 **Вы часто используете сочетание, но его нет в списке? Поделитесь им в комментариях!**
 

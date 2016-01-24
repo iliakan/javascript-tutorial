@@ -10,16 +10,16 @@ var str = "Java, JavaScript, PHP, C, C++";
 alert( str.match(reg) ); // Java,Java,PHP,C,C
 ```
 
-Как видно, движок регулярных выражений ищет альтернации в порядке их перечисления. То есть, он сначала смотрит, есть ли <code class="match">Java</code>, а если нет -- ищет <code class="match">JavaScript</code>.
+Как видно, движок регулярных выражений ищет альтернации в порядке их перечисления. То есть, он сначала смотрит, есть ли `match:Java`, а если нет -- ищет `match:JavaScript`.
 
-Естественно, при этом <code class="match">JavaScript</code> не будет найдено никогда.
+Естественно, при этом `match:JavaScript` не будет найдено никогда.
 
-То же самое -- с языками <code class="match">C</code> и <code class="match">C++</code>.
+То же самое -- с языками `match:C` и `match:C++`.
 
 Есть два решения проблемы:
 
-1. Поменять порядок, чтобы более длинное совпадение проверялось первым: <code class="pattern">JavaScript|Java|C\+\+|C|PHP</code>.
-2. Соединить длинный вариант с коротким: <code class="pattern">Java(Script)?|C(\+\+)?|PHP</code>.
+1. Поменять порядок, чтобы более длинное совпадение проверялось первым: `pattern:JavaScript|Java|C\+\+|C|PHP`.
+2. Соединить длинный вариант с коротким: `pattern:Java(Script)?|C(\+\+)?|PHP`.
 
 В действии:
 
