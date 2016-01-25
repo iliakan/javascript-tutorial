@@ -328,9 +328,9 @@ alert( f.test );
 function makeCounter() {
 *!*
   function counter() {
-    return counter.currentCount++;
+    return ++counter.currentCount;
   };
-  counter.currentCount = 1;
+  counter.currentCount = 0;
 */!*
 
   return counter;
