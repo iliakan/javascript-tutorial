@@ -95,11 +95,11 @@ alert(text)
 Обращение к предыдущей части паттерна в javascript осуществляется как \1, \2 и т.п., бэкслеш + номер скобочной группы:
 
 ```js run
-text = ' [b]a [u]b[/u] c [/b] '
-
-var reg = /\[([bus])\](.*?)\[\// * u * /\1/ * /u*/\] /
-text = text.replace(reg, '<$1>$2</$1>')
-alert(text)
+var text = ' [b]a [u]b[/u] c [/b] ';
+    
+var reg = /\[([bus])\](.*?)\[\/\1\] /;
+text = text.replace(reg, '<$1>$2</$1>');  // <b>a [u]b[/u] c </b>
+alert(text);
 ```
 
 Обращение к скобочной группе в строке замены идет уже через доллар: <code>$1</code>. Не знаю, почему, наверное так удобнее..
@@ -155,10 +155,12 @@ alert(str)
 Для поиска без запоминания скобочных групп - можно использовать [String#match](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/match):
 
 ```js run
-var str = "count 36-26, 18-9"
-var re = /(\d+)-(\d+)/g
-result = str.match(re)
-for (var i = 0; i < result.length; i++) alert(result[i])
+var str = "count 36-26, 18-9";
+var re = /(\d+)-(\d+)/g;
+var result = str.match(re);
+for (var i = 0; i < result.length; i++) {
+  alert(result[i]);
+}
 ```
 
 Как видите, оно исправно ищет все совпадения (флаг <code>'g'</code> у регулярного выражения обязателен), но при этом не запоминает скобочные группы. Эдакий "облегченный вариант".

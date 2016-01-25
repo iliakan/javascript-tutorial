@@ -32,4 +32,3 @@ window.onscroll = showVisible;
 
 В решении также указан вариант с `isVisible`, который расширяет область видимости на +-1 страницу (высота страницы -- `document.documentElement.clientHeight`).
 
-[edit src="solution" title="Открыть полное решение в песочнице"]

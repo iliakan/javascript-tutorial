@@ -33,4 +33,3 @@ input.onkeypress = function(e) {
 }
 ```
 
-[edit src="solution" title="Открыть полное решение в песочнице"]
