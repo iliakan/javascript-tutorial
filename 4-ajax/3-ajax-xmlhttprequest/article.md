@@ -354,7 +354,7 @@ xhr.onreadystatechange = function() {
 
   if (this.status != 200) {
     // обработать ошибку
-    alert( 'ошибка: ' + (this.status ? this.statusText || 'запрос не удался') );
+    alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
     return;
   }
 
