@@ -274,7 +274,7 @@ var err = new PropertyRequiredError("age");
 // пройдёт проверку
 alert( err instanceof PropertyRequiredError ); // true
 alert( err instanceof PropertyError ); // true
-alert( err isntanceof CustomError ); // true
-alert( err isntanceof Error ); // true
+alert( err instanceof CustomError ); // true
+alert( err instanceof Error ); // true
 ```
 
