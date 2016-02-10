@@ -134,7 +134,7 @@ document.getElementsByTagName('input').value = 5;
 
 То есть, вместо элемента присваивают значение коллекции. Работать такое не будет.
 
-Коллекцию нужно или перебрать в цикле или получить элемент по номеру и уже ему присваивать `value`, например так:
+Коллекцию нужно или перебрать в цикле, или получить элемент по номеру и уже ему присваивать `value`. Например так:
 
 ```js
 // работает
@@ -174,7 +174,7 @@ var elems = document.getElementsByName('age');
 </script>
 ```
 
-Как и `getElementsByTagName`, этот метод может быть вызван и в контексте DOM-элемента и в контексте документа.
+Как и `getElementsByTagName`, этот метод может быть вызван и в контексте DOM-элемента, и в контексте документа.
 
 ## querySelectorAll [#querySelectorAll]
 
@@ -334,7 +334,7 @@ IE тоже поддерживает XPath, но эта поддержка не 
 </tr>
 <tr>
 <td><code>getElementsByTagName</code></td>
-<td>тег или <code>'*'</code></td>
+<td>тегу или <code>'*'</code></td>
 <td>✔</td>
 <td>везде</td>
 </tr>
@@ -346,13 +346,13 @@ IE тоже поддерживает XPath, но эта поддержка не 
 </tr>
 <tr>
 <td><code>querySelector</code></td>
-<td>CSS-селектор</td>
+<td>CSS-селектору</td>
 <td>✔</td>
 <td>везде</td>
 </tr>
 <tr>
 <td><code>querySelectorAll</code></td>
-<td>CSS-селектор</td>
+<td>CSS-селектору</td>
 <td>✔</td>
 <td>везде</td>
 </tr>
