@@ -247,6 +247,8 @@ function replacer(str, name, surname, offset, s) {
   return surname + ", " + name;
 }
 
+var str = "Василий Пупкин";
+
 alert(str.replace(/(Василий) (Пупкин)/, replacer)) // Пупкин, Василий
 ```
 
