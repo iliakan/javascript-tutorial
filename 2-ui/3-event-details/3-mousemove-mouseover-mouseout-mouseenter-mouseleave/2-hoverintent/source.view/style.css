@@ -14,8 +14,10 @@
   border: 1px dashed black;
   padding: 5px;
   display: inline-block;
-  margin: 30px;
   background: yellow;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .tooltip {

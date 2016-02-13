@@ -221,7 +221,7 @@ var template = document.getElementById('menu-template').innerHTML;
 
 ```html run height=150
 <!-- библиотека LoDash -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
 
 <!-- шаблон для списка от 1 до count -->
 <script *!*type="text/template"*/!* id="list-template">
@@ -486,7 +486,7 @@ function(obj) {
 Попробуйте сами запустить пример с открытыми инструментами разработчика и *включённой* опцией "остановка при ошибке":
 
 ```html run no-beautify
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
 
 <script type="text/template" id="menu-template">
 <div class="menu">

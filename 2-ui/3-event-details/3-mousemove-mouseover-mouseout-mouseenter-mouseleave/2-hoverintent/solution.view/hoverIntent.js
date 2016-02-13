@@ -1,3 +1,5 @@
+'use strict';
+
 function HoverIntent(options) {
 
   options = Object.create(options); // not to modify the object
@@ -16,7 +18,11 @@ function HoverIntent(options) {
   var isHover;
 
   // A private function for handling mouse 'hovering'
-  elem.addEventListener("mouseover", function(event) {
+  elem.addEventListener("mouseover", onMouseOver);
+
+  elem.addEventListener("mouseout", onMouseOut);
+
+  function onMouseOver(event) {
 
     if (isOverElement) {
       // если мы и так над элементом, то это всплывший переход внутри него
@@ -27,7 +33,7 @@ function HoverIntent(options) {
     isOverElement = true;
 
     // при каждом движении мыши mousemove мы будем вычислять расстояние между
-    // предыдущими и текущими координатами курсора 
+    // предыдущими и текущими координатами курсора
     // если оно меньше sensivity, то скорость маленькая и это наведение на элемент
     // pX, pY - "предыдущие" координаты
     pX = event.pageX;
@@ -35,33 +41,44 @@ function HoverIntent(options) {
     pTime = Date.now();
 
     elem.addEventListener('mousemove', onMouseMove);
-  });
-
-  elem.addEventListener("mouseout", function(event) {
+    checkSpeedInterval = setInterval(trackSpeed, options.interval);
+  }
+  
+  function onMouseOut(event) {
     // если ушли вовне элемента
-    if (event.relatedTarget && !elem.contains(event.relatedTarget)) {
+    if (!event.relatedTarget || !elem.contains(event.relatedTarget)) {
       isOverElement = false;
       elem.removeEventListener('mousemove', onMouseMove);
+      clearInterval(checkSpeedInterval);
       if (isHover) {
         // если была остановка над элементом
         options.out.call(elem, event);
         isHover = false;
       }
     }
-  });
+  }
 
   function onMouseMove(event) {
     cX = event.pageX;
     cY = event.pageY;
     cTime = Date.now();
+  }
+  
+  function trackSpeed() {
 
-    if (pTime == cTime) return; // когда mousemove вместе с mouseover
-
-    var speed = Math.sqrt(Math.pow(pX - cX, 2) + Math.pow(pY - cY, 2)) / (cTime - pTime);
+    let speed;
+    
+    if (!cTime || cTime == pTime) {
+      // нет измерений скорости (событий mousemove)
+      // значит курсор не двигался
+      speed = 0;
+    } else {
+      speed = Math.sqrt(Math.pow(pX - cX, 2) + Math.pow(pY - cY, 2)) / (cTime - pTime);
+    }
 
     if (speed < options.sensitivity) {
       // если с предыдущей позиции меньше sensivity дистанция, то "остановка на элементе"
-      elem.removeEventListener("mousemove", onMouseMove);
+      clearInterval(checkSpeedInterval);
       isHover = true;
       options.over.call(elem, event);
     } else {
@@ -71,5 +88,11 @@ function HoverIntent(options) {
       pTime = cTime;
     }
   }
+  
+  this.destroy = function() {
+    elem.removeEventListener('mousemove', onMouseMove);
+    elem.removeEventListener('mouseover', onMouseOver);
+    elem.removeEventListener('mouseout', onMouseOut);
+  };
 
 }

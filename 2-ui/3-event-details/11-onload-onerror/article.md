@@ -32,7 +32,7 @@ document.body.appendChild(script);
 
 ```js run
 var script = document.createElement('script');
-script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"
 document.body.appendChild(script);
 
 *!*

@@ -387,7 +387,7 @@ alert( pete.age );      // и возраст
 : Запрещает добавление, удаление и изменение свойств, все текущие свойства делает `configurable: false, writable: false`.
 
 [Object.isExtensible(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isExtensible)
-: Возвращает `false`, если добавление свойств объекта запрещено.
+: Возвращает `false`, если добавление свойств объекта было запрещено вызовом метода `Object.preventExtensions`.
 
 [Object.isSealed(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/isSealed)
 : Возвращает `true`, если добавление и удаление свойств объекта запрещено, и все текущие свойства являются `configurable: false`.

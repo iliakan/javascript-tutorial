@@ -13,7 +13,7 @@
 Можно указать и полный URL, например:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
 ```
 
 Вы также можете использовать путь относительно текущей страницы. Например, `src="lodash.js"` обозначает файл из текущей директории.
