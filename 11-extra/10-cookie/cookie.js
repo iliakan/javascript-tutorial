@@ -6,7 +6,7 @@ function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-// устанавливает cookie c именем name и значением value
+// устанавливает cookie с именем name и значением value
 // options - объект с свойствами cookie (expires, path, domain, secure)
 function setCookie(name, value, options) {
   options = options || {};

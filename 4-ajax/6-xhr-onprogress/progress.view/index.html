@@ -18,18 +18,6 @@
       document.getElementById('log').innerHTML = html;
     }
 
-    function onSuccess() {
-      log('success');
-    }
-
-    function onError() {
-      log('error');
-    }
-
-    function onProgress(loaded, total) {
-      log(loaded + ' / ' + total);
-    }
-
     document.forms.upload.onsubmit = function() {
       var file = this.elements.myfile.files[0];
       if (file) {

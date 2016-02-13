@@ -250,7 +250,7 @@ var event = document.createEvent(eventInterface);
 
 На практике можно всегда использовать самый общий интерфейс: `document.createEvent("Event")`.
 
-Далее событие нужно инициализовать:
+Далее событие нужно инициализировать:
 
 ```js
 event.initEvent(type, boolean bubbles, boolean cancelable);

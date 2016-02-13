@@ -79,7 +79,7 @@ Framework.sayCompiled = Framework.a = function() {
 
 Для использования опции <code>locale</code>, на момент написания статьи, ее нужно задать в Java коде компилятора, т.к. соответствующего флага нет.
 
-Как и <code>COMPILED</code>, константу <code>goog.LOCALE</code> можно и использовать в своем коде без библиотеки Google Closure Library.
+Как и <code>COMPILED</code>, константу <code>goog.LOCALE</code> можно использовать в своем коде без библиотеки Google Closure Library.
 
 ### Проверка зависимостей
 
