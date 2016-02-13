@@ -1,8 +1,6 @@
 **Ответ: `undefined`.**
 
 ```js run
-var firstName = "";
-
 var user = {
   firstName: "Василий",
 
@@ -18,4 +16,4 @@ alert( user.export.firstName );
 
 Так как код находится вообще вне любых функций, то `this` в нём равен `window` (в браузере так всегда для кода вне функций, вне зависимости от `use strict`).
 
-Получается, что в строке `(*)` мы имеем `export: window`, так что далее `alert(user.export.firstName)` выводит свойство `window.firstName`, то есть глобальную переменную `firstName`, которая не определена.
+Получается, что в строке `(*)` мы имеем `export: window`, так что далее `alert(user.export.firstName)` выводит свойство `window.firstName`, то которое не определено.
