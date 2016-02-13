@@ -26,4 +26,3 @@
 <div id="placeholder">Скажи пароль, друг</div>
 ```
 
-[edit src="solution" title="Полный код решения"]

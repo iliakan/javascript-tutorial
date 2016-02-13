@@ -33,7 +33,7 @@ document.forms[0] -- первая форма в документе
 
     var elem = form.elements.one; // можно form.elements[0]
 
-    alert( elem.value ); // "один"
+    alert( elem.value ); // 1
   </script>
 </body>
 ```

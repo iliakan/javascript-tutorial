@@ -65,7 +65,7 @@ jQuery-вызов `elem.data(prop, val)` делает следующее:
       .click(function() {})
       .appendTo('#data');
 
-    document.getElementById('data').innerHTML = '';
+    document.getElementById('data').innerHTML = ''; // (*)
 */!*
 
   }

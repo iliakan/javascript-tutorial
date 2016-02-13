@@ -84,4 +84,3 @@ if (navigator.platform.substr(0, 3) != 'Mac') { // событие для CapsLoc
 </script>
 ```
 
-[edit src="solution" title="Полный код решения"]

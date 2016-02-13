@@ -298,6 +298,7 @@ alert( str.search(*!*/javascript/i*/!*) != -1 ) // false
 var str = 'Многое по JavaScript можно найти на сайте http://javascript.ru';
 
 var regexp = /javascript/ig;
+var result;
 
 alert( "Начальное значение lastIndex: " + regexp.lastIndex );
 
@@ -342,7 +343,7 @@ alert( regexp.exec(str).index ); // 49, поиск начат с 40-й пози�
 
 </dt>
 Для поиска-и-замены:
-: - Замена на другую строку или функцией -- `str.replace(reg, str|func)`
+: - Замена на другую строку или результат функции -- `str.replace(reg, str|func)`
 
 Для разбивки строки на части:
 : - `str.split(str|reg)`

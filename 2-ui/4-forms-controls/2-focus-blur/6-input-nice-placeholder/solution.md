@@ -19,4 +19,3 @@ input.onfocus = function() {
 }
 ```
 
-[edit src="solution" title="Открыть полный код решения"]

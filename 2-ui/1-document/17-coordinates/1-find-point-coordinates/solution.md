@@ -39,4 +39,3 @@ var coords4 = [
 ]
 ```
 
-[edit src="solution" title="Полный код решения"]

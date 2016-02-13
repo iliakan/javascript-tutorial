@@ -10,4 +10,3 @@
 }
 ```
 
-[edit src="solution" title="Полный код решения"]
