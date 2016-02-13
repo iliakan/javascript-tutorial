@@ -24,7 +24,7 @@ function DragAvatar(dragZone, dragElem) {
 }
 
 /**
- * Инициализовать this._elem и позиционировать его
+ * Инициализировать this._elem и позиционировать его
  * При необходимости уточнить this._dragZoneElem
  * @param downX Координата X нажатия мыши
  * @param downY Координата Y нажатия мыши

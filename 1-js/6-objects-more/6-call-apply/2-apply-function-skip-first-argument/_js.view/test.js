@@ -1,6 +1,6 @@
 describe("applyAll", function() {
 
-  it("применяет функцию ко всем аргументам, начиная со 2го", function() {
+  it("применяет функцию ко всем аргументам, начиная со 2-го", function() {
     var min = applyAll(Math.min, 1, 2, 3);
     assert.equal(min, 1);
   });

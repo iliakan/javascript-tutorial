@@ -71,7 +71,7 @@
 
 Вместо <code>P<sub>i</sub></code>  нужно подставить координаты i-й опорной точки <code>(x<sub>i</sub>, y<sub>i</sub>)</code>.
 
-Эти уравнения векторные, то есть на для каждой из координат:
+Эти уравнения векторные, то есть для каждой из координат:
 
 - <code>x = (1−t)<sup>2</sup>x<sub>1</sub> + 2(1−t)tx<sub>2</sub> + t<sup>2</sup>x<sub>3</sub></code>
 - <code>y = (1−t)<sup>2</sup>y<sub>1</sub> + 2(1−t)ty<sub>2</sub> + t<sup>2</sup>y<sub>3</sub></code>

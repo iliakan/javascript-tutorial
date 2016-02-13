@@ -189,7 +189,7 @@ var tmpl = localDocument.getElementById('tmpl');
 var SliderProto = Object.create(HTMLElement.prototype);
 
 SliderProto.createdCallback = function() {
-  // (1) инициализовать Shadow DOM, получить из него #slider
+  // (1) инициализировать Shadow DOM, получить из него #slider
   var root = this.createShadowRoot();
   root.appendChild(tmpl.content.cloneNode(true));
 
@@ -197,7 +197,7 @@ SliderProto.createdCallback = function() {
 
   var self = this;
 
-  // (2) инициализовать слайдер, пробросить параметры
+  // (2) инициализировать слайдер, пробросить параметры
   this.$slider.slider({
     min: this.getAttribute('min') || 0,
     max: this.getAttribute('max') || 100,

@@ -191,7 +191,7 @@ func.call(context, arg1, arg2);
 func.apply(context, [arg1, arg2]);
 ```
 
-В частности, эти две строчки cработают одинаково:
+В частности, эти две строчки сработают одинаково:
 
 ```js
 showFullName.call(user, 'firstName', 'surname');

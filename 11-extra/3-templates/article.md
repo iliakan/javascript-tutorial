@@ -251,7 +251,7 @@ ko.applyBindings(user, document.body);
 
 **Вызов `ko.applyBindings` можно делать внутри компоненты, и таким образом устанавливать соответствия между её объектом и DOM.**
 
-Библиотка также поддерживает хранение шаблонов в `<script type="text/template">` -- см. документацию [template-binding](http://knockoutjs.com/documentation/template-binding.html), можно организовать прекомпиляцию, добавлять свои привязки и так далее.
+Библиотека также поддерживает хранение шаблонов в `<script type="text/template">` -- см. документацию [template-binding](http://knockoutjs.com/documentation/template-binding.html), можно организовать прекомпиляцию, добавлять свои привязки и так далее.
 
 ### Другие библиотеки
 
