@@ -7,8 +7,6 @@ importance: 5
 Что выведет `alert` в этом коде? Почему?
 
 ```js
-var firstName = "";
-
 var user = {
   firstName: "Василий",
 
