@@ -147,7 +147,7 @@ alert( true && false ); // false
 alert( false && false ); // false
 ```
 
-Пример c `if`:
+Пример с `if`:
 
 ```js run
 var hour = 12,

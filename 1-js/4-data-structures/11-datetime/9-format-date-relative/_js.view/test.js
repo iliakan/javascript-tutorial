@@ -1,5 +1,5 @@
 describe("formatDate", function() {
-  it("выводит дату 1мс назад как \"только что\"", function() {
+  it("выводит дату 1 мс назад как \"только что\"", function() {
     assert.equal(formatDate(new Date(new Date - 1)), 'только что');
   });
 

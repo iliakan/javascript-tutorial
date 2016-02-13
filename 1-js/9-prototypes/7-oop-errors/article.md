@@ -59,7 +59,7 @@ PropertyError.prototype = Object.create(Error.prototype);
 
     Если же объект ошибки делаем мы, то "по умолчанию" такого свойства у него не будет. Нам нужно как-то самим узнавать последовательность вложенных вызовов на текущий момент. Однако удобного способа сделать это в JavaScript нет, поэтому мы поступаем хитро и копируем его из нового объекта `new Error`, который генерируем тут же.
 
-    В V8 (Chrome, Opera, Node.JS) есть нестандартное расширение [Error.captureStackTrace](https://code.google.com/p/v8-wiki/wiki/JavaScriptStackTraceApi), которое позволяет стек получать.
+    В V8 (Chrome, Opera, Node.JS) есть нестандартное расширение [Error.captureStackTrace](https://code.google.com/p/v8-wiki/wiki/JavaScriptStackTraceApi), которое позволяет получить стек.
 
     Это делает строка из кода выше:
     ```js
@@ -274,7 +274,7 @@ var err = new PropertyRequiredError("age");
 // пройдёт проверку
 alert( err instanceof PropertyRequiredError ); // true
 alert( err instanceof PropertyError ); // true
-alert( err isntanceof CustomError ); // true
-alert( err isntanceof Error ); // true
+alert( err instanceof CustomError ); // true
+alert( err instanceof Error ); // true
 ```
 

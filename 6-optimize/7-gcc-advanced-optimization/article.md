@@ -408,7 +408,7 @@ SayWidget.prototype['setSayHandler'] = SayWidget.prototype.setSayHandler
 ```js
 (function(window, undefined) {
 
-  // пространство имен и локальная перменная для него
+  // пространство имен и локальная переменная для него
   var MyFramework = window.MyFramework = {};
 
   // функция фреймворка, доступная снаружи
@@ -466,7 +466,7 @@ MyFramework.b();
 Типичный правильный стиль:
 
 ```js
-// пространство имен и локальная перменная для него
+// пространство имен и локальная переменная для него
 var MyFramework = {};
 
 MyFrameWork._makeElem = function() {

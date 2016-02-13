@@ -400,7 +400,7 @@ var formatter = new Intl.NumberFormat("ru", {
 alert( formatter.format(1234567890.123) ); // 1 230 000 000
 ```
 
-C опциями для валюты:
+С опциями для валюты:
 
 ```js
 var formatter = new Intl.NumberFormat("ru", {

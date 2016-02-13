@@ -46,7 +46,7 @@
 
 Кликните, чтобы запустить.
 
-<input type="button" onclick="alert(bench(appendFirst,50))" value="TBODY cразу в DOM"/> <input type="button" onclick="alert(bench(appendLast,50))" value="Отложенная вставка TBODY в DOM"/>
+<input type="button" onclick="alert(bench(appendFirst,50))" value="TBODY сразу в DOM"/> <input type="button" onclick="alert(bench(appendLast,50))" value="Отложенная вставка TBODY в DOM"/>
 
 <table id="bench-table"></table>
 

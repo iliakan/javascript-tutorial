@@ -322,7 +322,7 @@ var str = 'Многое по JavaScript можно найти на сайте ht
 var regexp = /javascript/ig;
 regexp.lastIndex = 40;
 
-alert( regexp.exec(str).index ); // 49, поиск начат с 40й позиции
+alert( regexp.exec(str).index ); // 49, поиск начат с 40-й позиции
 ```
 ````
 
