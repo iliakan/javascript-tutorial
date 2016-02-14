@@ -88,8 +88,8 @@ document.onmousedown = function(e) {
     // зажать в границах экрана по горизонтали
     // здесь прокрутки нет, всё просто
     if (newX < 0) newX = 0;
-    if (newX > document.documentElement.clientWidth - dragElement.offsetHeight) {
-      newX = document.documentElement.clientWidth - dragElement.offsetHeight;
+    if (newX > document.documentElement.clientWidth - dragElement.offsetWidth) {
+      newX = document.documentElement.clientWidth - dragElement.offsetWidth;
     }
 
     dragElement.style.left = newX + 'px';
