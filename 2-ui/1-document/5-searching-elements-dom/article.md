@@ -174,7 +174,7 @@ var elems = document.getElementsByName('age');
 </script>
 ```
 
-Как и `getElementsByTagName`, этот метод может быть вызван и в контексте DOM-элемента и в контексте документа.
+Как и `getElementsByTagName`, этот метод может быть вызван и в контексте DOM-элемента, и в контексте документа.
 
 ## querySelectorAll [#querySelectorAll]
 
