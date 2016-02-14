@@ -407,7 +407,7 @@ DragManager.onDragEnd = function(dragObject, dropElem) {
 
   // убрать улыбку через 0.2 сек
   setTimeout(function() {
-    dropElem.classList.remove('computer-smile';
+    dropElem.classList.remove('computer-smile');
   }, 200);
 };
 
