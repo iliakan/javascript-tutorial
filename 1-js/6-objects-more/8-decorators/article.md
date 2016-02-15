@@ -69,8 +69,8 @@ function timingDecorator(f, timer) {
 }
 
 // функция может быть произвольной, например такой:
-function fibonacci(n) {
-  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
+var fibonacci = function f(n) {
+  return (n > 2) ? f(n - 1) + f(n - 2) : 1;
 }
 
 *!*
