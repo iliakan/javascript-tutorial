@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function makeBuffer() {
   var text = '';
 

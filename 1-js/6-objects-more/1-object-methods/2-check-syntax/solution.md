@@ -1,9 +1,8 @@
-**Ошибка**! 
+**Ошибка**!
 
 Попробуйте:
 
-```js
-//+ run
+```js run
 var obj = {
   go: function() {
     alert(this)
@@ -19,8 +18,7 @@ var obj = {
 
 JavaScript игнорирует перевод строки перед скобкой `(obj.go)()`  и читает этот код как:
 
-```js
-//+ no-beautify
+```js no-beautify
 var obj = { go:... }(obj.go)()
 ```
 

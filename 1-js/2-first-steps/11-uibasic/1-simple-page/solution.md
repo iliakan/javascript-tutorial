@@ -1,7 +1,6 @@
 JS-код:
 
-```js
-//+ demo run
+```js demo run
 var name = prompt("Ваше имя?", "");
 alert( name );
 ```

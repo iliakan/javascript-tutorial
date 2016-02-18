@@ -14,8 +14,7 @@
 
 Например:
 
-```html
-<!--+ run -->
+```html run
 <div id="*!*content-holder*/!*">
   <div id="*!*content*/!*">Элемент</div>
 </div>
@@ -34,9 +33,7 @@
 
 Например:
 
-
-```html
-<!--+ run -->
+```html run
 <div id="*!*content*/!*">Выделим этот элемент</div>
 
 <script>
@@ -52,19 +49,17 @@
 </script>
 ```
 
-[smart header="Должен остаться только один"]
+```smart header="Должен остаться только один"
 По стандарту значение `id` должно быть уникально, то есть в документе может быть только один элемент с данным `id`. И именно он будет возвращён.
 
-Если в документе есть несколько элементов с уникальным `id`, то поведение неопределено. То есть, нет гарантии, что браузер вернёт именно первый или последний -- вернёт случайным образом. 
+Если в документе есть несколько элементов с уникальным `id`, то поведение неопределено. То есть, нет гарантии, что браузер вернёт именно первый или последний -- вернёт случайным образом.
 
 Поэтому стараются следовать правилу уникальности `id`.
-[/smart]
-
+```
 
 Далее в примерах я часто буду использовать прямое обращение через переменную, чтобы было меньше букв и проще было понять происходящее. Но предпочтительным методом является `document.getElementById`.
 
-
-## getElementsByTagName   
+## getElementsByTagName
 
 Метод `elem.getElementsByTagName(tag)` ищет все элементы с заданным тегом `tag` внутри элемента `elem` и возвращает их в виде списка.
 
@@ -80,8 +75,7 @@ var elements = document.getElementsByTagName('div');
 
 Например, найдём все элементы `input` внутри таблицы:
 
-```html
-<!--+ run height=50 -->
+```html run height=50
 <table id="age-table">
   <tr>
     <td>Ваш возраст:</td>
@@ -124,13 +118,13 @@ document.getElementsByTagName('*');
 elem.getElementsByTagName('*');
 ```
 
-[warn header="Не забываем про букву `\"s\"`!"]
+```warn header="Не забываем про букву `\"s\"`!"
 Одна из самых частых ошибок начинающих (впрочем, иногда и не только) -- это забыть букву `"s"`, то есть пробовать вызывать метод `getElementByTagName` вместо <code>getElement<b>s</b>ByTagName</code>.
 
 Буква `"s"` не нужна там, где элемент только один, то есть в `getElementById`, в остальных методах она обязательна.
-[/warn]
+```
 
-[warn header="Возвращается коллекция, а не элемент"]
+````warn header="Возвращается коллекция, а не элемент"
 Другая частая ошибка -- это код вида:
 
 ```js
@@ -146,10 +140,9 @@ document.getElementsByTagName('input').value = 5;
 // работает
 document.getElementsByTagName('input')[0].value = 5;
 ```
+````
 
-[/warn]
-
-## getElementsByName   
+## getElementsByName
 
 Вызов `document.getElementsByName(name)` позволяет получить все элементы с данным атрибутом `name`.
 
@@ -163,7 +156,7 @@ var elems = document.getElementsByName('age');
 
 Используется этот метод весьма редко.
 
-## getElementsByClassName   
+## getElementsByClassName
 
 Вызов `elem.getElementsByClassName(className)` возвращает коллекцию элементов с классом `className`. Находит элемент и в том случае, если у него несколько классов, а искомый - один из них.
 
@@ -171,8 +164,7 @@ var elems = document.getElementsByName('age');
 
 Например:
 
-```html
-<!--+ run height=50 -->
+```html run height=50
 <div class="article">Статья</div>
 <div class="long article">Длинная статья</div>
 
@@ -182,8 +174,7 @@ var elems = document.getElementsByName('age');
 </script>
 ```
 
-Как и `getElementsByTagName`, этот метод может быть вызван и в контексте DOM-элемента и в контексте документа.
-
+Как и `getElementsByTagName`, этот метод может быть вызван и в контексте DOM-элемента, и в контексте документа.
 
 ## querySelectorAll [#querySelectorAll]
 
@@ -195,8 +186,7 @@ var elems = document.getElementsByName('age');
 
 Следующий запрос получает все элементы `LI`, которые являются последними потомками в `UL`:
 
-```html
-<!--+ run -->
+```html run
 <ul>
   <li>Этот</li>
   <li>тест</li>
@@ -216,9 +206,9 @@ var elems = document.getElementsByName('age');
 </script>
 ```
 
-[smart header="Псевдо-класс тоже работает"]
+```smart header="Псевдо-класс тоже работает"
 Псевдо-классы в CSS-селекторе, в частности `:hover` и `:active`, также поддерживаются. Например, `document.querySelectorAll(':hover')` вернёт список, в порядке вложенности, из текущих элементов под курсором мыши.
-[/smart]
+```
 
 ## querySelector [#querySelector]
 
@@ -232,7 +222,7 @@ var elems = document.getElementsByName('age');
 
 Предыдущие методы искали по DOM.
 
-Метод [elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) ничего не ищет, а проверяет, удовлетворяет ли `elem` селектору `css`. Он возвращает `true` либо `false`. 
+Метод [elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) ничего не ищет, а проверяет, удовлетворяет ли `elem` селектору `css`. Он возвращает `true` либо `false`.
 
 Не поддерживается в IE8-.
 
@@ -242,8 +232,7 @@ var elems = document.getElementsByName('age');
 
 Например:
 
-```html
-<!--+ run -->
+```html run
 <a href="http://example.com/file.zip">...</a>
 <a href="http://ya.ru">...</a>
 
@@ -266,12 +255,11 @@ var elems = document.getElementsByName('age');
 
 Иначе говоря, метод `closest` бежит от текущего элемента вверх по цепочке родителей и проверяет, подходит ли элемент под указанный CSS-селектор. Если подходит -- останавливается и возвращает его.
 
-Он самый новый из методов, рассмотренных в этой главе, поэтому старые браузеры его слабо поддерживают. Это, конечно, легко поправимо, как мы увидим позже в главе [](/dom-polyfill).
+Он самый новый из методов, рассмотренных в этой главе, поэтому старые браузеры его слабо поддерживают. Это, конечно, легко поправимо, как мы увидим позже в главе <info:dom-polyfill>.
 
 Пример использования (браузер должен поддерживать `closest`):
 
-```html
-<!--+ run -->
+```html run
 <ul>
   <li class="chapter">Глава I
     <ul>
@@ -280,7 +268,6 @@ var elems = document.getElementsByName('age');
     </ul>
   </li>
 </ul>
-
 
 <script>
   var numberSpan = document.querySelector('.num');
@@ -297,9 +284,9 @@ var elems = document.getElementsByName('age');
 </script>
 ```
 
-## XPath в современных браузерах  
+## XPath в современных браузерах
 
-Для полноты картины рассмотрим ещё один способ поиска, который обычно используется в XML. Это <a href="http://www.w3.org/TR/xpath/">язык запросов XPath</a>. 
+Для полноты картины рассмотрим ещё один способ поиска, который обычно используется в XML. Это <a href="http://www.w3.org/TR/xpath/">язык запросов XPath</a>.
 
 Он очень мощный, во многом мощнее CSS, но сложнее. Например, запрос для поиска элементов `H2`, содержащих текст `"XPath"`, будет выглядеть так: `//h2[contains(., "XPath")]`.
 
@@ -307,9 +294,8 @@ var elems = document.getElementsByName('age');
 
 Найдем заголовки с текстом `XPath` в текущем документе:
 
-```js
-//+ run no-beautify
-var result = document.evaluate("//h2[contains(., 'XPath')]", document.documentElement, null, 
+```js run no-beautify
+var result = document.evaluate("//h2[contains(., 'XPath')]", document.documentElement, null,
   XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
 
 for (var i = 0; i < result.snapshotLength; i++) {
@@ -317,7 +303,7 @@ for (var i = 0; i < result.snapshotLength; i++) {
 }
 ```
 
-IE тоже поддерживает XPath, но эта поддержка не соответствует стандарту и работает только для XML-документов, например, полученных с помощью `XMLHTTPRequest` (AJAX).  Для обычных же HTML-документов XPath в IE не поддерживается. 
+IE тоже поддерживает XPath, но эта поддержка не соответствует стандарту и работает только для XML-документов, например, полученных с помощью `XMLHTTPRequest` (AJAX).  Для обычных же HTML-документов XPath в IE не поддерживается.
 
 Так как XPath сложнее и длиннее CSS, то используют его очень редко.
 
@@ -335,37 +321,37 @@ IE тоже поддерживает XPath, но эта поддержка не 
 </thead>
 <tbody>
 <tr>
-<td>`getElementById`</td>
-<td>`id`</td>
+<td><code>getElementById</code></td>
+<td><code>id</code></td>
 <td>-</td>
 <td>везде</td>
 </tr>
 <tr>
-<td>`getElementsByName`</td>
-<td>`name`</td>
+<td><code>getElementsByName</code></td>
+<td><code>name</code></td>
 <td>-</td>
 <td>везде</td>
 </tr>
 <tr>
-<td>`getElementsByTagName`</td>
-<td>тег или `'*'`</td>
+<td><code>getElementsByTagName</code></td>
+<td>тег или <code>'*'</code></td>
 <td>✔</td>
 <td>везде</td>
 </tr>
 <tr>
-<td>`getElementsByClassName`</td>
+<td><code>getElementsByClassName</code></td>
 <td>классу</td>
 <td>✔</td>
 <td>кроме IE8-</td>
 </tr>
 <tr>
-<td>`querySelector`</td>
+<td><code>querySelector</code></td>
 <td>CSS-селектор</td>
 <td>✔</td>
 <td>везде</td>
 </tr>
 <tr>
-<td>`querySelectorAll`</td>
+<td><code>querySelectorAll</code></td>
 <td>CSS-селектор</td>
 <td>✔</td>
 <td>везде</td>
@@ -376,13 +362,8 @@ IE тоже поддерживает XPath, но эта поддержка не 
 Практика показывает, что в 95% ситуаций достаточно `querySelector/querySelectorAll`. Хотя более специализированные методы `getElement*` работают чуть быстрее, но разница в миллисекунду-другую редко играет роль.
 
 Кроме того:
-<ul>
-<li>Есть метод `elem.matches(css)`, который проверяет, удовлетворяет ли элемент CSS-селектору. Он поддерживается большинством браузеров в префиксной форме (`ms`, `moz`, `webkit`).</li>
-<li>Язык запросов XPath поддерживается большинством браузеров, кроме IE, даже 9й версии, но `querySelector` удобнее. Поэтому XPath используется редко. </li>
-</ul>
 
-
-
-
-
+- Есть метод `elem.matches(css)`, который проверяет, удовлетворяет ли элемент CSS-селектору. Он поддерживается большинством браузеров в префиксной форме (`ms`, `moz`, `webkit`).
+- Метод `elem.closest(css)` ищет ближайший элемент выше по иерархии DOM, подходящий под CSS-селектор css. Сам элемент тоже включается в поиск.
+- Язык запросов XPath поддерживается большинством браузеров, кроме IE, даже 9-й версии, но `querySelector` удобнее. Поэтому XPath используется редко.
 

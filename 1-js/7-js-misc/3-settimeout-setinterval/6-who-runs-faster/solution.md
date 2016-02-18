@@ -6,8 +6,7 @@
 
 Создадим реальные объекты `Runner` и запустим их для проверки:
 
-```js
-//+ run
+```js run
 function Runner() {
   this.steps = 0;
 

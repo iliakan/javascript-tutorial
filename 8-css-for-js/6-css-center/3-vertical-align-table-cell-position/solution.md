@@ -4,12 +4,11 @@
 
 # Решение
 
-Центрирование не работает потому, что `position: absolute` автоматически меняет элементу `display` на `block`. 
+Центрирование не работает потому, что `position: absolute` автоматически меняет элементу `display` на `block`.
 
 В однострочном случае можно сделать центрирование при помощи `line-height`:
 
-```html
-<!--+ run  no-beautify -->
+```html run no-beautify
 <style>
   .arrow {
     position: absolute;

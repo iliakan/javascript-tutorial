@@ -1,8 +1,8 @@
 # Sublime Text: шпаргалка
 
-Одним из наиболее мощных, и при этом простых, редакторов является [Sublime Text](http://www.sublimetext.com/). 
+Одним из наиболее мощных, и при этом простых, редакторов является [Sublime Text](http://www.sublimetext.com/).
 
-В нём хорошо развита система команд и горячих клавиш. На этой странице размещена "шпаргалка" с плагинами и самыми частыми сочетаниями клавиш, которые сильно упрощают жизнь. 
+В нём хорошо развита система команд и горячих клавиш. На этой странице размещена "шпаргалка" с плагинами и самыми частыми сочетаниями клавиш, которые сильно упрощают жизнь.
 
 [cut]
 
@@ -11,7 +11,7 @@
 
 [Скачать шпаргалку в формате PDF](sheet.pdf)
 
-Эта шпаргалка -- под Mac, для Windows сочетания похожи, обычно вместо Mac-клавиши <code class="key">Cmd</code> под Windows будет <code class="key">Ctrl</code>. А если в сочетании есть и <code class="key">Cmd</code> и <code class="key">Ctrl</code>, то под Windows будет <code class="key">Ctrl</code> + <code class="key">Shift</code>.
+Эта шпаргалка -- под Mac, для Windows сочетания похожи, обычно вместо Mac-клавиши `key:Cmd` под Windows будет `key:Ctrl`. А если в сочетании есть и `key:Cmd` и `key:Ctrl`, то под Windows будет `key:Ctrl+Shift`.
 
 **Вы часто используете сочетание, но его нет в списке? Поделитесь им в комментариях!**
 
@@ -19,29 +19,25 @@
 
 Мои любимые плагины:
 
-<ul>
-<li>Package Control</li>
-<li>sublime-emmet</li>
-<li>JsFormat</li>
-<li>SideBarEnhancements</li>
-<li>AdvancedNewFile</li>
-<li>sublime-jsdocs</li>
-<li>SublimeCodeIntel</li>
-</ul>
+- Package Control
+- sublime-emmet
+- JsFormat
+- SideBarEnhancements
+- AdvancedNewFile
+- sublime-jsdocs
+- SublimeCodeIntel
 
 Остальные:
 
-<ul>
-<li>Alignment</li>
-<li>CSSComb</li>
-<li>EncodingHelper</li>
-<li>GoToRecent</li>
-<li>HTML5</li>
-<li>jQuery</li>
-<li>Prefixr</li>
-<li>View In Browser</li>
-</ul>
+- Alignment
+- CSSComb
+- EncodingHelper
+- GoToRecent
+- HTML5
+- jQuery
+- Prefixr
+- View In Browser
 
 Чтобы узнать о плагине подробнее -- введите его название в Google.
 
-Есть и другие хорошие плагины, кроме перечисленных. Кроме того, Sublime позволяет легко писать свои плагины и команды. 
+Есть и другие хорошие плагины, кроме перечисленных. Кроме того, Sublime позволяет легко писать свои плагины и команды.

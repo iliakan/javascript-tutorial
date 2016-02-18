@@ -7,11 +7,10 @@
 
 Также нам понадобится обнулить "родной" `margin` у `INPUT`, чтобы не сбивал вычисления.
 
-```html
-<!--+ run -->
+```html run
 <style>
   input {
-    *!*margin: 0;*/!* 
+    *!*margin: 0;*/!*
     width: 12em;
   }
 
@@ -27,4 +26,3 @@
 <div id="placeholder">Скажи пароль, друг</div>
 ```
 
-[edit src="solution"]Полный код решения[/edit]

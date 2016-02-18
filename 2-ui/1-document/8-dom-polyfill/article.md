@@ -7,6 +7,7 @@
 Но это не значит, что нужно ориентироваться на самый старый браузер из поддерживаемых!
 
 Для того, чтобы не думать об устаревших браузерах, а писать современный код, который при этом работает везде, используют полифиллы.
+
 [cut]
 
 ## Полифиллы
@@ -49,21 +50,19 @@ if (document.documentElement.firstElementChild === undefined) { // (1)
 Если этот код запустить, то `firstElementChild` появится у всех элементов в IE8.
 
 Общий вид этого полифилла довольно типичен. Обычно полифилл состоит из двух частей:
-<ol>
-<li>Проверка, есть ли встроенная возможность.</li>
-<li>Эмуляция, если её нет.</li>
-</ol>
+
+1. Проверка, есть ли встроенная возможность.
+2. Эмуляция, если её нет.
 
 ## Проверка встроенного свойства
 
 Для проверки встроенной поддержки `firstElementChild` мы можем просто обратиться к `document.documentElement.firstElementChild`.
 
-Если DOM-свойство `firstElementChild` поддерживается, то его значение не может быть `undefined`. Если детей нет  -- свойство равно `null`, но не `undefined`. 
+Если DOM-свойство `firstElementChild` поддерживается, то его значение не может быть `undefined`. Если детей нет  -- свойство равно `null`, но не `undefined`.
 
 Сравним:
 
-```js
-//+ run
+```js run
 alert( document.head.previousSibling ); // null, поддержка есть
 alert( document.head.blabla ); // undefined, поддержки нет
 ```
@@ -74,8 +73,7 @@ alert( document.head.blabla ); // undefined, поддержки нет
 
 Попытаемся, к примеру, проверить "поддержку" свойства `value`. У `input` оно есть, у `div` такого свойства нет:
 
-```js
-//+ run
+```js run
 var div = document.createElement('div');
 var input = document.createElement('input');
 
@@ -83,17 +81,16 @@ alert( input.value ); // пустая строка, поддержка есть
 alert( div.value ); // undefined, поддержки нет
 ```
 
-[smart header="Поддержка значений свойств"]
+````smart header="Поддержка значений свойств"
 Если мы хотим проверить поддержку не свойства целиком, а некоторых его значений, то ситуация сложнее.
 
 Например, нам интересно, поддерживает ли браузер `<input type="range">`. То есть, понятно, что свойство `type` у `input`, в целом, поддерживается, а вот конкретный тип `<input>`?
 
-Для этого можно создать `<input>` с таким `type` и посмотреть, подействовал ли он. 
+Для этого можно создать `<input>` с таким `type` и посмотреть, подействовал ли он.
 
 Например:
 
-```html
-<!--+ run -->
+```html run
 <input type="radio">
 <input type="no-such-type">
 
@@ -103,14 +100,11 @@ alert( div.value ); // undefined, поддержки нет
 </script>
 ```
 
-<ol>
-<li>Первый `input` имеет `type="radio"`. Этот тип точно поддерживается, поэтому `input.type` имеет значение `"radio"`, как и указано.
-</li>
-<li>Второй `input` имеет `type="no-such-type"`. В качестве типа, для примера, специально указано заведомо неподдерживаемое значение. При этом `input.type` равен `"text"`, таково значение по умолчанию. Мы можем прочитать его и увидеть, что поддержки нет.</li>
-</ol>
+1. Первый `input` имеет `type="radio"`. Этот тип точно поддерживается, поэтому `input.type` имеет значение `"radio"`, как и указано.
+2. Второй `input` имеет `type="no-such-type"`. В качестве типа, для примера, специально указано заведомо неподдерживаемое значение. При этом `input.type` равен `"text"`, таково значение по умолчанию. Мы можем прочитать его и увидеть, что поддержки нет.
 
 Эта проверка работает, так как хоть в HTML-атрибут `type` и можно присвоить любую строку, но DOM-свойство `type` [по стандарту](http://www.w3.org/TR/html-markup/input.html) хранит реальный тип `input'а`.
-[/smart]
+````
 
 ## Добавляем поддержку свойства
 
@@ -119,11 +113,10 @@ alert( div.value ); // undefined, поддержки нет
 Для этого вспомним, что DOM элементы описываются соответствующими JS-классами.
 
 Например:
-<ul>
-<li>`<li>` -- [HTMLLiElement](http://www.w3.org/TR/html5/grouping-content.html#the-li-element)</li>
-<li>`<a>` -- [HTMLAnchorElement](http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element)</li>
-<li>`<body>` -- [HTMLBodyElement](http://www.w3.org/TR/html5/sections.html#the-body-element)</li>
-</ul>
+
+- `<li>` -- [HTMLLiElement](http://www.w3.org/TR/html5/grouping-content.html#the-li-element)
+- `<a>` -- [HTMLAnchorElement](http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element)
+- `<body>` -- [HTMLBodyElement](http://www.w3.org/TR/html5/sections.html#the-body-element)
 
 Они наследуют, как мы видели ранее, от [HTMLElement](http://www.w3.org/TR/html5/dom.html#htmlelement), который является общим родительским классом для HTML-элементов.
 
@@ -133,8 +126,7 @@ alert( div.value ); // undefined, поддержки нет
 
 Например, можно добавить всем элементам в прототип функцию:
 
-```js
-//+ run
+```js run
 Element.prototype.sayHi = function() {
   alert( "Привет от " + this );
 }
@@ -144,8 +136,7 @@ document.body.sayHi(); // Привет от [object HTMLBodyElement]
 
 Сложнее -- добавить свойство, но это тоже возможно, через `Object.defineProperty`:
 
-```js
-//+ run
+```js run
 Object.defineProperty(Element.prototype, 'lowerTag', {
   get: function() {
     return this.tagName.toLowerCase();
@@ -155,20 +146,19 @@ Object.defineProperty(Element.prototype, 'lowerTag', {
 alert( document.body.lowerTag ); // body
 ```
 
-[warn header="Геттер-сеттер и IE8"]
+```warn header="Геттер-сеттер и IE8"
 В IE8 современные методы для работы со свойствами, такие как [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty), [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) и другие не поддерживаются для произвольных объектов, но отлично работают для DOM-элементов.
 
 Чем полифиллы и пользуются, "добавляя" в IE8 многие из современных методов DOM.
-[/warn]
-
+```
 
 ## Какова поддержка свойства?
 
 А нужен ли вообще полифилл? Какие браузеры поддерживают интересное нам свойство или метод?
 
-Зачастую такая информация есть в справочнике MDN, например для метода `remove()`: [](https://developer.mozilla.org/en-US/docs/Web/API/ChildNode.remove) -- табличка совместимости внизу.
+Зачастую такая информация есть в справочнике MDN, например для метода `remove()`: <https://developer.mozilla.org/en-US/docs/Web/API/ChildNode.remove> -- табличка совместимости внизу.
 
-Также бывает полезен сервис [](http://caniuse.com), например для `elem.matches(css)`: [](http://caniuse.com/#feat=matchesselector).
+Также бывает полезен сервис <http://caniuse.com>, например для `elem.matches(css)`: <http://caniuse.com/#feat=matchesselector>.
 
 ## Итого
 
@@ -182,15 +172,13 @@ alert( document.body.lowerTag ); // body
 
 Типичная схема работы полифилла DOM-свойства или метода:
 
-<ul>
-<li>Создаётся элемент, который его, в теории, должен поддерживать.</li>
-<li>Соответствующее свойство сравнивается с `undefined`.</li>
-<li>Если его нет -- модифицируется прототип, обычно это `Element.prototype` -- в него дописываются новые геттеры и функции.</li>
-</ul>
+- Создаётся элемент, который его, в теории, должен поддерживать.
+- Соответствующее свойство сравнивается с `undefined`.
+- Если его нет -- модифицируется прототип, обычно это `Element.prototype` -- в него дописываются новые геттеры и функции.
 
 Другие полифиллы сделать сложнее. Например, полифилл, который хочет добавить в браузер поддержку элементов вида `<input type="range">`, может найти все такие элементы на странице и обработать их, меняя внешний вид и работу через JavaScript. Это возможно. Но если уже существующему `<input>` поменять `type` на `range` -- полифилл не "подхватит" его автоматически.
 
-Описанная ситуация нормальна. Не всегда полифилл обеспечивает идеальную поддержку наравне с родными свойствами. Но если мы не собираемся так делать, то подобный полифилл вполне подойдёт. 
+Описанная ситуация нормальна. Не всегда полифилл обеспечивает идеальную поддержку наравне с родными свойствами. Но если мы не собираемся так делать, то подобный полифилл вполне подойдёт.
 
 Один из лучших сервисов для полифиллов: [polyfill.io](http://polyfill.io). Он даёт возможность вставлять на свою страницу скрипт с запросом к сервису, например:
 
@@ -203,20 +191,16 @@ alert( document.body.lowerTag ); // body
 Также есть и другие коллекции, как правило, полифиллы организованы в виде коллекции, из которой можно как выбрать отдельные свойства и функции, так и подключить всё вместе, пачкой.
 
 Примеры полифиллов:
-<ul>
-<li>[](https://github.com/jonathantneal/polyfill) -- ES5 вместе с DOM</li>
-<li>[](https://github.com/termi/ES5-DOM-SHIM) -- ES5 вместе с DOM</li>
-<li>[](https://github.com/inexorabletash/polyfill) -- ES5+ вместе с DOM</li>
-</ul>
+
+- <https://github.com/jonathantneal/polyfill> -- ES5 вместе с DOM
+- <https://github.com/termi/ES5-DOM-SHIM> -- ES5 вместе с DOM
+- <https://github.com/inexorabletash/polyfill> -- ES5+ вместе с DOM
 
 Более мелкие библиотеки, а также коллекции ссылок на них:
 
-<ul>
-<li>[](http://compatibility.shwups-cms.ch/en/polyfills/)</li>
-<li>[](http://html5please.com/#polyfill)</li>
-<li>[](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills)</li>
-</ul>
+- <http://compatibility.shwups-cms.ch/en/polyfills/>
+- <http://html5please.com/#polyfill>
+- <https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-browser-Polyfills>
 
 Конечно, можно собрать и свою библиотеку полифиллов самостоятельно из различных коллекций, которые перечислены выше, а при необходимости и написать самому. В этой части учебника мы изучим ещё много методов работы с DOM, которые в этом помогут.
-
 

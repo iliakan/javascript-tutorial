@@ -1,6 +1,8 @@
-# var window
+importance: 5
 
-[importance 5]
+---
+
+# var window
 
 Каков будет результат выполнения этого кода? Почему?
 

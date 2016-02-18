@@ -1,31 +1,28 @@
 # Редакторы для кода
 
-Для разработки обязательно нужен хороший редактор. 
+Для разработки обязательно нужен хороший редактор.
 
 Выбранный вами редактор должен иметь в своем арсенале:
 
-<ol>
-<li>Подсветку синтаксиса.</li>
-<li>Автодополнение.</li>
-<li>"Фолдинг" (от англ. folding) -- возможность скрыть-раскрыть блок кода.</li>
-</ol>
+1. Подсветку синтаксиса.
+2. Автодополнение.
+3. "Фолдинг" (от англ. folding) -- возможность скрыть-раскрыть блок кода.
 
 [cut]
+
 ## IDE
 
 Термин IDE (Integrated Development Environment) -- "интегрированная среда разработки", означает редактор, который расширен большим количеством "наворотов", умеет работать со вспомогательными системами, такими как багтрекер, контроль версий, и много чего ещё.
 
 Как правило, IDE загружает весь проект целиком, поэтому может предоставлять автодополнение по функциям всего проекта, удобную навигацию по его файлам и т.п.
 
-Если вы ещё не задумывались над выбором IDE, присмотритесь к следующим вариантам. 
+Если вы ещё не задумывались над выбором IDE, присмотритесь к следующим вариантам.
 
-<ul>
-<li>Продукты IntelliJ: [WebStorm](http://www.jetbrains.com/webstorm/), а также в зависимости от дополнительного языка программирования [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) и другие.</li>
-<li>Visual Studio, в сочетании с разработкой под .NET (Win)</li>
-<li>Продукты на основе Eclipse, в частности [Aptana](http://www.aptana.com/) и Zend Studio</li>
-<li>[Komodo IDE](http://www.activestate.com/komodo-ide) и его облегчённая версия [Komodo Edit](http://www.activestate.com/komodo-edit).</li>
-<li>[Netbeans](http://netbeans.org/)</li>
-</ul>
+- Продукты IntelliJ: [WebStorm](http://www.jetbrains.com/webstorm/), а также в зависимости от дополнительного языка программирования [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) и другие.
+- Visual Studio, в сочетании с разработкой под .NET (Win)
+- Продукты на основе Eclipse, в частности [Aptana](http://www.aptana.com/) и Zend Studio
+- [Komodo IDE](http://www.activestate.com/komodo-ide) и его облегчённая версия [Komodo Edit](http://www.activestate.com/komodo-edit).
+- [Netbeans](http://netbeans.org/)
 
 Почти все они, за исключением Visual Studio, кросс-платформенные.
 
@@ -35,31 +32,27 @@
 
 ## Лёгкие редакторы
 
-Лёгкие редакторы -- не такие мощные, как IDE, но они быстрые и простые, мгновенно стартуют. 
+Лёгкие редакторы -- не такие мощные, как IDE, но они быстрые и простые, мгновенно стартуют.
 
 Основная сфера применения лёгкого редактора -- мгновенно открыть нужный файл, чтобы что-то в нём поправить.
 
-На практике "лёгкие" редакторы могут обладать большим количеством плагинов, так что граница между IDE и "лёгким" редактором размыта, спорить что именно редактор, а что IDE -- не имеет смысла. 
+На практике "лёгкие" редакторы могут обладать большим количеством плагинов, так что граница между IDE и "лёгким" редактором размыта, спорить что именно редактор, а что IDE -- не имеет смысла.
 
 Достойны внимания:
 
-<ul>
-<li><a href="http://www.sublimetext.com/">Sublime Text</a> (кросс-платформенный, shareware).</li>
-<li><a href="https://atom.io/">Atom</a> (кросс-платформенный, free).</li>
-<li><a href="http://www.scintilla.org/">SciTe</a> простой, легкий и очень быстрый (Windows, бесплатный).</li>
-<li><a href="http://sourceforge.net/projects/notepad-plus/">Notepad++</a> (Windows, бесплатный).</li>
-<li>Vim, Emacs. Если умеете их готовить.</li>
-</ul>
+- <a href="http://www.sublimetext.com/">Sublime Text</a> (кросс-платформенный, shareware).
+- <a href="https://atom.io/">Atom</a> (кросс-платформенный, free).
+- <a href="http://www.scintilla.org/">SciTe</a> простой, легкий и очень быстрый (Windows, бесплатный).
+- <a href="http://sourceforge.net/projects/notepad-plus/">Notepad++</a> (Windows, бесплатный).
+- Vim, Emacs. Если умеете их готовить.
 
 ## Мои редакторы
 
 Лично мои любимые редакторы:
 
-<ul>
-<li>Как IDE -- редакторы от Jetbrains: для чистого JavaScript [WebStorm](http://www.jetbrains.com/webstorm/), если ещё какой-то язык, то в зависимости от языка: [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/). У них есть и другие редакторы под разные языки, но я ими не пользовался.</li>
-<li>Как быстрый редактор -- <a href="http://www.sublimetext.com">Sublime Text</a>.</li>
-<li>Иногда Visual Studio, если разработка идёт под платформу .NET (Win).</li>
-</ul>
+- Как IDE -- редакторы от Jetbrains: для чистого JavaScript [WebStorm](http://www.jetbrains.com/webstorm/), если ещё какой-то язык, то в зависимости от языка: [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/). У них есть и другие редакторы под разные языки, но я ими не пользовался.
+- Как быстрый редактор -- <a href="http://www.sublimetext.com">Sublime Text</a>.
+- Иногда Visual Studio, если разработка идёт под платформу .NET (Win).
 
 Если не знаете, что выбрать -- можно посмотреть на них ;)
 

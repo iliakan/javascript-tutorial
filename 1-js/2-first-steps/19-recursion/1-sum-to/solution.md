@@ -1,7 +1,6 @@
 Решение **с использованием цикла**:
 
-```js
-//+ run
+```js run
 function sumTo(n) {
   var sum = 0;
   for (var i = 1; i <= n; i++) {
@@ -15,8 +14,7 @@ alert( sumTo(100) );
 
 Решение через **рекурсию**:
 
-```js
-//+ run
+```js run
 function sumTo(n) {
   if (n == 1) return 1;
   return n + sumTo(n - 1);
@@ -27,8 +25,7 @@ alert( sumTo(100) );
 
 Решение **по формуле**: `sumTo(n) = n*(n+1)/2`:
 
-```js
-//+ run
+```js run
 function sumTo(n) {
   return n * (n + 1) / 2;
 }

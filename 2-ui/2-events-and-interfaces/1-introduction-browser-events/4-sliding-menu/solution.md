@@ -20,15 +20,13 @@
 
 Для заголовка лучше использовать именно `SPAN`, а не `DIV`, так как `DIV` постарается занять 100% ширины, и мы не сможем ловить `click` только на тексте:
 
-```html
-<!--+ autorun height=50 -->
+```html autorun height=50
 <div style="border: solid red 1px">[Сладости (нажми меня)!]</div>
 ```
 
 ...А `SPAN` -- это элемент с `display: inline`, поэтому он занимает ровно столько места, сколько занимает текст внутри него:
 
-```html
-<!--+ autorun height=50 -->
+```html autorun height=50
 <span style="border: solid red 1px">[Сладости (нажми меня)!]</span>
 ```
 

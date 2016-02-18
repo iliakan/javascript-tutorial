@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function CoffeeMachine(power) {
   // свойства конкретной кофеварки
   this._power = power;

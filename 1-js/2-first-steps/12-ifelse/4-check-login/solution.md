@@ -1,7 +1,6 @@
 
 
-```js
-//+ run demo
+```js run demo
 var userName = prompt('Кто пришёл?', '');
 
 if (userName == 'Админ') {

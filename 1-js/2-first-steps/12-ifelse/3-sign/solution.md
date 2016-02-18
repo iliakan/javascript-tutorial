@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 var value = prompt('Введите число', 0);
 
 if (value > 0) {

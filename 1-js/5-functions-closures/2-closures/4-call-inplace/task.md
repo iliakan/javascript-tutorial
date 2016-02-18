@@ -1,11 +1,12 @@
-# Вызов "на месте"
+importance: 4
 
-[importance 4]
+---
+
+# Вызов "на месте"
 
 Каков будет результат выполнения кода? Почему?
 
-```js
-//+ no-beautify
+```js no-beautify
 var a = 5
 
 (function() {

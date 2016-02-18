@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 Function.prototype.defer = function(ms) {
   var f = this;
   return function() {

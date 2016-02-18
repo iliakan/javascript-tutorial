@@ -1,7 +1,6 @@
 Ответ: `1`, а затем `undefined`.
 
-```js
-//+ run
+```js run
 alert( alert(1) && alert(2) );
 ```
 

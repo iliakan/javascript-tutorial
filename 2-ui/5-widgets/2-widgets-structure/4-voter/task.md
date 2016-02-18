@@ -1,8 +1,10 @@
+importance: 5
+
+---
+
 # Голосовалка
 
-[importance 5]
-
-Напишите функцию-конструктор `new Voter(options)` для голосовалки. 
+Напишите функцию-конструктор `new Voter(options)` для голосовалки.
 Она должна получать элемент в `options.elem`, в следующей разметке:
 
 ```html
@@ -20,6 +22,6 @@
 Все остальные методы и свойства пусть будут приватными.
 
 Результат:
-[iframe src="solution" height=60 border=1]
 
+[iframe src="solution" height=60 border=1]
 

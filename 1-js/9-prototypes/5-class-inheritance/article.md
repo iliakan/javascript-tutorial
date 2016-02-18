@@ -12,14 +12,12 @@
 
 Взглянем на него ещё раз на примере `Array`, который наследует от `Object`:
 
-<img src="class-inheritance-array-object.png">
+![](class-inheritance-array-object.png)
 
-<ul>
-<li>Методы массивов `Array` хранятся в `Array.prototype`.</li>
-<li>`Array.prototype` имеет прототипом `Object.prototype`.</li>
-</ul>
+- Методы массивов `Array` хранятся в `Array.prototype`.
+- `Array.prototype` имеет прототипом `Object.prototype`.
 
-Поэтому когда экземпляры класса `Array` хотят получить метод массива -- они берут его из своего прототипа, например `Array.prototype.slice`. 
+Поэтому когда экземпляры класса `Array` хотят получить метод массива -- они берут его из своего прототипа, например `Array.prototype.slice`.
 
 Если же нужен метод объекта, например, `hasOwnProperty`, то его в `Array.prototype` нет, и он берётся из `Object.prototype`.
 
@@ -27,13 +25,13 @@
 
 Вывод в Chrome будет примерно таким:
 
-<img src="console_dir_array.png">
+![](console_dir_array.png)
 
 Здесь отчётливо видно, что сами данные и `length` находятся в массиве, дальше в `__proto__` идут методы для массивов `concat`, то есть `Array.prototype`, а далее -- `Object.prototype`.
 
-[smart header="`console.dir` для доступа к свойствам"]
+```smart header="`console.dir` для доступа к свойствам"
 Обратите внимание, я использовал именно `console.dir`, а не `console.log`, поскольку `log` зачастую выводит объект в виде строки, без доступа к свойствам.
-[/smart]
+```
 
 ## Наследование в наших классах
 
@@ -78,7 +76,7 @@ var rabbit = new Rabbit('Кроль');
 
 Для того, чтобы наследование работало, объект `rabbit = new Rabbit` должен использовать свойства и методы из своего прототипа `Rabbit.prototype`, а если их там нет, то -- свойства и метода родителя, которые хранятся в `Animal.prototype`.
 
-Если ещё короче -- порядок поиска свойств и методов должен быть таким: `rabbit -> Rabbit.prototype -> Animal.prototype`, по аналогии с тем, как это сделано для объектов и массивов. 
+Если ещё короче -- порядок поиска свойств и методов должен быть таким: `rabbit -> Rabbit.prototype -> Animal.prototype`, по аналогии с тем, как это сделано для объектов и массивов.
 
 Для этого можно поставить ссылку `__proto__` с `Rabbit.prototype` на `Animal.prototype`.
 
@@ -91,8 +89,7 @@ Rabbit.prototype.__proto__ = Animal.prototype;
 
 Класс `Animal` остаётся без изменений, а `Rabbit.prototype` мы будем создавать с нужным прототипом, используя `Object.create`:
 
-```js
-//+ no-beautify
+```js no-beautify
 function Rabbit(name) {
   this.name = name;
   this.speed = 0;
@@ -109,7 +106,7 @@ Rabbit.prototype.jump = function() { ... };
 
 Теперь выглядеть иерархия будет так:
 
-<img src="class-inheritance-rabbit-animal.png">
+![](class-inheritance-rabbit-animal.png)
 
 В `prototype` по умолчанию всегда находится свойство `constructor`, указывающее на функцию-конструктор. В частности, `Rabbit.prototype.constructor == Rabbit`. Если мы рассчитываем использовать это свойство, то при замене `prototype` через `Object.create` нужно его явно сохранить:
 
@@ -123,7 +120,7 @@ Rabbit.prototype.constructor = Rabbit;
 Для наглядности -- вот итоговый код с двумя классами `Animal` и `Rabbit`:
 
 ```js
-// 1. Конструктор Animal 
+// 1. Конструктор Animal
 function Animal(name) {
   this.name = name;
   this.speed = 0;
@@ -140,7 +137,6 @@ Animal.prototype.run = function(speed) {
   this.speed += speed;
   alert( this.name + ' бежит, скорость ' + this.speed );
 };
-
 
 // 2. Конструктор Rabbit
 function Rabbit(name) {
@@ -163,8 +159,7 @@ Rabbit.prototype.jump = function() {
 
 Обратим внимание: `Rabbit.prototype = Object.create(proto)` присваивается сразу после объявления конструктора, иначе он перезатрёт уже записанные в прототип методы.
 
-[warn header="Неправильный вариант: `Rabbit.prototype = new Animal`"]
-
+````warn header="Неправильный вариант: `Rabbit.prototype = new Animal`"
 В некоторых устаревших руководствах предлагают вместо `Object.create(Animal.prototype)` записывать в прототип `new Animal`, вот так:
 
 ```js
@@ -172,13 +167,12 @@ Rabbit.prototype.jump = function() {
 Rabbit.prototype = new Animal();
 ```
 
-
 Частично, он рабочий, поскольку иерархия прототипов будет такая же, ведь `new Animal` -- это объект с прототипом `Animal.prototype`, как и `Object.create(Animal.prototype)`. Они в этом плане идентичны.
 
 Но у этого подхода важный недостаток. Как правило мы не хотим создавать `Animal`, а хотим только унаследовать его методы!
 
 Более того, на практике создание объекта может требовать обязательных аргументов, влиять на страницу в браузере, делать запросы к серверу и что-то ещё, чего мы хотели бы избежать. Поэтому рекомендуется использовать вариант с `Object.create`.
-[/warn]
+````
 
 ## Вызов конструктора родителя
 
@@ -206,13 +200,13 @@ function Rabbit(name) {
 }
 ```
 
-Такой вызов запустит функцию `Animal` в контексте текущего объекта, со всеми аргументами, она выполнится и запишет в `this` всё, что нужно. 
+Такой вызов запустит функцию `Animal` в контексте текущего объекта, со всеми аргументами, она выполнится и запишет в `this` всё, что нужно.
 
 Здесь можно было бы использовать и `Animal.call(this, name)`, но `apply` надёжнее, так как работает с любым количеством аргументов.
 
-## Переопределение метода  
+## Переопределение метода
 
-Итак, `Rabbit` наследует `Animal`. Теперь если какого-то метода нет в `Rabbit.prototype` -- он будет взят из `Animal.prototype`. 
+Итак, `Rabbit` наследует `Animal`. Теперь если какого-то метода нет в `Rabbit.prototype` -- он будет взят из `Animal.prototype`.
 
 В `Rabbit` может понадобиться задать какие-то методы, которые у родителя уже есть. Например, кролики бегают не так, как остальные животные, поэтому переопределим метод `run()`:
 
@@ -225,8 +219,7 @@ Rabbit.prototype.run = function(speed) {
 
 Вызов `rabbit.run()` теперь будет брать `run` из своего прототипа:
 
-<img src="class-inheritance-rabbit-run-animal.png">
-
+![](class-inheritance-rabbit-run-animal.png)
 
 ### Вызов метода родителя внутри своего
 
@@ -235,7 +228,6 @@ Rabbit.prototype.run = function(speed) {
 Для вызова метода родителя можно обратиться к нему напрямую, взяв из прототипа:
 
 ```js
-//+ run
  Rabbit.prototype.run = function() {
 *!*
    // вызвать метод родителя, передав ему текущие аргументы
@@ -245,50 +237,40 @@ Rabbit.prototype.run = function(speed) {
  }
 ```
 
-Обратите внимание на вызов через `apply` и явное указание контекста. 
+Обратите внимание на вызов через `apply` и явное указание контекста.
 
 Если вызвать просто `Animal.prototype.run()`, то в качестве `this` функция `run` получит `Animal.prototype`, а это неверно, нужен текущий объект.
 
-
 ## Итого
 
-<ul>
-<li>Для наследования нужно, чтобы "склад методов потомка" (`Child.prototype`) наследовал от "склада метода родителей" (`Parent.prototype`).
+- Для наследования нужно, чтобы "склад методов потомка" (`Child.prototype`) наследовал от "склада метода родителей" (`Parent.prototype`).
 
-Это можно сделать при помощи `Object.create`:
+    Это можно сделать при помощи `Object.create`:
 
-Код:
+    Код:
 
-```js
-Rabbit.prototype = Object.create(Animal.prototype);
-```
+    ```js
+    Rabbit.prototype = Object.create(Animal.prototype);
+    ```
+- Для того, чтобы наследник создавался так же, как и родитель, он вызывает конструктор родителя в своём контексте, используя `apply(this, arguments)`, вот так:
 
-</li>
-<li>Для того, чтобы наследник создавался так же, как и родитель, он вызывает конструктор родителя в своём контексте, используя `apply(this, arguments)`, вот так:
+    ```js
+    function Rabbit(...) {
+      Animal.apply(this, arguments);
+    }
+    ```
+- При переопределении метода родителя в потомке, к исходному методу можно обратиться, взяв его напрямую из прототипа:
 
-```js
-function Rabbit(...) {
-  Animal.apply(this, arguments);
-}
-```
-
-</li>
-<li>При переопределении метода родителя в потомке, к исходному методу можно обратиться, взяв его напрямую из прототипа:
-
-```js
-Rabbit.prototype.run = function() {
-  var result = Animal.prototype.run.apply(this, ...);
-  // result -- результат вызова метода родителя 
-}
-```
-
-</li>
-</ul>
+    ```js
+    Rabbit.prototype.run = function() {
+      var result = Animal.prototype.run.apply(this, ...);
+      // result -- результат вызова метода родителя
+    }
+    ```
 
 Структура наследования полностью:
 
-```js
-//+ run
+```js run
 *!*
 // --------- Класс-Родитель ------------
 */!*
@@ -352,7 +334,7 @@ function Rabbit() {
 }
 ```
 
-...Которой нет в прототипном подходе, потому что в процессе создания `new Rabbit` мы вовсе не обязаны вызывать конструктор родителя. Ведь методы находятся в прототипе. 
+...Которой нет в прототипном подходе, потому что в процессе создания `new Rabbit` мы вовсе не обязаны вызывать конструктор родителя. Ведь методы находятся в прототипе.
 
 Поэтому прототипный подход стоит предпочитать функциональному как более быстрый и универсальный. А что касается красоты синтаксиса -- она сильно лучше в новом стандарте ES6, которым можно пользоваться уже сейчас, если взять транслятор [babeljs](https://babeljs.io/).
 

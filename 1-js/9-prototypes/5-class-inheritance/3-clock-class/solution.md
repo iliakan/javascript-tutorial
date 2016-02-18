@@ -1,7 +1,4 @@
 
 
-```js
-//+ src="clock.js"
-```
+[js src="clock.js"]
 
-[edit src="solution"]Открыть полное решение[/edit]

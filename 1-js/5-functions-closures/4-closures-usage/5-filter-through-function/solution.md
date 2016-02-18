@@ -1,7 +1,6 @@
 # Функция фильтрации
 
-```js
-//+ run
+```js run
 function filter(arr, func) {
   var result = [];
 
@@ -24,8 +23,7 @@ alert(filter(arr, function(a) {
 
 # Фильтр inBetween
 
-```js
-//+ run
+```js run
 function filter(arr, func) {
   var result = [];
 
@@ -53,8 +51,7 @@ alert( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
 
 # Фильтр inArray
 
-```js
-//+ run
+```js run
 function filter(arr, func) {
   var result = [];
 

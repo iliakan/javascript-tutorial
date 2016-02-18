@@ -25,3 +25,4 @@ return new Promise((resolve, reject) => {
 ```js
 return delay(ms).then(doSomething);
 ```
+

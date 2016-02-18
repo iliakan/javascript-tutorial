@@ -6,10 +6,11 @@
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
   <script src="hoverIntent.js"></script>
+  <script src="https://js.cx/test/libs.js"></script>
+  <script src="test.js"></script>
 </head>
 
 <body>
-
 
   <div id="elem" class="clock">
     <span class="hours">12</span> :
@@ -18,23 +19,21 @@
   </div>
 
   <div id="tooltip" hidden>Tooltip</div>
+
   <script>
-    new HoverIntent({
-      elem: elem,
-      over: function() {
-        tooltip.style.left = this.getBoundingClientRect().left + 'px';
-        tooltip.style.top = this.getBoundingClientRect().bottom + 5 + 'px';
-        document.body.appendChild(tooltip);
-      },
-      out: function() {
-        document.body.removeChild(tooltip);
-      }
-    });
-  </script>
-
-
-
+    // for the demo
+    setTimeout(function() {
+      new HoverIntent({
+        elem: elem,
+        over: function() {
+          tooltip.hidden = false;
+        },
+        out: function() {
+          tooltip.hidden = true;
+        }
+      });
+    }, 2000);
+  </script>   
 
 </body>
-
 </html>

@@ -1,6 +1,8 @@
-# Что содержит constructor?
+importance: 5
 
-[importance 5]
+---
+
+# Что содержит constructor?
 
 В коде ниже создаётся простейшая иерархия классов: `Animal -> Rabbit`.
 

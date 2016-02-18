@@ -1,7 +1,6 @@
 
 
-```js
-//+ run demo
+```js run demo
 function Calculator() {
 
   this.read = function() {

@@ -1,7 +1,6 @@
 Кофеварка с новым методом:
 
-```js
-//+ run
+```js run
 function CoffeeMachine(power) {
   this.waterAmount = 0;
 
@@ -31,7 +30,6 @@ function CoffeeMachine(power) {
   };
 */!*
 }
-
 
 var coffeeMachine = new CoffeeMachine(50000);
 coffeeMachine.waterAmount = 200;

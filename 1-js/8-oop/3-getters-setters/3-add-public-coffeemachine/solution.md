@@ -1,7 +1,6 @@
 В решении ниже `addWater` будет просто вызывать `setWaterAmount`.
 
-```js
-//+ run
+```js run
 function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
 

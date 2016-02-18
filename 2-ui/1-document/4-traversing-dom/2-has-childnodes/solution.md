@@ -1,14 +1,12 @@
 Вначале нерабочие способы, которые могут прийти на ум:
 
-```js
-//+ no-beautify
+```js no-beautify
 if (!elem) { .. }
 ```
 
 Это не работает, так как `elem` всегда есть, и является объектом. Так что проверка `if (elem)` всегда верна, вне зависимости от того, есть ли у `elem` потомки.
 
-```js
-//+ no-beautify
+```js no-beautify
 if (!elem.childNodes) { ... }
 ```
 
@@ -16,8 +14,7 @@ if (!elem.childNodes) { ... }
 
 Несколько рабочих способов:
 
-```js
-//+ no-beautify
+```js no-beautify
 if (!elem.childNodes.length) { ... }
 
 if (!elem.firstChild) { ... }

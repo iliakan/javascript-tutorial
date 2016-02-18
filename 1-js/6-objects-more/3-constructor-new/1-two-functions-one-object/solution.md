@@ -4,8 +4,7 @@
 
 Например, они могут вернуть один и тот же объект `obj`, определённый снаружи:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 var obj = {};
 
 function A() { return obj; }

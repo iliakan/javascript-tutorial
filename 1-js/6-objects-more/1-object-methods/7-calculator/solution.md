@@ -1,7 +1,6 @@
 
 
-```js
-//+ run demo
+```js run demo
 var calculator = {
   sum: function() {
     return this.a + this.b;

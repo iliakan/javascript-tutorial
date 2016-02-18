@@ -1,7 +1,6 @@
 Ответ: `"Вася"`.
 
-```js
-//+ run no-beautify
+```js run no-beautify
 function f() {
   alert(this.name);
 }
@@ -27,8 +26,7 @@ function bind(func, context) {
 
 Код станет таким:
 
-```js
-//+ no-beautify
+```js no-beautify
 function f() {
   alert(this.name);
 }

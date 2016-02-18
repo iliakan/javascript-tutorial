@@ -1,6 +1,8 @@
-# Создайте дерево из объекта
+importance: 5
 
-[importance 5]
+---
+
+# Создайте дерево из объекта
 
 Напишите функцию, которая создаёт вложенный список `UL/LI` (дерево) из объекта.
 
@@ -31,7 +33,7 @@ var data = {
 ```js
 var container = document.getElementById('container');
 *!*
-createTree(container, data); // создаёт 
+createTree(container, data); // создаёт
 */!*
 ```
 
@@ -40,10 +42,9 @@ createTree(container, data); // создаёт
 [iframe border=1 src="solution"]
 
 Выберите один из двух способов решения этой задачи:
-<ol>
-<li>Создать строку, а затем присвоить через `container.innerHTML`.</li>
-<li>Создавать узлы через методы DOM.</li>
-</ol>
+
+1. Создать строку, а затем присвоить через `container.innerHTML`.
+2. Создавать узлы через методы DOM.
 
 Если получится -- сделайте оба.
 

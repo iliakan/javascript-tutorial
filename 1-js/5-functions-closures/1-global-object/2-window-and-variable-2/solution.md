@@ -2,8 +2,7 @@
 
 Переменной `a` нет, так что условие `"a" in window` не выполнится. В результате на последней строчке - обращение к неопределенной переменной.
 
-```js
-//+ run untrusted refresh
+```js run untrusted refresh
 if ("a" in window) {
   a = 1;
 }

@@ -14,7 +14,7 @@ function formatDate(date) {
   return date.toLocaleString("ru", {day: '2-digit', month: '2-digit', year: '2-digit'});
 
   /*
-  // можно и вручную, если лень добавлят в старый IE поддержку локализации
+  // можно и вручную, если лень добавлять в старый IE поддержку локализации
   var day = date.getDate();
   if (day < 10) day = '0' + day;
 

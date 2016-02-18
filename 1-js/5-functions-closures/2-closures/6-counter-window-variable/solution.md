@@ -4,8 +4,7 @@
 
 В результате все счётчики будут разделять единое, глобальное текущее значение.
 
-```js
-//+ run
+```js run
 var currentCount = 1;
 
 function makeCounter() {

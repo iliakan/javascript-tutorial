@@ -1,9 +1,8 @@
-Для определения примитивного типа строка/число подойдет оператор [typeof](#type-typeof).
+Для определения примитивного типа строка/число подойдет оператор [typeof](info:types-intro#type-typeof).
 
 Примеры его работы:
 
-```js
-//+ run
+```js run
 alert( typeof 123 ); // "number"
 alert( typeof "строка" ); // "string"
 alert( typeof new Date() ); // "object"

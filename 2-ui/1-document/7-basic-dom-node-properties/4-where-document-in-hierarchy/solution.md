@@ -1,30 +1,27 @@
 
 Объектом какого класса является `document`, можно выяснить так:
-```js
-//+ run
+```js run
 alert(document); // [object HTMLDocument]
 ```
 
 Или так:
-```js
-//+ run
+```js run
 alert(document.constructor); // function HTMLDocument() { ... }
 ```
 
 Итак, `document` -- объект класса `HTMLDocument`.
 
-Какое место `HTMLDocument` занимает в иерархии? 
+Какое место `HTMLDocument` занимает в иерархии?
 
 Можно поискать в документации. Но попробуем выяснить это самостоятельно.
 
 Вопрос не такой простой и требует хорошего понимания [прототипного наследования](/class-inheritance).
 
 Вспомним, как оно устроено:
-<ul>
-<li>Методы объекта `document` находятся в `prototype` конструктора, в данном случае -- `HTMLDocument.prototype`.</li>
-<li>У `HTMLDocument.prototype` есть ссылка `__proto__` на прототип-родитель.</li>
-<li>У прототипа-родителя может быть ссылка `__proto__` на его родитель, и так далее.</li>
-</ul>
+
+- Методы объекта `document` находятся в `prototype` конструктора, в данном случае -- `HTMLDocument.prototype`.
+- У `HTMLDocument.prototype` есть ссылка `__proto__` на прототип-родитель.
+- У прототипа-родителя может быть ссылка `__proto__` на его родитель, и так далее.
 
 При поиске свойства в `document`, если его там нет, оно ищется в `document.__proto__`, затем в `document.__proto__.__proto__` и так далее, пока не найдём, или пока цепочка `__proto__` не закончится. Это обычное устройство класса, без наследования.
 
@@ -54,8 +51,7 @@ F.prototype = { constructor: F }
 
 Это свойство `constructor`, если конечно его не удалить или не перезаписать нечаянно (чего делать не следует), и позволяет из прототипа узнать соответствующий ему конструктор.
 
-```js
-//+ run
+```js run
 // цепочка наследования:
 alert(HTMLDocument.prototype.constructor); // function HTMLDocument
 alert(HTMLDocument.prototype.__proto__.constructor); // function Document
@@ -65,8 +61,4 @@ alert(HTMLDocument.prototype.__proto__.__proto__.constructor); // function Node
 При выводе объекта через `console.dir(document)` в Google Chrome, мы тоже можем, раскрывая `__proto__`, увидеть эти названия (`HTMLDocument`, `Document`, `Node`).
 
 Браузерная консоль их берёт как раз из свойства `constructor`.
-
-
-
-
 

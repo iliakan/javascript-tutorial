@@ -1,7 +1,6 @@
 Код страницы:
 
-```html
-<!--+ run -->
+```html run
 <!DOCTYPE html>
 <html>
 

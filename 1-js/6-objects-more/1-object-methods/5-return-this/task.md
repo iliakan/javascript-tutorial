@@ -1,6 +1,8 @@
-# Возврат this
+importance: 5
 
-[importance 5]
+---
+
+# Возврат this
 
 Что выведет `alert` в этом коде? Почему?
 

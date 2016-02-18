@@ -11,54 +11,46 @@ let proxy = new Proxy(target, handler)
 
 Здесь:
 
-<ul>
-<li>`target` -- объект, обращения к которому надо перехватывать.</li>
-<li>`handler` -- объект с "ловушками": функциями-перехватчиками для операций к `target`.</li>
-</ul>
+- `target` -- объект, обращения к которому надо перехватывать.
+- `handler` -- объект с "ловушками": функциями-перехватчиками для операций к `target`.
 
 Почти любая операция может быть перехвачена и обработана прокси до или даже вместо доступа к объекту `target`, например: чтение и запись свойств, получение списка свойств, вызов функции (если `target` -- функция) и т.п.
 
 Различных типов ловушек довольно много.
 
-Сначала мы подробно рассмотрим самые важные "ловушки", а затем посмотрим и на их полный список. 
+Сначала мы подробно рассмотрим самые важные "ловушки", а затем посмотрим и на их полный список.
 
-[smart header="Если ловушки нет -- операция идёт над `target`"]
+```smart header="Если ловушки нет -- операция идёт над `target`"
 Если для операции нет ловушки, то она выполняется напрямую над `target`.
-[/smart]
+```
 
 ## get/set
 
 Самыми частыми являются ловушки для чтения и записи в объект:
 
-<dl>
-<dt>`get(target, property, receiver)`</dt>
-<dd>Срабатывает при чтении свойства из прокси.
+`get(target, property, receiver)`
+: Срабатывает при чтении свойства из прокси.
 Аргументы:
-<ul>
-<li>`target` -- целевой объект, тот же который был передан первым аргументом в `new Proxy`.</li>
-<li>`property` -- имя свойства.</li>
-<li>`receiver` -- объект, к которому было применено присваивание. Обычно сам прокси, либо прототипно наследующий от него. Этот аргумент используется редко.</li>
-</ul>
 
-</dd>
-<dt>`set(target, property, value, receiver)`</dt>
-<dd>Срабатывает при записи свойства в прокси. 
+- `target` -- целевой объект, тот же который был передан первым аргументом в `new Proxy`.
+- `property` -- имя свойства.
+- `receiver` -- объект, к которому было применено присваивание. Обычно сам прокси, либо прототипно наследующий от него. Этот аргумент используется редко.
 
-Аргументы:
-<ul>
-<li>`target` -- целевой объект, тот же который был передан первым аргументом в `new Proxy`.</li>
-<li>`property` -- имя свойства.</li>
-<li>`value` -- значение свойства.</li>
-<li>`receiver` -- объект, к которому было применено присваивание, обычно сам прокси, либо прототипно наследующий от него.</li>
-</ul>
-Метод `set` должен вернуть `true`, если присвоение успешно обработано и `false` в случае ошибки (приведёт к генерации `TypeError`).
-</dd>
-</dl>
+`set(target, property, value, receiver)`
+: Срабатывает при записи свойства в прокси.
+
+    Аргументы:
+
+- `target` -- целевой объект, тот же который был передан первым аргументом в `new Proxy`.
+- `property` -- имя свойства.
+- `value` -- значение свойства.
+- `receiver` -- объект, к которому было применено присваивание, обычно сам прокси, либо прототипно наследующий от него.
+
+    Метод `set` должен вернуть `true`, если присвоение успешно обработано и `false` в случае ошибки (приведёт к генерации `TypeError`).
 
 Пример с выводом всех операций чтения и записи:
 
-```js
-//+ run
+```js run
 'use strict';
 
 let user = {};
@@ -67,13 +59,13 @@ let proxy = new Proxy(user, {
   get(target, prop) {
 *!*
     alert(`Чтение ${prop}`);
-*/!*  
+*/!*
     return target[prop];
   },
   set(target, prop, value) {
 *!*
     alert(`Запись ${prop} ${value}`);
-*/!*  
+*/!*
     target[prop] = value;
     return true;
   }
@@ -88,14 +80,13 @@ alert(user.firstName); // Ilya
 
 При каждой операции чтения и записи свойств `proxy` в коде выше срабатывают методы `get/set`. Через них значение в конечном счёте попадает в объект (или считывается из него).
 
-Можно сделать и позаковырестее.
+Можно сделать и позаковыристее.
 
 Методы `get/set` позволяют реализовать доступ к произвольным свойствам, которых в объекте нет.
 
 Например, в коде ниже словарь `dictionary` содержит различные фразы:
 
-```js
-//+ run
+```js run
 'use strict';
 
 let dictionary = {
@@ -108,9 +99,7 @@ alert( dictionary['Hello'] ); // Привет
 
 А что, если фразы нет? В этом случае будем возвращать фразу без перевода и, на всякий случай, писать об этом в консоль:
 
-
-```js
-//+ run
+```js run
 'use strict';
 
 let dictionary = {
@@ -155,8 +144,7 @@ alert( 'Welcome' in dictionary ); // false, нет такого свойства
 
 Вот так `dictionary` будет всегда возвращать `true` для любой `in`-проверки:
 
-```js
-//+ run
+```js run
 'use strict';
 
 let dictionary = {
@@ -176,14 +164,13 @@ alert("BlaBlaBla" in dictionary); // true
 
 # deleteProperty
 
-Ловушка `deleteProperty` по синтаксису аналогична `get/has`. 
+Ловушка `deleteProperty` по синтаксису аналогична `get/has`.
 
 Срабатывает при операции `delete`, должна вернуть `true`, если удаление было успешным.
 
 В примере ниже `delete` не повлияет на исходный объект, так как все операции перехватываются и "аннигилируются" прокси:
 
-```js
-//+ run
+```js run
 'use strict';
 
 let dictionary = {
@@ -208,15 +195,13 @@ alert("Hello" in dictionary); // true
 alert("Hello" in proxy); // true
 ```
 
-
 # enumerate
 
 Ловушка `enumerate` перехватывает операции `for..in` и `for..of` по объекту.
 
 Как и до ранее, если ловушки нет, то эти операторы работают с исходным объектом:
 
-```js
-//+ run
+```js run
 'use strict';
 
 let obj = {a: 1, b: 1};
@@ -235,8 +220,7 @@ for(let prop in proxy) {
 
 В примере ниже прокси делает так, что итерация идёт по всем свойствам, кроме начинающихся с подчёркивания `_`:
 
-```js
-//+ run
+```js run
 'use strict';
 
 let user = {
@@ -265,11 +249,9 @@ for(let prop in proxy) {
 ```
 
 Посмотрим внимательнее, что происходит внутри `enumerate`:
-<ol>
-<li>Сначала получаем список интересующих нас свойств в виде массива.</li>
-<li>Метод должен возвратить [итератор](/iterator) по массиву. Встроенный итератор для массива получаем через вызов `props[Symbol.iterator]()`.</li>
-</ol>
 
+1. Сначала получаем список интересующих нас свойств в виде массива.
+2. Метод должен возвратить [итератор](/iterator) по массиву. Встроенный итератор для массива получаем через вызов `props[Symbol.iterator]()`.
 
 # apply
 
@@ -279,17 +261,13 @@ for(let prop in proxy) {
 
 Метод `apply(target, thisArgument, argumentsList)` получает:
 
-<ul>
-<li>`target` -- исходный объект.</li>
-<li>`thisArgument` -- контекст `this` вызова.</li>
-<li>`argumentsList` -- аргументы вызова в виде массива.</li>
-</ul>
-
+- `target` -- исходный объект.
+- `thisArgument` -- контекст `this` вызова.
+- `argumentsList` -- аргументы вызова в виде массива.
 
 Она может обработать вызов сама и/или передать его функции.
 
-```js
-//+ run
+```js run
 'use strict';
 
 function sum(a, b) {
@@ -321,8 +299,7 @@ alert( proxy(1, 2) );
 
 Пример ниже передаёт операцию создания исходному классу или функции-конструктору, выводя сообщение об этом:
 
-```js
-//+ run
+```js run
 'use strict';
 
 function User(name, surname) {
@@ -349,22 +326,20 @@ alert( user.name ); // Ilya
 
 Полный список возможных функций-перехватчиков, которые может задавать `handler`:
 
-<ul>
-<li>[getPrototypeOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/has) -- перехватывает обращение к методу `getPrototypeOf`.</li>
-<li>[setPrototypeOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/setPrototypeOf) -- перехватывает обращение к методу `setPrototypeOf`.</li>
-<li>[isExtensible](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/isExtensible) -- перехватывает обращение к методу `isExtensible`.</li>
-<li>[preventExtensions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/preventExtensions) -- перехватывает обращение к методу `preventExtensions`.</li>
-<li>[getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getOwnPropertyDescriptor) -- перехватывает обращение к методу `getOwnPropertyDescriptor`.</li>
-<li>[defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/defineProperty) -- перехватывает обращение к методу `defineProperty`.</li>
-<li>[has](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/has) -- перехватывает проверку существования свойства, которая используется в операторе `in` и в некоторых других методах встроенных объектов.</li>
-<li>[get](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/get) -- перехватывает чтение свойства.</li>
-<li>[set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/set) -- перехватывает запись свойства.</li>
-<li>[deleteProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/deleteProperty) -- перехватывает удаление свойства оператором `delete`.</li>
-<li>[enumerate](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/enumerate) -- срабатывает при вызове `for..in` или `for..of`, возвращает итератор для свойств объекта.</li>
-<li>[ownKeys](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/ownKeys) -- перехватывает обращения к методу `getOwnPropertyNames`.</li>
-<li>[apply](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/apply) -- перехватывает вызовы `target()`.</li>
-<li>[construct](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/construct) -- перехватывает вызовы `new target()`.</li>
-</ul>
+- [getPrototypeOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/has) -- перехватывает обращение к методу `getPrototypeOf`.
+- [setPrototypeOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/setPrototypeOf) -- перехватывает обращение к методу `setPrototypeOf`.
+- [isExtensible](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/isExtensible) -- перехватывает обращение к методу `isExtensible`.
+- [preventExtensions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/preventExtensions) -- перехватывает обращение к методу `preventExtensions`.
+- [getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getOwnPropertyDescriptor) -- перехватывает обращение к методу `getOwnPropertyDescriptor`.
+- [defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/defineProperty) -- перехватывает обращение к методу `defineProperty`.
+- [has](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/has) -- перехватывает проверку существования свойства, которая используется в операторе `in` и в некоторых других методах встроенных объектов.
+- [get](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/get) -- перехватывает чтение свойства.
+- [set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/set) -- перехватывает запись свойства.
+- [deleteProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/deleteProperty) -- перехватывает удаление свойства оператором `delete`.
+- [enumerate](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/enumerate) -- срабатывает при вызове `for..in` или `for..of`, возвращает итератор для свойств объекта.
+- [ownKeys](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/ownKeys) -- перехватывает обращения к методу `getOwnPropertyNames`.
+- [apply](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/apply) -- перехватывает вызовы `target()`.
+- [construct](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/construct) -- перехватывает вызовы `new target()`.
 
 Каждый перехватчик запускается с `handler` в качестве `this`. Это означает, что `handler` кроме ловушек может содержать и другие полезные свойства и методы.
 
@@ -376,13 +351,9 @@ alert( user.name ); // Ilya
 
 `Proxy` позволяет модифицировать поведение объекта как угодно, перехватывать любые обращения к его свойствам и методам, включая вызовы для функций.
 
-Особенно приятна возможность перехватывать обращения к отсутствующим свойствам, разработчики ожидали её уже давно. 
+Особенно приятна возможность перехватывать обращения к отсутствующим свойствам, разработчики ожидали её уже давно.
 
 Что касается поддержки, то возможности полифиллов здесь ограничены. "Переписать" прокси на старом JavaScript сложновато, учитывая низкоуровневые возможности, которые он даёт.
 
 Поэтому нужна именно браузерная поддержка. [Постепенно](https://kangax.github.io/compat-table/es6/) она реализуется.
-
-
-
-
 

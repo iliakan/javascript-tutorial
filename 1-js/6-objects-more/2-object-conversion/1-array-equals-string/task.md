@@ -1,11 +1,12 @@
-# ['x'] == 'x'
+importance: 5
 
-[importance 5]
+---
+
+# ['x'] == 'x'
 
 Почему результат `true` ?
 
-```js
-//+ run
+```js run
 alert( ['x'] == 'x' );
 ```
 

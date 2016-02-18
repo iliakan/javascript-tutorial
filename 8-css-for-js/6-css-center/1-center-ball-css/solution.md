@@ -10,4 +10,3 @@
 }
 ```
 
-[edit src="solution"]Полный код решения[/edit]

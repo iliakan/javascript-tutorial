@@ -1,11 +1,12 @@
-# Странное поведение instanceof
+importance: 5
 
-[importance 5]
+---
+
+# Странное поведение instanceof
 
 Почему `instanceof` в коде ниже возвращает `true`, ведь объект `a` явно создан не `B()`?
 
-```js
-//+ run
+```js run
 function A() {}
 
 function B() {}

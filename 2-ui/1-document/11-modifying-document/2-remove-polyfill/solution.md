@@ -1,8 +1,7 @@
 Родителя `parentNode` можно получить из `elem`.
 
 Вот так выглядит решение:
-```html
-//+ run
+```html run
 <div>Это</div>
 <div>Все</div>
 <div>Элементы DOM</div>

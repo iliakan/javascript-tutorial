@@ -1,33 +1,29 @@
-<ol>
-<li>Расставим `__proto__`:
 
-```js
-//+ run
-var head = {
-  glasses: 1
-};
+1. Расставим `__proto__`:
 
-var table = {
-  pen: 3
-};
-table.__proto__ = head;
+    ```js run
+    var head = {
+      glasses: 1
+    };
 
-var bed = {
-  sheet: 1,
-  pillow: 2
-};
-bed.__proto__ = table;
+    var table = {
+      pen: 3
+    };
+    table.__proto__ = head;
 
-var pockets = {
-  money: 2000
-};
-pockets.__proto__ = bed;
+    var bed = {
+      sheet: 1,
+      pillow: 2
+    };
+    bed.__proto__ = table;
 
-alert( pockets.pen ); // 3
-alert( bed.glasses ); // 1
-alert( table.money ); // undefined
-```
+    var pockets = {
+      money: 2000
+    };
+    pockets.__proto__ = bed;
 
-</li>
-<li>**В современных браузерах, с точки зрения производительности, нет разницы, брать свойство из объекта или прототипа.** Они запоминают, где было найдено свойство и в следующий раз при запросе, к примеру, `pockets.glasses` начнут искать сразу в прототипе (`head`).</li>
-</ol>
+    alert( pockets.pen ); // 3
+    alert( bed.glasses ); // 1
+    alert( table.money ); // undefined
+    ```
+2. **В современных браузерах, с точки зрения производительности, нет разницы, брать свойство из объекта или прототипа.** Они запоминают, где было найдено свойство и в следующий раз при запросе, к примеру, `pockets.glasses` начнут искать сразу в прототипе (`head`).

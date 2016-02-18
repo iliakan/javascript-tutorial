@@ -1,14 +1,12 @@
 **Ответ: `Василий`.**
 
-Во время выполнения `user.export()` значение `this = user`. 
+Во время выполнения `user.export()` значение `this = user`.
 
 При создании объекта `{ value: this }`, в свойство `value` копируется ссылка на текущий контекст, то есть на `user`.
 
 Получается что `user.export().value == user`.
 
-
-```js
-//+ run
+```js run
 var name = "";
 
 var user = {

@@ -1,11 +1,12 @@
-# Перепишите суммирование аргументов
+importance: 5
 
-[importance 5]
+---
+
+# Перепишите суммирование аргументов
 
 Есть функция `sum`, которая суммирует все элементы массива:
 
-```js
-//+ run
+```js run
 function sum(arr) {
   return arr.reduce(function(a, b) {
     return a + b;

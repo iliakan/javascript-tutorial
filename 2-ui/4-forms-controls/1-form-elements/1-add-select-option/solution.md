@@ -1,7 +1,6 @@
 Решение:
 
-```html
-<!--+ run -->
+```html run
 <select>
   <option value="Rock">Рок</option>
   <option value="Blues" selected>Блюз</option>
@@ -10,7 +9,7 @@
 <script>
   var select = document.body.children[0];
 
-  // 1) 
+  // 1)
   var selectedOption = select.options[select.selectedIndex];
   alert( selectedOption.value );
 

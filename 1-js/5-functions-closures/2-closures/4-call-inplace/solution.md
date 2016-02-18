@@ -1,7 +1,6 @@
 Результат - **ошибка**. Попробуйте:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 var a = 5
 
 (function() {
@@ -9,12 +8,11 @@ var a = 5
 })()
 ```
 
-Дело в том, что после `var a = 5` нет точки с запятой. 
+Дело в том, что после `var a = 5` нет точки с запятой.
 
 JavaScript воспринимает этот код как если бы перевода строки не было:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 var a = 5(function() {
   alert(a)
 })()
@@ -24,8 +22,7 @@ var a = 5(function() {
 
 Если точку с запятой поставить, все будет хорошо:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 var a = 5;
 
 (function() {

@@ -1,7 +1,6 @@
 Решение:
 
-```js
-//+ run
+```js run
 function User() {
 
   var firstName, surname;

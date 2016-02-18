@@ -1,5 +1,4 @@
-```js
-//+ run
+```js run
 function FormatError(message) {
   this.name = "FormatError";
 

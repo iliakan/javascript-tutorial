@@ -1,6 +1,8 @@
-# Полифилл для pageYOffset в IE8
+importance: 3
 
-[importance 3]
+---
+
+# Полифилл для pageYOffset в IE8
 
 Обычно в IE8 не поддерживается свойство `pageYOffset`. Напишите полифилл для него.
 
@@ -10,3 +12,4 @@
 // текущая прокрутка страницы в IE8
 alert( window.pageYOffset );
 ```
+

@@ -1,11 +1,12 @@
-# Переписать if'ы в switch
+importance: 4
 
-[importance 4]
+---
+
+# Переписать if'ы в switch
 
 Перепишите код с использованием одной конструкции `switch`:
 
-```js
-//+ run
+```js run
 var a = +prompt('a?', '');
 
 if (a == 0) {

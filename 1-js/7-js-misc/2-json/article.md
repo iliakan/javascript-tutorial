@@ -1,6 +1,6 @@
 # Формат JSON, метод toJSON
 
-В этой главе мы рассмотрим работу с форматом [JSON](http://ru.wikipedia.org/wiki/JSON), который используется для представления объектов в виде строки. 
+В этой главе мы рассмотрим работу с форматом [JSON](http://ru.wikipedia.org/wiki/JSON), который используется для представления объектов в виде строки.
 
 Это один из наиболее удобных форматов данных при взаимодействии с JavaScript. Если нужно с сервера взять объект с данными и передать на клиенте, то в качестве промежуточного формата -- для передачи по сети, почти всегда используют именно его.
 
@@ -11,26 +11,21 @@
 ## Формат JSON
 
 Данные в формате JSON ([RFC 4627](http://tools.ietf.org/html/rfc4627)) представляют собой:
-<ul>
-<li>JavaScript-объекты `{ ... }` или</li>
-<li>Массивы `[ ... ]` или</li>
-<li>Значения одного из типов:
-<ul>
-<li>строки в двойных кавычках,</li>
-<li>число,</li>
-<li>логическое значение `true`/`false`,</li>
-<li>`null`.</li>
-</ul>
-</li>
-</ul>
+
+- JavaScript-объекты `{ ... }` или
+- Массивы `[ ... ]` или
+- Значения одного из типов:
+    - строки в двойных кавычках,
+    - число,
+    - логическое значение `true`/`false`,
+    - `null`.
 
 Почти все языки программирования имеют библиотеки для преобразования объектов в формат JSON.
 
 Основные методы для работы с JSON в JavaScript -- это:
-<ul>
-<li>`JSON.parse` -- читает объекты из строки в формате JSON.</li>
-<li>`JSON.stringify` -- превращает объекты в строку в формате JSON, используется, когда нужно из JavaScript передать данные по сети.</li>
-</ul>
+
+- `JSON.parse` -- читает объекты из строки в формате JSON.
+- `JSON.stringify` -- превращает объекты в строку в формате JSON, используется, когда нужно из JavaScript передать данные по сети.
 
 ## Метод JSON.parse
 
@@ -38,8 +33,7 @@
 
 Например:
 
-```js
-//+ run
+```js run
 var numbers = "[0, 1, 2, 3]";
 
 numbers = JSON.parse(numbers);
@@ -49,8 +43,7 @@ alert( numbers[1] ); // 1
 
 Или так:
 
-```js
-//+ run
+```js run
 var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
 
 user = JSON.parse(user);
@@ -60,7 +53,7 @@ alert( user.friends[1] ); // 1
 
 Данные могут быть сколь угодно сложными, объекты и массивы могут включать в себя другие объекты и массивы. Главное чтобы они соответствовали формату.
 
-[warn header="JSON-объекты ≠ JavaScript-объекты"]
+````warn header="JSON-объекты ≠ JavaScript-объекты"
 Объекты в формате JSON похожи на обычные JavaScript-объекты, но отличаются от них более строгими требованиями к строкам -- они должны быть именно в двойных кавычках.
 
 В частности, первые два свойства объекта ниже -- некорректны:
@@ -77,7 +70,7 @@ alert( user.friends[1] ); // 1
 Кроме того, в формате JSON не поддерживаются комментарии. Он предназначен только для передачи данных.
 
 Есть нестандартное расширение формата JSON, которое называется [JSON5](http://json5.org/) и как раз разрешает ключи без кавычек, комментарии и т.п, как в обычном JavaScript. На данном этапе, это отдельная библиотека.
-[/warn]
+````
 
 ## Умный разбор: JSON.parse(str, reviver)
 
@@ -96,8 +89,7 @@ var str = '{"title":"Конференция","date":"2014-11-30T12:00:00.000Z"}'
 
 Попробуем вызвать для этого `JSON.parse`:
 
-```js
-//+ run
+```js run
 var str = '{"title":"Конференция","date":"2014-11-30T12:00:00.000Z"}';
 
 var event = JSON.parse(str);
@@ -117,8 +109,7 @@ alert( event.date.getDate() ); // ошибка!
 
 В данном случае мы можем создать правило, что ключ `date` всегда означает дату:
 
-```js
-//+ run
+```js run
 // дата в строке - в формате UTC
 var str = '{"title":"Конференция","date":"2014-11-30T12:00:00.000Z"}';
 
@@ -134,8 +125,7 @@ alert( event.date.getDate() ); // теперь сработает!
 
 Кстати, эта возможность работает и для вложенных объектов тоже:
 
-```js
-//+ run
+```js run
 var schedule = '{ \
   "events": [ \
     {"title":"Конференция","date":"2014-11-30T12:00:00.000Z"}, \
@@ -155,12 +145,11 @@ alert( schedule.events[1].date.getDate() ); // сработает!
 
 ## Сериализация, метод JSON.stringify
 
-Метод `JSON.stringify(value, replacer, space)` преобразует ("сериализует") значение в JSON-строку. 
+Метод `JSON.stringify(value, replacer, space)` преобразует ("сериализует") значение в JSON-строку.
 
 Пример использования:
 
-```js
-//+ run
+```js run
 var event = {
   title: "Конференция",
   date: "сегодня"
@@ -179,8 +168,7 @@ event = JSON.parse(str);
 
 Посмотрим это в примере посложнее:
 
-```js
-//+ run
+```js run
 var room = {
   number: 23,
   occupy: function() {
@@ -205,28 +193,24 @@ alert( JSON.stringify(event) );
 ```
 
 Обратим внимание на два момента:
-<ol>
-<li>Дата превратилась в строку. Это не случайно: у всех дат есть встроенный метод `toJSON`. Его результат в данном случае -- строка в таймзоне UTC.</li>
-<li>У объекта `room` нет метода `toJSON`. Поэтому он сериализуется перечислением свойств.
 
-Мы, конечно, могли бы добавить такой метод, тогда в итог попал бы его результат:
+1. Дата превратилась в строку. Это не случайно: у всех дат есть встроенный метод `toJSON`. Его результат в данном случае -- строка в таймзоне UTC.
+2. У объекта `room` нет метода `toJSON`. Поэтому он сериализуется перечислением свойств.
 
-```js
-//+ run
-var room = {
-  number: 23,
-*!*
-  toJSON: function() {
-      return this.number;
-    }
-*/!*
-};
+    Мы, конечно, могли бы добавить такой метод, тогда в итог попал бы его результат:
 
-alert( JSON.stringify(room) ); // 23
-```
+    ```js run
+    var room = {
+      number: 23,
+    *!*
+      toJSON: function() {
+          return this.number;
+        }
+    */!*
+    };
 
-</li>
-</ol>
+    alert( JSON.stringify(room) ); // 23
+    ```
 
 ### Исключение свойств
 
@@ -234,8 +218,7 @@ alert( JSON.stringify(room) ); // 23
 
 Например:
 
-```js
-//+ run
+```js run
 var user = {
   name: "Вася",
   age: 25,
@@ -254,8 +237,7 @@ alert( JSON.stringify(user) ); // ошибка!
 
 Например:
 
-```js
-//+ run
+```js run
 var user = {
   name: "Вася",
   age: 25,
@@ -270,8 +252,7 @@ alert( JSON.stringify(user, ["name", "age"]) );
 
 Для более сложных ситуаций вторым параметром можно передать функцию `function(key, value)`, которая возвращает сериализованное `value` либо `undefined`, если его не нужно включать в результат:
 
-```js
-//+ run
+```js run
 var user = {
   name: "Вася",
   age: 25,
@@ -290,9 +271,9 @@ alert( str ); // {"name":"Вася","age":25}
 
 В примере выше функция пропустит свойство с названием `window`. Для остальных она просто возвращает значение, передавая его стандартному алгоритму. А могла бы и как-то обработать.
 
-[smart header="Функция `replacer` работает рекурсивно"]
-То есть, если объект содержит вложенные объекты, массивы и т.п., то все они пройдут через `replacer`. 
-[/smart]
+```smart header="Функция `replacer` работает рекурсивно"
+То есть, если объект содержит вложенные объекты, массивы и т.п., то все они пройдут через `replacer`.
+```
 
 ### Красивое форматирование
 
@@ -302,8 +283,7 @@ alert( str ); // {"name":"Вася","age":25}
 
 Например:
 
-```js
-//+ run
+```js run
 var user = {
   name: "Вася",
   age: 25,
@@ -332,35 +312,6 @@ alert( str );
 
 ## Итого
 
-<ul>
-<li>JSON -- формат для представления объектов (и не только) в виде строки.</li>
-<li>Методы [JSON.parse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) и [JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) позволяют интеллектуально преобразовать объект в строку и обратно.</li>
-</ul>
+- JSON -- формат для представления объектов (и не только) в виде строки.
+- Методы [JSON.parse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) и [JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) позволяют интеллектуально преобразовать объект в строку и обратно.
 
-
-
-[head]
-<script>
-function voteSync(outputElem) {
-  var xhr = new XMLHttpRequest(); // (1)
-
-  xhr.open('GET', '/files/tutorial/ajax/xhr/vote.php', false); 
-  xhr.send(null);   // (2)
-
-  outputElem.innerHTML = xhr.responseText;  // (3)
-}
-
-function vote(outputElem) {
-  var xhr = new XMLHttpRequest();
-
-  xhr.open('GET', '/files/tutorial/ajax/xhr/vote.php', true);
-
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState != 4) return;
-    outputElem.innerHTML = xhr.responseText;
-  }
-
-  xhr.send(null);
-}
-</script>
-[/head]

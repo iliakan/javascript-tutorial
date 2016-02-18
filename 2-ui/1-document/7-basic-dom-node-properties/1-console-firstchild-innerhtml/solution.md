@@ -4,8 +4,7 @@
 
 Пример с `undefined`:
 
-```html
-<!--+ run -->
+```html run
 <body>
   <h1>Привет, мир!</h1>
 

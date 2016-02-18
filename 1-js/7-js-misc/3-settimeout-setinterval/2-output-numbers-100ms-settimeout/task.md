@@ -1,5 +1,7 @@
-# Вывод чисел каждые 100мс, через setTimeout
+importance: 5
 
-[importance 5]
+---
 
-Сделайте то же самое, что в задаче [](/task/output-numbers-100ms), но с использованием рекурсивного `setTimeout` вместо `setInterval`. 
+# Вывод чисел каждые 100 мс, через setTimeout
+
+Сделайте то же самое, что в задаче <info:task/output-numbers-100ms>, но с использованием рекурсивного `setTimeout` вместо `setInterval`.

@@ -6,17 +6,16 @@
 
 Да, можно -- указываем `box-sizing: border-box` и добавляем свойства:
 
-```html
-<!--+ run  no-beautify -->
+```html run no-beautify
 <style>
   .left {
-    float:left; 
-    width:30%; 
+    float:left;
+    width:30%;
     background: #aef;
   }
 
   .right {
-    float:right; 
+    float:right;
     width:70%;
 
 *!*

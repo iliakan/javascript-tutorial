@@ -1,11 +1,12 @@
-# Повторный bind
+importance: 5
 
-[importance 5]
+---
+
+# Повторный bind
 
 Что выведет этот код?
 
-```js
-//+ no-beautify
+```js no-beautify
 function f() {
   alert(this.name);
 }

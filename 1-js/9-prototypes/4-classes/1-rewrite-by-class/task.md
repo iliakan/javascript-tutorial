@@ -1,15 +1,16 @@
+importance: 5
+
+---
+
 # Перепишите в виде класса
 
-[importance 5]
-
-Есть класс `CoffeeMachine`, заданный в функциональном стиле. 
+Есть класс `CoffeeMachine`, заданный в функциональном стиле.
 
 Задача: переписать `CoffeeMachine` в виде класса с использованием прототипа.
 
 Исходный код:
 
-```js
-//+ run
+```js run
 function CoffeeMachine(power) {
   var waterAmount = 0;
 
