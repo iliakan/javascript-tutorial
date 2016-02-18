@@ -17,11 +17,8 @@
     <span class="seconds">00</span>
   </div>
 
+  <div id="tooltip" hidden>Tooltip</div>
   <script>
-    var tooltip = document.createElement('div');
-    tooltip.className = "tooltip";
-    tooltip.innerHTML = "Подсказка";
-
     new HoverIntent({
       elem: elem,
       over: function() {
