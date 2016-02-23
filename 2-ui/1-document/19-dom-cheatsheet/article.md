@@ -114,9 +114,10 @@
 Дополнительно есть методы:
 
 `elem.matches(css)`
-: Проверяет, подходит ли элемент под CSS-селектор.</dd.
+: Проверяет, подходит ли элемент под CSS-селектор.
+
 `elem.closest(css)`
-<dd>Ищет ближайший элемент сверху по иерархии DOM, подходящий под CSS-селектор. Первым проверяется сам `elem`. Этот элемент возвращается.
+: Ищет ближайший элемент сверху по иерархии DOM, подходящий под CSS-селектор. Первым проверяется сам `elem`. Этот элемент возвращается.
 
 `elemA.contains(elemB)`
 : Возвращает `true`, если `elemA` является предком (содержит) `elemB`.
@@ -146,13 +147,14 @@
 
 `elem.className`
 : Атрибут `class`</dt>
+
 `elem.classList.add(class) remove(class) toggle(class) contains(class)`
-<dd>Управление классами, для IE9- есть [эмуляция](https://github.com/eligrey/classList.js/blob/master/classList.js).
+:Управление классами, для IE9- есть [эмуляция](https://github.com/eligrey/classList.js/blob/master/classList.js).
 
 `elem.style`
 : Стили в атрибуте `style` элемента
 
-<dt>`getComputedStyle(elem, "")`</dd>
+`getComputedStyle(elem, "")`
 : Стиль, с учётом всего каскада, вычисленный и применённый (только чтение)
 
 ## Размеры и прокрутка элемента
