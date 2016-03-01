@@ -71,7 +71,7 @@ var str = '<span class="my">';
 
 var reg = /<(([a-z]+)\s*([^>]*))>/;
 
-alert( str.match(reg) ); // <span class="my">, span, s
+alert( str.match(reg) ); // <span class="my">, span, class="my"
 ```
 
 Вот так выглядят скобочные группы:
