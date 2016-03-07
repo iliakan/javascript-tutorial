@@ -1,188 +1,305 @@
-# Строки
+# Strings
 
-В JavaScript любые текстовые данные являются строками. Не существует отдельного типа "символ", который есть в ряде других языков.
+In JavaScript all textual data is stored as strings. There is no separate type for a single character.
 
-Внутренним форматом строк, вне зависимости от кодировки страницы, является [Юникод (Unicode)](http://ru.wikipedia.org/wiki/%D0%AE%D0%BD%D0%B8%D0%BA%D0%BE%D0%B4).
+The internal format is always [Unicode](https://en.wikipedia.org/wiki/Unicode), it is not tied to the page encoding.
 
 [cut]
 
-## Создание строк
+## Quotes
 
-Строки создаются при помощи двойных или одинарных кавычек:
+Let's remember the kinds of quotes.
 
-```js
-var text = "моя строка";
-
-var anotherText = 'еще строка';
-
-var str = "012345";
-```
-
-В JavaScript нет разницы между двойными и одинарными кавычками.
-
-### Специальные символы
-
-Строки могут содержать специальные символы. Самый часто используемый из таких символов -- это "перевод строки".
-
-Он обозначается как `\n`, например:
-
-```js run
-alert( 'Привет\nМир' ); // выведет "Мир" на новой строке
-```
-
-Есть и более редкие символы, вот их список:
-
-<table>
-<CAPTION>Специальные символы</CAPTION>
-<thead>
-<tr><th>Символ</th><th>Описание</th></tr>
-</thead>
-<tbody>
-<tr><td>\b</td><td>Backspace</td></tr>
-<tr><td>\f</td><td>Form feed</td></tr>
-<tr><td>\n</td><td>New line</td></tr>
-<tr><td>\r</td><td>Carriage return</td></tr>
-<tr><td>\t</td><td>Tab</td></tr>
-<tr><td>\uNNNN</td><td>Символ в кодировке Юникод с шестнадцатеричным кодом `NNNN`. Например, `\u00A9` -- юникодное представление символа копирайт &#xA9;
-</td></tr>
-</tbody>
-</table>
-
-### Экранирование специальных символов
-
-Если строка в одинарных кавычках, то внутренние одинарные кавычки внутри должны быть *экранированы*, то есть снабжены обратным слешем `\'`, вот так:
+Strings can be enclosed either with the single, double quotes or in backticks:
 
 ```js
-var str = '*!*I\'m*/!* a JavaScript programmer';
+let single = 'single-quoted';
+let double = "double-quoted";
+
+let backticks = `backticks`;
 ```
 
-В двойных кавычках -- экранируются внутренние двойные:
+Single and double quotes are essentially the same. Backticks allow to embed any expression into the string, including function calls:
 
 ```js run
-var str = "I'm a JavaScript \"programmer\" ";
-alert( str ); // I'm a JavaScript "programmer"
+function sum(a, b) {
+  return a + b;
+}
+
+alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
 ```
 
-Экранирование служит исключительно для правильного восприятия строки JavaScript. В памяти строка будет содержать сам символ без `'\'`. Вы можете увидеть это, запустив пример выше.
-
-Сам символ обратного слэша `'\'` является служебным, поэтому всегда экранируется, т.е пишется как `\\`:
+Another advantage of using backticks is that they allow to create a multiline string:
 
 ```js run
-var str = ' символ \\ ';
+let guestList = `Guests:
+ * John
+ * Pete
+ * Mary
+`;
 
-alert( str ); // символ \
+alert(guestList); // a list of guests, multiple lines
 ```
 
-Заэкранировать можно любой символ. Если он не специальный, то ничего не произойдёт:
+If we try to use single or double quotes the same way, there will be an error:
+```js run
+let guestList = "Guests:  // Error: Unexpected token ILLEGAL
+  * John";
+```
+
+That's because they come from ancient times of language creation, and the need for multiline strings was not taken into account. Backticks appeared much later.
+
+In modern JavaScript, there is usually no need to use old-style quotes. 
+
+## Special characters
+
+It is still possible to create multiline strings with single quotes, using a so-called "newline character" written as `\n`, that denotes a line break:
 
 ```js run
-alert( "\a" ); // a
-// идентично alert(  "a"  );
+let guestList = "Guests:\n * John\n * Pete\n * Mary";
+
+alert(guestList); // a list of guests, multiple lines, same as with backticks above
 ```
 
-## Методы и свойства
-
-Здесь мы рассмотрим методы и свойства строк, с некоторыми из которых мы знакомились ранее, в главе <info:properties-and-methods>.
-
-### Длина length
-
-Одно из самых частых действий со строкой -- это получение ее длины:
+So to speak, these two `alert`s show the same: 
 
 ```js run
-var str = "My\n"; // 3 символа. Третий - перевод строки
+alert( 'Hello\nWorld' ); 
 
-alert( str.length ); // 3
+alert( `Hello
+World` );
 ```
 
-### Доступ к символам
+There are other, less common "special" characters as well, here's the list:
 
-Чтобы получить символ, используйте вызов `charAt(позиция)`. Первый символ имеет позицию `0`:
+| Character | Description |
+|-----------|-------------|
+|`\b`|Backspace|
+|`\f`|Form feed|
+|`\n`|New line|
+|`\r`|Carriage return|
+|`\t`|Tab|
+|`\uNNNN`|A unicode symbol with the hex code `NNNN`, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. Must be exactly 4 hex digits. |
+|`\u{NNNNNNNN}`|Some rare characters are encoded with two unicode symbols, taking up to 4 bytes. The long unicode requires braces around.|
+
+For example:
 
 ```js run
-var str = "jQuery";
-alert( str.charAt(0) ); // "j"
+alert( "\u00A9" ); // ©
+alert( "\u{20331}" ); // 𠌱, the chinese hieroglyph 
 ```
 
-В JavaScript **нет отдельного типа "символ"**, так что `charAt` возвращает строку, состоящую из выбранного символа.
+As we can see, all special characters start with a backslash character `\`. It is also called an "escaping character".
 
-Также для доступа к символу можно также использовать квадратные скобки:
+Another use of it is an insertion of the enclosing quote into the string.
+
+For instance:
 
 ```js run
-var str = "Я - современный браузер!";
-alert( str[0] ); // "Я"
+alert( '*!*I\'m*/!* the Walrus!' ); // *!*I'm*/!* the Walrus!
 ```
 
-Разница между этим способом и `charAt` заключается в том, что если символа нет -- `charAt` выдает пустую строку, а скобки -- `undefined`:
+See, we have to prepend the inner quote by the backslash `\'`, because otherwise it would mean the string end.
+
+As a more elegant solution, we could wrap the string in double quotes or backticks instead:
 
 ```js run
-alert( "".charAt(0) ); // пустая строка
-alert( "" [0] ); // undefined
+alert( `I'm the Walrus!` ); // I'm the Walrus! 
 ```
 
-Вообще же метод `charAt` существует по историческим причинам, ведь квадратные скобки -- проще и короче.
+Most of time when we know we're going to use this or that kind of quotes inside of the string, we can choose non-conflicting quotes to enclose it. 
 
-```warn header="Вызов метода -- всегда со скобками"
-Обратите внимание, `str.length` -- это *свойство* строки, а `str.charAt(pos)` -- *метод*, т.е. функция.
+Note that the backslash `\` serves for the correct reading of the string by JavaScript, then disappears. The in-memory string has no `\`. You can clearly see that in `alert` from the examples above.
 
-Обращение к методу всегда идет со скобками, а к свойству -- без скобок.
-```
+But what if we need exactly a backslash `\` in the string?
 
-### Изменения строк
-
-Содержимое строки в JavaScript нельзя изменять. Нельзя взять символ посередине и заменить его. Как только строка создана -- она такая навсегда.
-
-Можно лишь создать целиком новую строку и присвоить в переменную вместо старой, например:
+That's possible, but we need to double it like `\\`:
 
 ```js run
-var str = "строка";
-
-str = str[3] + str[4] + str[5];
-
-alert( str ); // ока
+alert( `The backslash: \\` ); // The backslash: \
 ```
 
-### Смена регистра
+## The length and characters
 
-Методы `toLowerCase()` и `toUpperCase()` меняют регистр строки на нижний/верхний:
+- The `length` property has the string length: 
+
+    ```js run
+    alert( `My\n`.length ); // 3
+    ```
+
+    Note that `\n` is a single character.
+
+- Use square brackets `[position]` or the method [str.charAt(position)](mdn:String/charAt) to access a character.
+
+    The first character starts from the zero position:
+
+    ```js run
+    let str = `Hello`;
+
+    // the first character
+    alert( str[0] ); // H
+    alert( str.charAt(0) ); // H
+
+    // the last character
+    alert( str[str.length - 1] ); // o
+    ```
+
+    The square brackets is a modern way, while `charAt` exists mostly for historical reasons.
+
+    The only difference between them is that if no character found, `[]` returns `undefined` while `charAt` returns an empty string:
+
+    ```js run
+    let str = `Hello`;
+
+    alert( str[1000] ); // undefined
+    alert( str.charAt(1000) ); // '' (an empty string)
+    ```
+
+```warn header="`length` is a property"
+Please note that `str.length` is a numeric property, not a function. 
+
+There is no need to add brackets after it. The call `str.length()` won't work.
+```
+
+## Strings are immutable
+
+Strings can't be changed in JavaScript. It is impossible to change a character. 
+
+Let's try to see that it doesn't work:
 
 ```js run
-alert( "Интерфейс".toUpperCase() ); // ИНТЕРФЕЙС
+let str = 'Hi';
+
+str[0] = "h"; // error
+alert( str[0] ); // doesn't work
 ```
 
-Пример ниже получает первый символ и приводит его к нижнему регистру:
+The usual workaround is to create a whole new string and assign it to `str` instead of the old one.
+
+For instance:
+
+```js run
+let str = 'Hi';
+
+str = "h" + str[1]; 
+alert( str ); // hi
+```
+
+## Changing the case
+
+Methods [toLowerCase()](mdn:String/toLowerCase) and [toUpperCase()](mdn:String/toUpperCase) change the case:
+
+```js run
+alert( "Interface".toUpperCase() ); // INTERFACE
+alert( "Interface".toLowerCase() ); // interface
+```
+
+Or, if we want a single character lowercased:
 
 ```js
-alert( "Интерфейс" [0].toLowerCase() ); // 'и'
+alert( "Interface"[0].toLowerCase() ); // 'i'
 ```
 
-### Поиск подстроки
+## Finding substrings
 
-Для поиска подстроки есть метод <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String/indexOf">indexOf(подстрока[, начальная_позиция])</a>.
+There are few ways to look for a substring in a string.
 
-Он возвращает позицию, на которой находится `подстрока` или `-1`, если ничего не найдено. Например:
+### str.indexOf
+
+The first method is [str.indexOf(substr, pos)](mdn:String/indexOf). 
+
+It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing found.
+
+For instance:
 
 ```js run
-var str = "Widget with id";
+let str = "Widget with id";
 
-alert( str.indexOf("Widget") ); // 0, т.к. "Widget" найден прямо в начале str
-alert( str.indexOf("id") ); // 1, т.к. "id" найден, начиная с позиции 1
-alert( str.indexOf("widget") ); // -1, не найдено, так как поиск учитывает регистр
+alert( str.indexOf("Widget") ); // 0, because "Widget" is found at the beginning
+alert( str.indexOf("widget") ); // -1, not found, the search is case-sensitive
+
+alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
 ```
 
-Необязательный второй аргумент позволяет искать, начиная с указанной позиции. Например, первый раз `"id"` появляется на позиции `1`. Чтобы найти его следующее появление -- запустим поиск с позиции `2`:
+The optional second parameter allows to search starting from the given position.
+
+For instance, the first occurence of `"id"` is at the position `1`. To look for the next occurence, let's start the search from the position `2`:
 
 ```js run
-var str = "Widget with id";
+let str = "Widget with id";
 
-alert(str.indexOf("id", 2)) // 12, поиск начат с позиции 2
+alert( str.indexOf("id", 2) ) // 12
 ```
 
-Также существует аналогичный метод <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String/lastIndexOf">lastIndexOf</a>, который ищет не с начала, а с конца строки.
 
-````smart
-Для красивого вызова `indexOf` применяется побитовый оператор НЕ `'~'`.
+If we're interested in all occurences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
 
-Дело в том, что вызов `~n` эквивалентен выражению `-(n+1)`, например:
+
+```js run
+let str = "As sly as a fox, as strong as an ox"; 
+
+let target = "as"; // let's look for it
+
+let pos = 0;
+while (true) {
+  let foundPos = str.indexOf(target, pos);
+  if (foundPos == -1) break;
+
+  alert( `Found at ${foundPos}` ); 
+  pos = foundPos + 1; // continue the search from the next position
+}
+```
+
+The same algorithm can be layed out shorter:
+
+```js run
+let str = "As sly as a fox, as strong as an ox";
+let target = "as";
+
+*!*
+let pos = -1;
+while ((pos = str.indexOf(target, pos + 1)) != -1) {
+  alert( pos );
+}
+*/!*
+```
+
+```smart header="`str.lastIndexOf(pos)`"
+There is also a similar method [str.lastIndexOf(pos)](mdn:String/lastIndexOf) that searches from the end of the string to its beginning.
+
+It would list the occurences in the reverse way.
+```
+
+The main problem with `indexOf` is inconvenience of `-1` in case when nothing found. 
+
+So a simple `if` check with it won't work:
+
+```js run
+let str = "Widget with id";
+
+if (str.indexOf("Widget")) {
+    alert("We found it"); // won't work
+}
+```
+
+That's because `str.indexOf("Widget")` returns `0` (found at the starting position). Right, but `if` considers that `false`.
+
+So, we should actualy check for `-1`, like that:
+
+```js run
+let str = "Widget with id";
+
+*!*
+if (str.indexOf("Widget") != -1) {
+*/!* 
+    alert("We found it"); // works now!
+}
+```
+
+````smart header="The bitwise NOT trick"
+One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operator. For 32-bit integers the call `~n` is the same as `-(n+1)`. 
+
+For instance:
 
 ```js run
 alert( ~2 ); // -(2+1) = -3
@@ -192,63 +309,38 @@ alert( ~0 ); // -(0+1) = -1
 alert( ~-1 ); // -(-1+1) = 0
 */!*
 ```
+As we can see, `~n` is zero only if `n == -1`.
 
-Как видно, `~n` -- ноль только в случае, когда `n == -1`.
+So, `if ( ~str.indexOf("...") )` means that the `indexOf` result is different from `-1`.
 
-То есть, проверка `if ( ~str.indexOf(...) )` означает, что результат `indexOf` отличен от `-1`, т.е. совпадение есть.
-
-Вот так:
+People use it to shorten `indexOf` checks:
 
 ```js run
-var str = "Widget";
+let str = "Widget";
 
-if (~str.indexOf("get")) {
-  alert( 'совпадение есть!' );
+if (~str.indexOf("Widget")) {
+  alert( 'Found it!' ); // works
 }
 ```
 
-Вообще, использовать возможности языка неочевидным образом не рекомендуется, поскольку ухудшает читаемость кода.
+It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used, generally JavaScript programmers understand it.
 
-Однако, в данном случае, все в порядке. Просто запомните: `'~'` читается как "не минус один", а `"if ~str.indexOf"` читается как `"если найдено"`.
+Just remember: `if (~str.indexOf(...))` reads as "if found".
 ````
 
-### Поиск всех вхождений
+### str.includes
 
-Чтобы найти все вхождения подстроки, нужно запустить `indexOf` в цикле. Как только получаем очередную позицию -- начинаем следующий поиск со следующей.
+The more modern method [str.includes(substr)](mdn:String/includes) returns `true/false` depending on whether `str` has `substr` as its part.
 
-Пример такого цикла:
-
-```js run
-var str = "Ослик Иа-Иа посмотрел на виадук"; // ищем в этой строке
-var target = "Иа"; // цель поиска
-
-var pos = 0;
-while (true) {
-  var foundPos = str.indexOf(target, pos);
-  if (foundPos == -1) break;
-
-  alert( foundPos ); // нашли на этой позиции
-  pos = foundPos + 1; // продолжить поиск со следующей
-}
-```
-
-Такой цикл начинает поиск с позиции `0`, затем найдя подстроку на позиции `foundPos`, следующий поиск продолжит с позиции `pos = foundPos+1`, и так далее, пока что-то находит.
-
-Впрочем, тот же алгоритм можно записать и короче:
+That's usually a simpler way to go if we don't need the exact position:
 
 ```js run
-var str = "Ослик Иа-Иа посмотрел на виадук"; // ищем в этой строке
-var target = "Иа"; // цель поиска
+alert( "Widget with id".includes("Widget") ); // true
 
-*!*
-var pos = -1;
-while ((pos = str.indexOf(target, pos + 1)) != -1) {
-  alert( pos );
-}
-*/!*
+alert( "Hello".includes("Bye") ); // false
 ```
 
-### Взятие подстроки: substr, substring, slice.
+## Extracting a substring
 
 В JavaScript существуют целых 3 (!) метода для взятия подстроки, с небольшими отличиями между ними.
 
@@ -256,14 +348,14 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 : Метод `substring(start, end)` возвращает подстроку с позиции `start` до, но не включая `end`.
 
     ```js run
-    var str = "*!*s*/!*tringify";
+    let str = "*!*s*/!*tringify";
     alert(str.substring(0,1)); // "s", символы с позиции 0 по 1 не включая 1.
     ```
 
     Если аргумент `end` отсутствует, то идет до конца строки:
 
     ```js run
-    var str = "st*!*ringify*/!*";
+    let str = "st*!*ringify*/!*";
     alert(str.substring(2)); // ringify, символы с позиции 2 до конца
     ```
 
@@ -271,7 +363,7 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 : Первый аргумент имеет такой же смысл, как и в `substring`, а второй содержит не конечную позицию, а количество символов.
 
     ```js run
-    var str = "st*!*ring*/!*ify";
+    let str = "st*!*ring*/!*ify";
     str = str.substr(2,4); // ring, со 2-й позиции 4 символа
     alert(str)
     ```
@@ -365,8 +457,8 @@ str.charCodeAt(pos)
 Выведем отрезок символов юникода с кодами от `1034` до `1113`:
 
 ```js run
-var str = '';
-for (var i = 1034; i <= 1113; i++) {
+let str = '';
+for (let i = 1034; i <= 1113; i++) {
   str += String.fromCharCode(i);
 }
 alert( str );
@@ -446,7 +538,7 @@ alert( 2 > "14" ); // false
 Способ использования:
 
 ```js run
-var str = "Ёлки";
+let str = "Ёлки";
 
 alert( str.localeCompare("Яблони") ); // -1
 ```
