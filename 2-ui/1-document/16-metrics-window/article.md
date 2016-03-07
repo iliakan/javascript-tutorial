@@ -103,20 +103,20 @@ alert( "Текущая прокрутка: " + scrollTop );
 
 - Метод `scrollBy(x,y)` прокручивает страницу относительно текущих координат.
 
-```online
-Например, кнопка ниже прокрутит страницу на `10px` вниз:
+    ```online
+    Например, кнопка ниже прокрутит страницу на `10px` вниз:
 
     <button onclick="window.scrollBy(0,10)">window.scrollBy(0,10)</button>
-```
+    ```
 - Метод `scrollTo(pageX,pageY)` прокручивает страницу к указанным координатам относительно документа.
 
     Он эквивалентен установке свойств `scrollLeft/scrollTop`.
 
     Чтобы прокрутить в начало документа, достаточно указать координаты `(0,0)`.
 
-```online
-<button onclick="window.scrollTo(0,0)">window.scrollTo(0,0)</button>
-```
+    ```online
+    <button onclick="window.scrollTo(0,0)">window.scrollTo(0,0)</button>
+    ```
 
 ## scrollIntoView
 
