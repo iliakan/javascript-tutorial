@@ -108,7 +108,7 @@ function bind(func, context) {
 
 Посмотрим, что она делает, как работает, на таком примере:
 
-```js run
+```js 
 function f() {
   alert( this );
 }
