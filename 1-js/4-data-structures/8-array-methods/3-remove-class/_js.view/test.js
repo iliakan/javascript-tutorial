@@ -39,5 +39,25 @@ describe("removeClass", function() {
       className: ""
     });
   });
+  
+  it("удаляет класс из середины списка", function() {
+    var obj = {
+      className: "open menu now"
+    };
+    removeClass(obj, 'menu');
+    assert.deepEqual(obj, {
+      className: "open now"
+    });
+  });
+  
+  it("удаляет повторяющийся класс из середины списка", function() {
+    var obj = {
+      className: "open menu menu zero"
+    };
+    removeClass(obj, 'menu');
+    assert.deepEqual(obj, {
+      className: "open zero"
+    });
+  });
 
 });
