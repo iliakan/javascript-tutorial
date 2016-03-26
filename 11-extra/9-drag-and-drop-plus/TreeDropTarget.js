@@ -64,6 +64,7 @@
      if (childTitle > title) {
        break;
      }
+     li = null;
    }
 
    ul.insertBefore(elemToMove, li);
