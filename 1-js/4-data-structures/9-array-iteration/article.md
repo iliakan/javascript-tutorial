@@ -75,7 +75,7 @@ alert( nameLengths ); // 4,3,10
 
 ## every/some
 
-Эти методы используется для проверки массива.
+Эти методы используются для проверки массива.
 
 - Метод ["arr.every(callback[, thisArg])"](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every) возвращает `true`, если вызов `callback` вернёт `true` для *каждого* элемента `arr`.
 - Метод ["arr.some(callback[, thisArg])"](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some) возвращает `true`, если вызов `callback` вернёт `true` для *какого-нибудь* элемента `arr`.
