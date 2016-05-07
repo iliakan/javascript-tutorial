@@ -429,7 +429,7 @@ chatDiv.innerHTML += "Как дела?";
 Вряд ли мы *действительно* хотим, чтобы посетители вставляли в наш сайт произвольный HTML-код. Присваивание через `textContent` -- один из способов от этого защититься.
 
 ```warn header="Нестандартное свойство `innerText`"
-Всеми браузерами, кроме Firefox, поддерживается нестандартное свойство [innerText](http://msdn.microsoft.com/en-us/library/ie/ms533899.aspx).
+Всеми браузерами, кроме Firefox 44- (согласно [CanIUse.Com](http://caniuse.com/#feat=innertext)), поддерживается нестандартное свойство [innerText](http://msdn.microsoft.com/en-us/library/ie/ms533899.aspx).
 
 У него, в некотором роде, преимущество перед `textContent` в том, что оно по названию напоминает `innerHTML`, его проще запомнить.
 
