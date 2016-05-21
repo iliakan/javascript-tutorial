@@ -210,17 +210,17 @@ element.style.height = element.scrollHeight + 'px';
 
 ![](metric-scroll-top.png)
 
-```smart header="`scrollLeft/scrollTop` можно изменять"
+````smart header="`scrollLeft/scrollTop` можно изменять"
 В отличие от большинства свойств, которые доступны только для чтения, значения `scrollLeft/scrollTop` можно изменить, и браузер выполнит прокрутку элемента.
 
-[online]
+```online
 
 При клике на следующий элемент будет выполняться код `elem.scrollTop += 10`. Поэтому он будет прокручиваться на `10px` вниз:
 
 <div onclick="this.scrollTop+=10" style="cursor:pointer;border:1px solid black;width:100px;height:80px;overflow:auto">Кликни<br>Меня<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</div>
-
-[/online]
 ```
+
+````
 
 ## Не стоит брать width/height из CSS
 

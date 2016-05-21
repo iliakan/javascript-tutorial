@@ -9,7 +9,7 @@
 
 ```js run
 function showMenu(title = "Без заголовка", width = 100, height = 200) {
-  alert(`${title} ${width} ${height}`);
+  alert(title + ' ' + width + ' ' + height);
 }
 
 showMenu("Меню"); // Меню 100 200
@@ -19,7 +19,7 @@ showMenu("Меню"); // Меню 100 200
 
 ```js run
 function showMenu(title = "Заголовок", width = 100, height = 200) {
-  alert(`title=${title} width=${width} height=${height}`);
+  alert('title=' + title + ' width=' + width + ' height=' + height);
 }
 
 // По умолчанию будут взяты 1 и 3 параметры
@@ -35,14 +35,14 @@ showMenu(undefined, null);
 
 ```js run
 function sayHi(who = getCurrentUser().toUpperCase()) {
-  alert(`Привет, ${who}!`);
+  alert('Привет, ' + who);
 }
 
 function getCurrentUser() {
   return 'Вася';
 }
 
-sayHi(); // Привет, ВАСЯ!
+sayHi(); // Привет, ВАСЯ
 ```
 
 Заметим, что значение выражения `getCurrentUser().toUpperCase()` будет вычислено, и соответствующие функции вызваны -- лишь в том случае, если это необходимо, то есть когда функция вызвана без параметра.
@@ -55,7 +55,7 @@ sayHi(); // Привет, ВАСЯ!
 
 ```js run
 function showName(firstName, lastName, *!*...rest*/!*) {
-  alert(`${firstName} ${lastName} - ${rest}`);
+  alert(firstName + ' ' + lastName + ' - ' + rest);
 }
 
 // выведет: Юлий Цезарь - Император,Рима
@@ -116,7 +116,7 @@ let options = {
 *!*
 function showMenu({title, width, height}) {
 */!*
-  alert(`${title} ${width} ${height}`); // Меню 100 200
+  alert(title + ' ' + width + ' ' + height); // Меню 100 200
 }
 
 showMenu(options);
@@ -134,7 +134,7 @@ let options = {
 *!*
 function showMenu({title="Заголовок", width:w=100, height:h=200}) {
 */!*
-  alert(`${title} ${w} ${h}`);
+  alert(title + ' ' + w + ' ' + h);
 }
 
 // объект options будет разбит на переменные
@@ -149,7 +149,7 @@ showMenu(options); // Меню 100 200
 'use strict';
 
 function showMenu({title="Заголовок", width:w=100, height:h=200} *!*= {}*/!*) {
-  alert(`${title} ${w} ${h}`);
+  alert(title + ' ' + w + ' ' + h);
 }
 
 showMenu(); // Заголовок 100 200
@@ -170,7 +170,7 @@ function f() {} // f.name == "f"
 
 let g = function g() {}; // g.name == "g"
 
-alert(`${f.name} ${g.name}`) // f g
+alert(f.name + ' ' + g.name) // f g
 ```
 
 В примере выше показаны Function Declaration и Named Function Expression. В синтаксисе выше довольно очевидно, что у этих функций есть имя `name`. В конце концов, оно указано в объявлении.
@@ -263,7 +263,7 @@ alert( sum(1, 2) ); // 3
 
 *!*
 // вызов getTime() будет возвращать текущее время
-let getTime = () => `${new Date().getHours()} : ${new Date().getMinutes()}`;
+let getTime = () => new Date().getHours() + ':' + new Date().getMinutes();
 */!*
 
 alert( getTime() ); // текущее время
@@ -279,7 +279,7 @@ let getTime = () => {
   let date = new Date();
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  return `${hours}:${minutes}`;
+  return hourse + ':' + minutes;
 };
 */!*
 
@@ -320,7 +320,7 @@ let group = {
   showList: function() {
 *!*
     this.students.forEach(
-      (student) => alert(`${this.title}: ${student}`)
+      student => alert(this.title + ': ' + student)
     )
 */!*
   }
@@ -346,7 +346,7 @@ let group = {
   showList: function() {
 *!*
     this.students.forEach(function(student) {
-      alert(`${this.title}: ${student}`); // будет ошибка
+      alert(this.title + ': ' + student); // будет ошибка
     })
 */!*
   }
@@ -403,11 +403,11 @@ function defer(f, ms) {
 */!*
 
 function sayHi(who) {
-  alert(`Привет, ${who}!`);
+  alert('Привет, ' + who);
 }
 
 let sayHiDeferred = defer(sayHi, 2000);
-sayHiDeferred("Вася"); // Привет, Вася! через 2 секунды
+sayHiDeferred("Вася"); // Привет, Вася через 2 секунды
 ```
 
 Аналогичная реализация без функции-стрелки выглядела бы так:
