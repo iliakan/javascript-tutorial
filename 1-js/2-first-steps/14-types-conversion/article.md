@@ -25,7 +25,7 @@ alert( a ); // "true"
 Можно также осуществить преобразование явным вызовом `String(val)`:
 
 ```js run
-alert( String(null) === "null" ); // true
+alert( String(null) == "null" ); // true
 ```
 
 Как видно из примеров выше, преобразование происходит наиболее очевидным способом, "как есть": `false` становится `"false"`, `null` -- `"null"`, `undefined` -- `"undefined"` и т.п.
