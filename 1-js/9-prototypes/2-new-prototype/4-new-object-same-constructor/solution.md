@@ -38,6 +38,6 @@ alert( obj2.name ); // undefined
 3. Прототипом будет (*).
 4. Далее здесь также ищется свойство constructor - его нет.
 5. Где ищем дальше? Правильно - у следующего прототипа выше, а им будет Object.prototype.
-6. У Object.prototype есть constructor, поэтому происходит вызов такого плана:  Object.prototype.constructor('Петя') или конкретнее: obj.__proto__.__proto__.constructor('Петя').
+6. У Object.prototype есть constructor, поэтому происходит вызов такого плана:  Object.prototype.constructor('Петя') или конкретнее: obj2.__proto__.__proto__.constructor('Петя').
 7. Этот метод возвратит объект-обёртку. В зависимости от переданного аргумента будет определяться тип объекта-обёртки, в нашем случае была передана строка 'Петя', значит будет возвращено: String {0: "П", 1: "е", 2: "т", 3: "я", length: 4, [[PrimitiveValue]]: "Петя"} (в Chrome), как будто мы вызвали new String('Петя'). Если бы мы передали число 5, то возвратилось: Number {[[PrimitiveValue]]: 5} и так далее.
 8. Поэтому obj2.name равен undefined, так как, у String {0: "П", 1: "е", 2: "т", 3: "я", length: 4, [[PrimitiveValue]]: "Петя"} нету свойства name.
