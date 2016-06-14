@@ -3,7 +3,7 @@
 ```js no-beautify
 new Date(0) - 0 = 0 // (1)
 new Array(1)[0] + "" = "undefined" // (2)
-({})[0]  = undefined // (3)
+({})[0] = undefined // (3)
 [1] + 1 = "11" // (4)
 [1,2] + [3,4] = "1,23,4" // (5)
 [] + null + 1 = "null1" // (6)
