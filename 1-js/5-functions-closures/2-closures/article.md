@@ -119,18 +119,18 @@ sayHi.[[Scope]] = window
 ```js run no-beautify
 var phrase = 'Привет';
 
-function say(name) {
+function sayHi(name) {
   alert(phrase + ', ' + name);
 }
 
 *!*
-say('Вася');  // Привет, Вася (*)
+sayHi('Вася');  // Привет, Вася (*)
 */!*
 
 phrase = 'Пока';
 
 *!*
-say('Вася'); // Пока, Вася (**)
+sayHi('Вася'); // Пока, Вася (**)
 */!*
 ```
 

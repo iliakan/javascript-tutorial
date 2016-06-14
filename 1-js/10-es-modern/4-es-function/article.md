@@ -189,8 +189,8 @@ let g = function() {};
 
 let user = {
   // свойство user.sayHi.name == "sayHi"
-  sayHi: function() { };
-}
+  sayHi: function() {}
+};
 ```
 
 ## Функции в блоке
