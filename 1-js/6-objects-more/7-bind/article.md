@@ -339,7 +339,7 @@ alert( triple(5) ); // = mul(3, 5) = 15
 
 Наш выигрыш состоит в том, что эта самостоятельная функция, во-первых, имеет понятное имя (`double`, `triple`), а во-вторых, повторные вызовы позволяют не указывать каждый раз первый аргумент, он уже фиксирован благодаря `bind`.
 
-## Пример: совместное использование `call` и `bind`
+## Пример: совместное использование call и bind
 
 Метод `[].forEach` привязанный к `Function.prototype.call` при помощи `bind`, для работы с «перебираемыми» объектами или примитивами, то есть с теми, у кого есть свойство `length`:
 
@@ -350,9 +350,9 @@ var forEach = Function.prototype.call.bind([].forEach); // bind привязыв
 */!*
 
 function showArguments() {
-	forEach(arguments, function(argument) { // работает с псевдомассивом arguments
+  forEach(arguments, function(argument) { // работает с псевдомассивом arguments
     alert(argument);
-	});
+  });
 }
 
 showArguments('Hello', 'World', '!');
@@ -362,7 +362,7 @@ showArguments('Hello', 'World', '!');
 
 ```js run
 forEach('Вася', function(char) {
-	alert(char);
+  alert(char);
 });
 ```
 
@@ -370,7 +370,7 @@ forEach('Вася', function(char) {
 
 ```js run
 forEach(['Вася', 'Петров'], function(element) {
-	alert(element);
+  alert(element);
 });
 ```
 
@@ -383,9 +383,9 @@ var map = Function.prototype.call.bind([].map); // bind привязывает �
 */!*
 
 function getFullNameArray() {
-	return map(arguments, function (argument) {
-		return 'Вася ' + argument;
-	});
+  return map(arguments, function (argument) {
+    return 'Вася ' + argument;
+  });
 }
 
 alert(getFullNameArray('Петров', 'Иванов', 'Сидоров')); // ["Вася Петров", "Вася Иванов", "Вася Сидоров"]
