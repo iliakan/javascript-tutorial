@@ -142,7 +142,7 @@ document.getElementsByTagName('input')[0].value = 5;
 ```
 ````
 
-## getElementsByName
+## document.getElementsByName
 
 Вызов `document.getElementsByName(name)` позволяет получить все элементы с данным атрибутом `name`.
 
