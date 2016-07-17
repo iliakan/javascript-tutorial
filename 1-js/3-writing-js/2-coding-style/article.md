@@ -374,11 +374,11 @@ function isPrime(n) {
 
 Большинство есть на английском, сообщите мне, если найдёте хороший перевод:
 
-- [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
-- [JQuery Core Style Guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines)
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
+- [jQuery JavaScript Style Guide](http://contribute.jquery.org/style-guide/js/)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-- [Idiomatic.JS](https://github.com/rwldrn/idiomatic.js) (есть [перевод](https://github.com/rwldrn/idiomatic.js/tree/master/translations/ru_RU))
-- [Dojo Style Guide](http://dojotoolkit.org/community/styleGuide)
+- [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js) (есть [перевод](https://github.com/rwaldron/idiomatic.js/tree/master/translations/ru_RU))
+- [Dojo Style Guide](https://dojotoolkit.org/reference-guide/1.10/developer/styleguide.html)
 
 Для того, чтобы начать разработку, вполне хватит элементов стилей, обозначенных в этой главе. В дальнейшем, посмотрев эти руководства, вы можете выработать и свой стиль, но лучше не делать его особенно "уникальным и неповторимым", себе дороже потом будет с людьми сотрудничать.
 
