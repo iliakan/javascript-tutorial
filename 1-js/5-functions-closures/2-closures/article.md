@@ -152,8 +152,8 @@ function sayHiBye(firstName, lastName) {
 
 *!*
   function getFullName() {
-      return firstName + " " + lastName;
-    }
+    return firstName + " " + lastName;
+  }
 */!*
 
 }
