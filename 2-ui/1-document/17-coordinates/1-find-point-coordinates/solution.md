@@ -2,7 +2,7 @@
 
 Координаты элемента возвращаются функцией [elem.getBoundingClientRect](https://developer.mozilla.org/en-US/docs/DOM/element.getBoundingClientRect). Она возвращает все координаты относительно окна в виде объекта со свойствами `left`, `top`, `right`, `bottom`.  Некоторые браузеры также добавляют `width`, `height`.
 
-Так что координаты верхнего-левого `coords1` и правого-нижнего `coords4` внешних углов:
+Так что координаты верхнего-левого `coords1` и правого-нижнего `coords2` внешних углов:
 
 ```js
 var coords = elem.getBoundingClientRect();
