@@ -176,7 +176,7 @@ var room = {
   }
 };
 
-event = {
+var event = {
   title: "Конференция",
   date: new Date(Date.UTC(2014, 0, 1)),
   room: room
