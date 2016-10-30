@@ -1,6 +1,9 @@
-# Destructuring
+# Destructuring assignment
 
-Destructuring assignment is a special syntax for assignments that allows to immediately split an array or a complex object into variables.
+[todo the newer version in operators]
+
+So we've seen 
+Destructuring assignment is a special syntax to make working with arrays and objects much easier.
 
 [cut]
 

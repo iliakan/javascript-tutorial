@@ -47,7 +47,7 @@ alert( 'Bee' > 'Be' ); // true
 
 The algorithm to compare two strings is simple:
 
-1. Compare the first characters of both strings.
+1. Compare first characters of both strings.
 2. If the first one is greater(or less), then the first string is greater(or less) than the second and we're done.
 3. Otherwise if first characters are equal, compare the second characters the same way.
 4. Repeat until the end of any string.
@@ -64,12 +64,12 @@ Strings `"Glow"` and `"Glee"` are compared character-by-character:
 ```smart header="Not a dictionary, but Unicode"
 The comparison algorithm given above is roughly equivalent to the one used in book dictionaries or phone books. But it's not exactly the same.
 
-For instance, the case matters. A capital letter `"A"` is not equal to the lowercase `"a"`. Which one is greater? Actually, the lowercase `"a"` is. Why? Because the lowercase character has a greater index in the internal encoding table (Unicode). We'll get back to specific details and consequences in the chapter <info:string>.
+For instance, case matters. A capital letter `"A"` is not equal to the lowercase `"a"`. Which one is greater? Actually, the lowercase `"a"` is. Why? Because the lowercase character has a greater index in the internal encoding table (Unicode). We'll get back to specific details and consequences in the chapter <info:string>.
 ```
 
 ## Comparison of different types
 
-When compared values belong to different types, they are coerced to numbers.
+When compared values belong to different types, they are converted to numbers.
 
 For example:
 
@@ -170,7 +170,7 @@ Yeah, mathematically that's strange. The last result states that "`null` is equa
 
 The reason is that an equality check `==` and comparisons `> < >= <=` work differently. Comparisons convert `null` to a number, hence treat it as `0`. That's why (1) `null >= 0` is true and (3) `null > 0` is false.
 
-From the other hand, the equality check `==` for `undefined` and `null` works by the rule, without any conversions. They equal each other and don't equal anything else. That's why (2) `null == 0` is false.
+From the other hand, the equality check `==` for `undefined` and `null` works by the rule: they equal each other and don't equal anything else. Without any conversions. That's why (2) `null == 0` is false.
 
 ### An uncomparable undefined
 
@@ -191,11 +191,11 @@ We've got such result, because:
 
 ### Evade problems
 
-Why did we observe these examples? Should we remember these pecularities all the time? Well, not really. Actually, these tricky things will gradually become familiar over the time, but there's a solid way to evade any problems with them.
+Why did we observe these examples? Should we remember these pecularities all the time? Well, not really. These tricky things will gradually become familiar over the time, but there's a great way out.
 
-Just treat any comparison with `undefined/null` except the strict equality `===` with an exceptional care.
+Just try to evade any comparison with `undefined/null` except the strict equality `===`, or treat them with an exceptional care.
 
-Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you are really sure what you're doing. If a variable can have such values, then check it separately.
+Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you are really sure what you're doing. If a variable can have such values, then add a separate check for that specific case.
 
 ## Summary
 

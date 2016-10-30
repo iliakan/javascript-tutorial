@@ -1,16 +1,10 @@
 # Type Conversions
 
-A variable in JavaScript can contain any data. A variable can at one moment be a string and later recieve a numeric value:
+Most of time, operators and functions automatically convert a value to the right type. That's called "type coercion". 
 
-```js
-// no error
-let message = "hello";
-message = 123456;
-```
+For example, `alert` automatically converts any value to a string, to show it. Or mathematical operations convert values to numbers. 
 
-...But some operations implicitly convert a value from one type to another. For example, `alert` automatically converts any value to a string, to show it. Or mathematical operations convert values to numbers. That is called *type coercion*.
-
-There are also cases when we need to explicitly convert between types to ensure that we store the right data the right way or to use special features of a certain type.
+There are also cases when we need to explicitly convert a value to put things right.
 
 ## ToString
 
@@ -108,7 +102,7 @@ That only happens when one of arguments is a string. Otherwise values are conver
 
 Boolean conversion is the simplest one.
 
-It happens in logical operations (later we'll meet condition tests and other kinds), but also can be performed manually with the call of `Boolean(value)`.
+It happens in logical operations (later we'll meet AND `&&`, OR `||`, `if` and more), but also can be performed manually with the call of `Boolean(value)`.
 
 The conversion rule:
 
@@ -146,13 +140,16 @@ alert( Boolean({}) ); // true, even if empty object
 
 ## ToPrimitive
 
-A string or numeric conversion of an object is a two-stage process. The object is first converted to a primitive value, and then ToString/ToNumber rules are applied to it.
+If we convert an object to a string or a number, then it's a two-stage process. 
 
-The conversion is customizable on a per-object basis, so we'll study it later when we go deeper into objects. [todo in the chapter?]
+1. The object is first converted to a primitive value.
+2. And then ToString/ToNumber rules are applied to it.
 
-Examples:
+The conversion is customizable, we'll study it later when we go deeper into objects. [todo in the chapter?]
 
-- When a plain object is converted into a string, is becomes `[object Object]`:
+But for now let's see two most common cases.
+
+- A plain object becomes `[object Object]` when we output it or expicitly convert to a string:
 
   ```js run
   alert( {} ); // [object Object]
@@ -164,26 +161,22 @@ Examples:
   ```js run
   let arr = [1, 2, 3];
 
-  alert( arr ); // 1,2,3
-  alert( String(arr) === '1,2,3' ); // true
+  alert( arr ); // 1,2,3 (implicit conversion)
+  alert( String(arr) === '1,2,3' ); // true 
   ```
 
-We'll return to it in the chapter [todo].
+`ToBoolean` provides no customizability for objects. The rule is simple: all objects are truthy.
 
-```smart header="ToBoolean is always true"
-Here `ToBoolean` was not mentioned, because it provides no customizability for objects 
-
-The rule is simple: all objects are truthy.
-```
+We'll return to object conversions it in the chapter [todo].
 
 
 ## Summary
 
 There exist three most widely used type conversions: to string, to number and to boolean.
 
-The conversion to string is usully obvious for primitive values and depends on the object type for objects. For instance, arrays turn into a comma-delimited list of elements. 
+**ToString** is usully obvious for primitive values, but depends on the object type for objects. For instance, arrays turn into a comma-delimited list of elements. 
 
-To number follows the rules:
+**ToNumber** follows the rules:
 
 | Value |  Becomes... |
 |-------|-------------|
@@ -192,7 +185,7 @@ To number follows the rules:
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | The string is read "as is", whitespaces from both sides are ignored. An empty string is  `0`. An error gives `NaN`. |
 
-To boolean:
+**ToBoolean** is the simplest one:
 
 | Value |  Becomes... |
 |-------|-------------|

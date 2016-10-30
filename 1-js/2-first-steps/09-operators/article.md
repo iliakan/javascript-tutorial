@@ -8,9 +8,9 @@ In this chapter we concentrate on aspects that are not covered by the school ari
 
 ## Terms: "unary", "binary", "operand"
 
-Before we move on, let's make a dip in the common terminology, used in the development.
+Before we move on, let's grasp the common terminology.
 
-- *An operand* -- is what operators are applied to. For instance in multiplication `5 * 2` there are two operands: the left operand is `5`, and the right operand is `2`. Sometimes operands are called "arguments".
+- *An operand* -- is what operators are applied to. For instance in multiplication `5 * 2` there are two operands: the left operand is `5`, and the right operand is `2`. Sometimes people say "arguments" instead of "operands".
 - An operator is *unary* if it has a single operand. For example, the unary minus `"-"` reverses the sign of the number:
 
     ```js run
@@ -32,7 +32,7 @@ Before we move on, let's make a dip in the common terminology, used in the devel
 
 ## Strings concatenation, binary +
 
-Now let's get into Javascript specials. 
+Now let's see special features of Javascript operators, beyound school arithmetics. 
 
 Usually the plus operator `'+'` sums numbers.
 
@@ -43,7 +43,7 @@ let s = "my" + "string";
 alert( s ); // mystring
 ```
 
-If one of operands of `+` is a string, then the other one is converted to string too.
+Note that if any of operands is a string, then the other one is converted to string too.
 
 For example:
 
@@ -86,11 +86,11 @@ alert( +"" );   // 0
 */!*
 ```
 
-It actually does the same as `Number(true)` or `Number("")`, but shorter.
+It actually does the same as `Number(...)`, but shorter.
 
-A need to convert string to number arises very often. For example, if we are getting values from HTML form fields, then are usually strings.
+A need to convert a string to a number arises very often. For example, if we are getting values from HTML form fields, then are usually strings.
 
-What if we want to sum them?
+What if we want to sum such values?
 
 The binary plus would add them as strings:
 
@@ -107,13 +107,13 @@ If we want to treat them as numbers, then we can convert and then sum:
 let apples = "2";
 let oranges = "3";
 
-alert( Number(apples) + Number(oranges) ); // 5
-
 *!*
-// or the shorter variant:
 // both values converted to numbers before the binary plus
 alert( +apples + +oranges ); // 5
 */!*
+
+// the longer variant
+// alert( Number(apples) + Number(oranges) ); // 5
 ```
 
 From a mathematician's standpoint the abundance of pluses may seem strange. But from a programmer's standpoint -- there's nothing special: unary pluses are applied first, they convert strings to numbers, and then the binary plus sums them up.
@@ -122,16 +122,15 @@ Why are unary pluses applied to values before the binary one? As we're going to 
 
 ## Operators precedence
 
-If an expression has more than one operator, the execution order is defined by their *precedence*, that is an implicit order among the operators.
+If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, there's an implicit priority order among the operators.
 
 From the school we all know that the multiplication in the expression `1 + 2 * 2` should be calculated before the addition. That's exactly the precedence thing. The multiplication is said to have *a higher precedence* than the addition.
 
 Brackets override any precedence, so if we're not satisfied with the order, we can use them, like: `(1 + 2) * 2`.
 
-There are many operators in JavaScript. For clarity and internal needs there exists a [precedence table](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence). Every operator has a corresponding precedence number. The one with the bigger number executes first. If the precedence is same -- the execution order is from left to right.
+There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the bigger number executes first. If the precedence is same -- the execution order is from left to right.
 
-An extract from the table:
-
+An extract from the [precedence table](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence):
 
 | Precedence | Name | Sign |
 |------------|------|------|
@@ -146,7 +145,7 @@ An extract from the table:
 | 3 | assignment | `=` |
 | ... | ... | ... |
 
-As we can see, the "unary plus" has a priority of `15`, higher than `13` for the "addition" (binary plus). That's why in the expression `+apples + +oranges` unary pluses worked first, and then the addition.
+As we can see, the "unary plus" has a priority of `15`, higher than `13` for the "addition" (binary plus). That's why in the expression `"+apples + +oranges"` unary pluses work first, and then the addition.
 
 ## Assignment
 
@@ -177,7 +176,7 @@ alert( c ); // 4
 Assignments always evaluate the right value first, then assign it to the left one. So the chain of assignments is executed from right to left: the rightmost expression `2+2` is calculated first, assigned to `c`, then `b = c` works, thus assigning it to `b`, and then `a = b`. At the end, all variables share a single value.
 
 ````smart header="The assignment operator `\"=\"` returns a value"
-An operator always returns a value. That's obvious for most of them like an addition `+` or a multiplication `*`. But the assignment follows that rule too.
+An operator always returns a value. That's obvious for most of them like an addition `+` or a multiplication `*`. And the assignment operator follows that rule too.
 
 The call `x = value` writes the `value` into `x` *and then returns it*.
 
@@ -197,8 +196,301 @@ alert( c ); // 0
 
 In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used to substract from `3`.
 
-Funny code, isn't it? We should understand how it works, but don't write anything like that ourselves. Such tricks definitely don't make the code clearer and more readable.
+Funny code, isn't it? We should understand how it works, because sometimes we can see it around, but don't write anything like that ourselves. Such tricks definitely don't make the code clearer and more readable.
 ````
+
+## Destructuring assignment
+
+[todo move it closer to objects?]
+Destructuring assignment is a special syntax that allows to assign object properties and array items to multiple variables directly.
+
+### Array destructuring
+
+For instance, we have an array with the name and surname. And we'd like to put them into variables for better convenience.
+
+Here's how it's done:
+
+```js run
+let names = ["Ilya", "Kantor"]
+
+*!*
+// destructuring assignment (*)
+let [firstName, surname] = names;
+*/!*
+
+alert(firstName); // Ilya
+alert(surname);  // Kantor
+```
+
+The assignment `(*)` puts the first value of the array into `firstName` and the second one into `surname`. Any other array elements (if exist) are ignored. 
+
+````smart header="Destructuring does not mean destructive"
+
+Please note that destructuring assignment does not modify the array in the process. That's actually a shorter way to write:
+```js
+let firstName = names[0];
+let surname = names[1];
+```
+
+So, it's safe.
+````
+
+````smart header="We can ignore first elements"
+Unwanted elements of the array can also be thrown away with an extra comma, like this:
+
+```js run
+*!*
+// first and second elements are not needed
+let [, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+*/!*
+
+alert( title ); // Consul
+```
+
+In the code above, the first and second elements of the array are skipped, the third one is assigned to `title`, and the rest is also skipped.
+````
+
+### The rest operator
+
+If we want to get all following values of the array, but are not sure of their number -- we can add one more parameter that gets "the rest" using the rest operator `"..."` (three dots):
+
+```js run
+*!*
+let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+*/!*
+
+alert(name1); // Julius
+alert(name2); // Caesar
+
+// ...and the rest as an array
+alert(rest[0]); // Consul
+alert(rest[1]); // of the Roman Republic 
+```
+
+The value of `rest` is the array of the remaining array elements. We can use any other variable name in place of `rest`, like `...etc`. The operator is three dots. The rest operator must be the last in the destructuring assignment.
+
+### The default values
+
+If there are less values in the array than variables in the assignment -- there will be no error, absent values are considered undefined:
+
+```js run
+*!*
+let [firstName, surname] = [];
+*/!*
+
+alert(firstName); // undefined
+```
+
+If we want a "default" value to take place of the absent one, we can provide it using `=`:
+
+```js run
+*!*
+// default values
+let [name="Guest", surname="Anonymous"] = [];
+*/!*
+
+alert(name); // Guest
+alert(surname);  // Anonymous
+```
+
+Note that default values can be any expressions. They will be evaluated if the value is not provided.
+
+### Object destructuring
+
+The destructuring assignment also works with objects. 
+
+The basic syntax is:
+
+```js
+let {var1, var2} = {var1:…, var2…}
+```
+
+We should have an existing object at the right side. Variables on the left side read properties from it.
+
+For instance:
+
+```js run
+let options = {
+  title: "Menu",
+  width: 100,
+  height: 200
+};
+
+*!*
+let {title, width, height} = options;
+*/!*
+
+alert(title);  // Menu
+alert(width);  // 100
+alert(height); // 200
+```
+
+Properties `title`, `width` and `height` are automcatically assigned to the corresponding variables. 
+
+The order of properties does not matter, that works too:
+
+```js
+// works the same as let {title, width, height} = ...
+let {height, width, title} = { title: "Menu", height: 200, width: 100 }
+```
+
+If we want to assign a property to a variable with another name, for instance, `options.width` to go into the variable named `w`, then we can set the mapping using a colon:
+
+```js run
+let options = {
+  title: "Menu",
+  width: 100,
+  height: 200
+};
+
+*!*
+// mapping { property: variable }
+let {width: w, height: h, title} = options;
+*/!*
+
+alert(title);  // Menu
+alert(w);      // 100
+alert(h);      // 200
+```
+
+The colon shows "what : goes where". In the example above the property `width` goes to `w`, property `height` goes to `h`, and `title` is assigned to the same name.
+
+If some properties are absent, we can set default values using `=`, just like we did with an array:
+
+```js run
+let options = {
+  title: "Menu"
+};
+
+*!*
+let {width=100, height=200, title} = options;
+*/!*
+
+alert(title);  // Menu
+alert(width);  // 100
+alert(height); // 200
+```
+
+We also can combine both colon `:` and `=`:
+
+```js run
+let options = {
+  title: "Menu"
+};
+
+*!*
+let {width:w=100, height:h=200, title} = options;
+*/!*
+
+alert(title);  // Menu
+alert(w);      // 100
+alert(h);      // 200
+```
+
+Here, property `width` goes to variable `w`, which becomes `100` if no such property exists, and so on.
+
+What if the object has more properties than we have variables? Can we assign the "rest" somewhere, like we do with arrays?
+
+The specification is for that is almost ready, but it's not in the standard yet.
+
+````smart header="Destructuring without `let`"
+In the examples above variables were declared right before the assignment: `let {…} = {…}`. Of course, we could use the existing variables too. But there's a catch.
+
+This won't work:
+```js run
+let title, width, height;
+
+// error in this line
+{title, width, height} = {title: "Menu", width: 200, height: 100};
+```
+
+The problem is that Javascript treats `{...}` in the main code flow (not inside another expression) as a code block. Such code blocks can be used to group statements, like this:
+
+```js run
+{
+  // a code block
+  let message = "Hello";
+  // ...
+  alert( message ); 
+}
+```
+
+To show Javascript that it's not a code block, we can wrap the whole assignment in brackets `(...)`:
+
+```js run
+let title, width, height;
+
+// okay now
+*!*(*/!*{title, width, height} = {title: "Menu", width: 200, height: 100}*!*)*/!*;
+
+alert( title ); // Menu
+```
+
+````
+
+### Nested destructuring
+
+If an object or an array contain other objects and arrays, we can go deeper in the destructuring assignment.
+
+In the code below `options` has another object in the property `size` and an array in the property `items`. The destructuring assignment has the same structure:
+
+```js run
+let options = {
+  size: {
+    width: 100,
+    height: 200
+  },
+  items: ["Cake", "Donut"]
+}
+
+// destructuring assignment on multiple lines for clarity
+let { 
+  size: { // put size here
+    width, 
+    height
+  }, 
+  items: [item1, item2], // assign items here
+  title = "Menu" // an extra property (default value is used)
+} = options;
+
+alert(title);  // Menu
+alert(width);  // 100
+alert(height); // 200
+alert(item1);  // Cake
+alert(item2);  // Donut
+```
+
+As we can see, the whole `options` object is correctly assigned to variables.
+
+The left part of the destructuring assignment can combine and nest things as needed.
+
+## Summary
+
+- Destructuring assignment allows to instantly map an object or array into many variables.
+- The object syntax:
+    ```js
+    let {prop : varName = default, ...} = object
+    ```
+
+    This means that property `prop` should go into the variable `varName` and, if no such property exists, then `default` value should be used. 
+
+- The array syntax:
+
+    ```js
+    let [item1 = default, item2, ...rest] = array
+    ```
+
+    The first item goes to `item1`, the second goes into `item2`, all the rest makes the array `rest`.
+
+- For more complex cases, the left side must have the same structure as the right one.
+
+
+
+
+
+
+
+
 
 ## Remainder %
 

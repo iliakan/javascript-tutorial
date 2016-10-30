@@ -1,8 +1,16 @@
 # Data types
 
-There are 7 data types in JavaScript.
+A variable in JavaScript can contain any data. A variable can at one moment be a string and later recieve a numeric value:
 
-Here we will get the common understanding of them. In the next chapters we'll talk about each type in detail.
+```js
+// no error
+let message = "hello";
+message = 123456;
+```
+
+Such languages are called "dynamically typed", meaning that there are language types, but variables are not bound to any of them. 
+
+There are 7 basic data types in JavaScript. Here we'll study the basics of them, and in the next chapters we'll talk about each of them in detail.
 
 [cut]
 
@@ -19,7 +27,7 @@ There are many operations for numbers, e.g. multiplication `*`, division `/`, ad
 
 Besides regular numbers there are so-called "special numeric values" which also belong to that type: `Infinity`, `-Infinity` and `NaN`.
 
-- `Infinity` represents the mathematical [Infinity](https://en.wikipedia.org/wiki/Infinity). It is a value that's greater than any number.
+- `Infinity` represents the mathematical [Infinity](https://en.wikipedia.org/wiki/Infinity) ∞. It is a value that's greater than any number.
 
     We can get it as a result of division by zero:
 
@@ -38,13 +46,13 @@ Besides regular numbers there are so-called "special numeric values" which also 
     alert( "not a number" / 2 ); // NaN
     ```
 
-    `NaN` is sticky. Any further operation on `NaN` would give `NaN`:
+    `NaN` is "sticky". Any further operation on `NaN` would give `NaN`:
 
     ```js run
     alert( "not a number" / 2 + 5 ); // NaN
     ```
 
-    So, in a long mathematical expression if we have `NaN` in one place, it propagates to the whole result.
+    So, if there's `NaN` somewhere in a mathematical expression, it propagates to the whole result.
 
 ```smart header="Mathematical operations are safe"
 Doing maths is safe in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
@@ -80,7 +88,7 @@ let name = "John";
 // embed variable
 alert( `Hello, ${name}!` ); // Hello, John!
 
-// embed expression 
+// embed expression
 alert( `the result is ${1 + 2}` ); // the result is 3
 ```
 
@@ -98,24 +106,24 @@ In JavaScript, there is no such type. There's only one type: `string`. A string 
 
 The boolean type has only two values: `true` and `false`.
 
-This type is commonly used to store yes/no values.
+This type is commonly used to store yes/no values: `true` means "yes, correct", and `false` means the "no, incorrect".
 
 For instance:
 
-```js no-beautify
-let checked = true; // the form field is checked
-checked = false;    // the form field is not checked
+```js
+let checked1 = true;  // yes, the form field is checked
+let checked2 = false; // no, the form field is not checked
 ```
 
 Boolean values also come as the result of comparisons:
 
 ```js run
-let isGreater = 4 > 1; 
+let isGreater = 4 > 1;
 
 alert( isGreater ); // true (the comparison result is "yes")
 ```
 
-We'll cover booleans more deeply while discussing logical operators.
+We'll cover booleans more deeply later while discussing [logical operators](/logical-ops).
 
 ## The "null" value
 
@@ -131,13 +139,13 @@ In JavaScript `null` is not a "reference to a non-existing object" or a "null po
 
 It's just a special value which has the sense of "nothing", "empty" or "value unknown".
 
-The code above states that the `age` is unknown or empty for some reason. 
+The code above states that the `age` is unknown or empty for some reason.
 
 ## The "undefined" value
 
 The special value `undefined` stands apart. It makes a type of its own, just like `null`.
 
-The sense of `undefined` is "value is not assigned". 
+The sense of `undefined` is "value is not assigned".
 
 If a variable is declared, but not assigned, then its value is exactly `undefined`:
 
@@ -166,29 +174,27 @@ The `object` type is special.
 
 All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever).
 
-In contrast, objects are used to store *keyed collections* of various data and more complex entities.
+In contrast, objects are used to store *keyed collections* of various data and more complex entities. In programming that's sometimes called an "associative array" or a "hash".
 
-An object is defined with the figure brackets `{…}` with an optional list of "key: value" pairs. In programming that's sometimes called an "associative array" or a "hash".
+An object is defined with the figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pairs, where `key` is a string (also called a "property name"), and `value` can be anything.
 
-A `key` is a string, `value` can be anything.
-
-For instance, here we create a `user` object with two properties: 
+For instance, here we create a `user` object with two properties:
 
 ```js
 let user = {     // an object
-  name: "John",  // key "name" has value "John"
-  age: 30        // key "age" has value 30
+  name: "John",  // key "name", value "John"
+  age: 30        // key "age", value 30
 };
 ```
 
-The `user` object can be imagined as a cabinet with two signed files labelled "name" and "age". 
+The `user` object can be imagined as a cabinet with two signed files labelled "name" and "age", each containing the corresponding value.
 
 ![user object](object-user.png)
 
-Both values (also called "fields" or "properties") are accessible using the dot notation:
+Both values are accessible using the "dot" notation:
 
 ```js
-// get fields of the object:
+// get properties of the object:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
@@ -196,7 +202,7 @@ alert( user.age ); // 30
 Also we can add new information to the user any time later:
 
 ```js
-user.isAdmin = true; 
+user.isAdmin = true;
 ```
 
 ![user object 2](object-user-isadmin.png)
@@ -209,76 +215,72 @@ delete user.age;
 
 ![user object 3](object-user-delete.png)
 
-If the string which denotes the key (also called a "property name") has multiple words, then the dot notation won't work:
+Technically, the key may be any string, even with multiple words, for instance `"hello world"`, or even a sentence like `"likes to swim?"`.
 
-```js
-// this would give a syntax error
-user.likes to swim? = true;
+To work with such keys, there exists another way to access them, because the dot notation doesn't work:
+
+```js run
+user.likes to swim? = true; // syntax error!
 ```
 
-That's because, the dot requires the property name to be a valid variable identifier. That is: no spaces and other limitations. 
+The dot assumes that the key is a valid variable identifier (no spaces and other limitations).
 
-There's a "square bracket notation" that works with any string:
+There's a more powerful "square bracket notation" that works with any string:
 
-```js
+```js run
+let user = {};
+
+// set
 user["likes to swim?"] = true;
+
+// get
+alert(user["likes to swim?"]); // true
+
+// delete
+delete user["likes to swim?"];
 ```
+
+Now everything is fine. Please note that the string must be properly quoted (any type of quotes will do).
 
 Square brackets are also the way to access a property by the name from the variable:
 
 ```js
 let key = "likes to swim?";
-user[key] = true; // same as above
+
+// same as user["likes to swim?"] = true;
+user[key] = true; 
 ```
 
-Here we have a variable `key` which contains the property name, probably evaluated or calculated at run-time. 
+Here, the variable `key` is probably evaluated or calculated at run-time. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used the similar way.
 
-Most of time, the dot is used to access object properties, but when we need a complex property name or to pass the name as a variable, then -- we go square brackets.
+So, most of time, the dot notation is used to access known and simple object properties, but when we need something more complex, then we use square brackets.
 
-What we've just seen is called a "plain object", or just `Object`. 
+### More advanced objects
 
-There are many other kinds of objects in Javascript:
+The objects that we've just seen are called "plain objects", or just `Object`.
 
-- `Array` to store ordered data collections,
-- `Date` to store the information about the date and time,
-- `Error` to store the information about an error.
+They serve as a basis for many other, more specialized kinds of objects:
+
+- `Array` objects to store ordered data collections,
+- `Date` objects to store the information about the date and time,
+- `Error` objects to store the information about an error.
 - ...And so on.
 
-Sometimes people say something like "Array type" or "Date type", but formally they are not types of their own, but belong to a single "object" data type. And they extend it in various ways.
+These more advanced objects do not have types of their own, but belong to a single "object" data type. And they extend it in various ways. Of course we'll see how they do it.
 
-Objects in JavaScript are very powerful. Here we've just scratched the surface of the topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
-
-````smart header="A trailing comma"
-
-[todo: move to 4-object ?]
-Experienced developers sometimes add one more comma to the end of an object, like this:
-
-```js
-let user = {     
-  name: "John",  
-  age: 30,
-  isAdmin: true*!*,*/!* // extra comma
-};
-```
-
-That's called a "trailing comma" and is allowed by the language.
-
-Sometimes the reason is pure lazyness: when in the development process the last property becomes unneeded and is removed, the programmer forgets to delete the comma at the end of newly last one.
-
-But from the other side that "lazyness" is justified, because the same line can be safely moved between objects -- from the first position to the middle or to the last -- without bookkeeping commas. That's a good thing.
-
-Actual decision whether to add trailing commas or not depends on you. Some people like them, some find them ugly.
-````
+Objects in JavaScript are very powerful. Here we've just started to get the basics of the topic that is really huge. Now we can create plain objects and add/remove properties from them. But we'll be closely working with objects and learning more about them in further parts of the tutorial.
 
 ## Arrays
 
-As we’ve just seen, objects in Javascript store arbitrary keyed values. 
+As we’ve just seen, objects in Javascript store arbitrary keyed values.
 
-But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on. For example, we need that to store a list of something: users, goods, HTML elements etc. It not convenient to use an object here, because it provides no methods to manage the order of elements. We can’t easily access the n-th element in an object. Also we can’t insert a new property “before” the existing ones, and so on. Objects are just not meant for such use.
+But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on.
 
-There exists a special data structure named "an array", to store ordered collections. 
+For example, we need that to store a list of something: users, goods, HTML elements etc. Plain objects do not provide ways to set the order of elements. We can't directly access the n-th element in an object by its number. Also we can’t insert a new property between the existing ones. Objects are just not meant for such use.
 
-An array is created using square brackets:
+There exists a special data structure named "an array", to store ordered collections.
+
+An array is created using square brackets with an optional list of elements:
 
 ```js
 let empty = []; // empty array
@@ -286,7 +288,7 @@ let empty = []; // empty array
 let fruits = ["Apple", "Orange", "Plum"]; // array with 3 values
 ```
 
-Individual items are accessed using brackets `[]`, the first item has zero index:
+Individual items are accessed using brackets `[]`. The first item has zero index:
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"]; // array with 3 values
@@ -299,11 +301,13 @@ alert( fruits[2] ); // Plum
 alert( fruits.length ); // 3
 ```
 
-Please note that arrays do not form a separate language type. They are based on objects. But they greatly extend them with features of their own, methods to add, remove, extract elements from the array, to sort arrays and more. We'll cover them in the chapter <info:array>.
+As we can see, arrays have `length` property that keeps the total number of elements. To be more precise, `length` always equals the last index plus one (thus 3 in the example above).
+
+Arrays are based on objects, but they extend them with features of their own, allowing to add, remove, extract elements from the array, to sort them and more. We'll cover them in the chapter <info:array>.
 
 ## Symbol type
 
-The `symbol` type is used in conjunction with objects. Probably we won't need them soon, but it's the 7th and the last type of the language, so we must mention it here for the sake of completeness.
+The `symbol` type is used in conjunction with objects. Probably we won't need symbols soon, but it's the 7th and the last basic type of the language, so we just must mention it here, even for the sake of completeness.
 
 A "symbol" represents an unique identifier with a given name.
 
@@ -314,7 +318,9 @@ A value of this type can be created using `Symbol(name)`:
 let id = Symbol("id");
 ```
 
-Symbols in JavaScript are different from symbols in Ruby language (if you are familiar with it, please don't get trapped by the same word). Two symbols with the same name are not the same:
+If you used Ruby language (or few others that have symbols too), then you may have heard a thing or two about symbols already. But stay tuned. Symbols in JavaScript are different. Please don't get trapped by the same word.
+
+`Symbol` is a special primitive type used for identifiers, which are guaranteed to be unique. So, even if we create many symbols with the same name, they are still unique, and not equal:
 
 ```js run
 let id1 = Symbol("id");
@@ -325,46 +331,60 @@ alert(id1 == id2); // false
 */!*
 ```
 
-Symbols is a special primitive type used for identifiers, which are guaranteed to be unique. So, even if we create many symbols with the same name, they are still unique.
+Now, when do we need such identifiers?
 
-The use case for symbols is to create "concealed" properties of an object, that no other part of code can occasionally access or overwrite. 
+The most popular use for symbols is to create "concealed" properties of an object, that no other part of code can occasionally access or overwrite.
 
-For instance, if we want to store an "identifier" for the object `user`, we can create a symbol with the name `id` for it:
+Let's see an example. For instance, we have a `user` object. And we'd like to store an identifier in it, exclusively for the purposes of our library.
+
+First let's use string keys, just to see the problem.
 
 ```js run
 let user = { name: "John" };
-let id = Symbol("id");
 
-user[id] = "ID Value";
-alert( user[id] ); // we can access the data using the symbol as the key
+// our script creates user.id
+user.id = 123;
+alert( user.id ); // 123
 ```
 
-Now let's imagine that another script wants to have his own "id" property inside `user`, for his own purposes. That may be another javascript library, so the scripts are completely unaware for each other.
+Now let's imagine that another script wants to work with that object, and it also would like to store an identifier in the object, for its own purposes. The script is written by another person, so the scripts are completely unaware for each other.
 
-No problem. It can create its own `Symbol("id")`. There will be no conflict, because symbols are always different, even if they have the same name.
+...But if it tries to make use of the same `"id"` key, then it would occasionally overwrite our id. That's the conflict.
 
-Please note if we used a string `"id"` instead of a symbol for the same purpose, then there could be a conflict:
+```js
+// user.id = 123;
+// ...
+
+// another script also wants to store something in user.id
+user.id = 456;
+alert( user.id ); // conflict!
+```
+
+So, when two scripts want to store something in the object, they must fight for the property name to use. If one of them already used `"id"`, then the other one must choose something else.
+
+Here come symbols. They bring peace. Each script can create its own `Symbol("id")` and use it as the key.
+
+For instance, in our code:
 
 ```js run
-let user = { name: "John" };
-
 // our script
-user.id = "ID Value";
+let user = { name: "John" };
 
-// ...if later another script the uses same name for its purposes...
+let id = Symbol("id"); // use symbol as the key
 
-user.id = "ID 2"
-// then boom! overwritten! it did not mean to harm the colleague, but did it!
+user[id] = 123;
+alert( user[id] ); // 123
 ```
 
-Two `Symbol("id")` are not equal, that's why they would allow to store values safely.
+...And in a third-party code, they can create their own `Symbol("id")`, and use it as the key. These two ids will never mix. There will be no conflict, because symbols are always different, even if they have the same name.
 
-
-Symbols are widely used by the JavaScript language itself to store "system" properties which we'll learn in later chapters.
+Also, symbols are widely used by the JavaScript language itself to store "system" properties, that we should not occasionally overwrite. We'll meet them in later chapters.
 
 ## The typeof operator [#type-typeof]
 
-The `typeof` operator returns the type of the argument. It's useful when we want to process values of different types differently, or just want to make a quick check.
+The `typeof` operator returns the type of the argument.  
+
+It's useful when we want to process values of different types differently, or just want to make a quick check.
 
 It supports two forms of syntax:
 
@@ -404,8 +424,8 @@ typeof alert // "function"  (3)
 The last three lines may be a little unobvious so here's explanations:
 
 1. The array is not a type of its own, it is based on object, that's why `typeof []` is `"object"`.
-2. The result of `typeof null` equals to `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, that's an error in the language.
-3. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the near future and see that actually functions belong to the object type. But `typeof` treats them differently. That's very convenient in practice.
+2. The result of `typeof null` equals to `"object"`. That's an officially recognized error in `typeof`, that originates from ancient times. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, that's an error in `typeof`, kept as it is for compatibility.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the near future and see that in fact functions belong to the object type. But `typeof` treats them differently. That's very convenient in practice.
 
 
 
@@ -421,5 +441,4 @@ There are 7 basic types in JavaScript.
 - `symbol` for unique identifiers.
 - `object` for more complex data structures.
 
-The `typeof` operator allows to see which type is stored in the variable. 
-
+The `typeof` operator allows to see which type is stored in the variable.
