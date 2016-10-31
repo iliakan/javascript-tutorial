@@ -141,9 +141,8 @@ We can pass arbitrary data to function using it's parameters (also called *funct
 
 In the example below, the function has two parameters: `from` and `text`.
 
-```js run no-beautify
+```js run
 function showMessage(*!*from, text*/!*) { // arguments: from, text
-
   alert(from + ': ' + text);
 }
 
@@ -153,7 +152,7 @@ showMessage('Ann', "What's up?"); // Ann: What's up?
 */!*
 ```
 
-When the function is called, the values in the brackets are copied to local variables `from` and `next`. 
+When the function is called, the values in the brackets are copied to local variables `from` and `next`.
 
 Please note that because the function can modify them. The changes are made to copies, so they won't affect anything outside:
 
@@ -174,6 +173,185 @@ showMessage(from, "Hello"); // *Ann*: Hello
 
 // the value of "from" is the same, the function modified a local copy
 alert( from ); // Ann
+```
+
+The syntax of function parameters is very versatile.
+
+It allows:
+
+- To specify default values for the case if the parameter if missing.
+- To gather parameters into an array.
+- And more.
+
+All these features aim to help us in writing good-looking and concise code.
+
+### Default values
+
+A function can be called with any number of arguments. If a parameter is not provided, but listed in the declaration, then its value becomes `undefined`.
+
+For instance, the aforementioned function `showMessage(from, text)` can be called with a single argument:
+
+```js
+showMessage("Ann");
+```
+
+That's not an error. Such call would output `"Ann: undefined"`, because `text === undefined`.
+
+If we want to use a "default" `text` in this case, then we can specify it after `=`:
+
+```js run
+function showMessage(from, *!*text = 'no text given'*/!*) {
+  alert( from + ": " + text );
+}
+
+showMessage("Ann"); // Ann: no text given
+```
+
+Here `'no text given'` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
+
+```js run
+function showMessage(from, text = anotherFunction()) {
+  // anotherFunction() only executed if no text given
+}
+```
+
+````smart header="Default parameters old-style"
+Old editions of Javascript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
+
+For instance, an explicit check for being `undefined`:
+
+```js
+function showMessage(from, text) {
+*!*
+  if (text === undefined) {
+    text = 'no text given';
+  }
+*/!*
+
+  alert( from + ": " + text );
+}
+```
+
+...Or operator `||`:
+
+```js
+function showMessage(from, text) {
+  // the argument is considered missing if it's falsy
+  text = text || 'no text given';
+  ...
+}
+```
+````
+
+### Arbitrary number of parameters
+
+To support any number of parameters, we can use the rest operator `...`:
+
+```js run
+function sumAll(*!*...args*/!*) {
+  let sum = 0;
+
+  for(let arg of args) sum += arg;
+
+  alert(sum);
+}
+
+sumAll(1); // 1
+sumAll(1, 2); // 3
+sumAll(1, 2, 3); // 6
+```
+
+Here `...args` means "gather all parameters" into an array `args`.
+
+We also can put few first arguments into variables and gather only the rest:
+
+```js run
+function showName(firstName, lastName, ...titles) {
+  alert( firstName + ' ' + lastName ); // Julius Caesar
+
+  // titles = ["Consul", "Praetor", "Imperator"]
+  alert( titles[0] ); // Consul
+}
+
+showName("Julius", "Caesar", "Consul", "Praetor", "Imperator");
+```
+
+````warn header="The rest operator `...` must be the last"
+The rest operator `…` gathers all remaining arguments, so the following has no sense:
+
+```js
+function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
+  // error
+}
+```
+
+The `...rest` must always be the last.
+````
+
+````smart header="The `arguments` variable"
+
+In old times, there was no rest operator. But there is a special variable named `arguments` that contains all arguments by their index. It is still supported and can be used like this:
+
+```js run
+function showName() {
+  alert( arguments[0] );
+  alert( arguments[1] );
+  alert( arguments.length );
+}
+
+// shows: Julius, Caesar, 2
+showName("Julius", "Caesar");
+```
+
+We can also use `for..of` to iterate over it.
+
+The downside is that `arguments` looks like an array, but it's not so. It does not support many useful array methods that we'll study later. Also we can't use it to capture "the rest"  of arguments, it always has all of them.
+````
+
+### The spread operator [#spread-operator]
+
+The rest operator `...` allows to gather parameters in the array.
+
+But there's a reverse operator named "the spread". It also looks like `...` and allows to convert an array into a list of parameters, like this:
+
+```js run
+let fullName = ["Gaius", "Julius", "Caesar"];
+
+function showName(firstName, secondName, lastName) {
+  alert(firstName);
+  alert(secondName);
+  alert(lastName);
+}
+
+// The spread operator ... passes an array as a list of arguments
+showName(...fullName);
+```
+
+As you can see, there are same three dots as the rest operator. But the meaning is different.
+
+To put it simple:
+- When `...` occurs in function parameters, it's called a "rest operator" and gathers parameters into the array.
+- When `...` occurs in a function call, it's called a "spread operator" and passes an array as the list of parameters.
+
+Together they help to travel between a list and an array of parameters with ease.
+
+When that may be useful?
+
+Let's see a more real-life example.
+
+There exist a built-in function [Math.max](mdn:js/Math/max) that takes a list of values and returns the greatest one:
+
+```js run
+alert( Math.max(5, 7, -8, 1) ); // 7
+```
+
+Imagine we have an array and want to select a maximum from it. Unfortunately, `Math.max` works with a list of parameters, not with arrays, so a direct call `Math.max(arr)` won't work. But we can use the spread operator `...` to pass the array as the list:
+
+
+```js run
+let arr = [5, 7, -8, 1];
+
+alert( Math.max(...arr) ); // 7
 ```
 
 ## Returning a value
@@ -204,7 +382,7 @@ function checkAge(age) {
   } else {
 *!*
     return confirm('Got a permission from the parents?');
-*/!* 
+*/!*
   }
 }
 
@@ -260,7 +438,7 @@ alert( doNothing() === undefined ); // true
 
 Functions are actions. So their name is usually a verb. It should briefly, but as accurately as possible describe what the function does. So that a person who reads the code gets the right clue.
 
-It is a widespread practice to start a function with a verbal prefix which vaguely describes the action. There must be an agreement within the team on the meaning of the prefixes. 
+It is a widespread practice to start a function with a verbal prefix which vaguely describes the action. There must be an agreement within the team on the meaning of the prefixes.
 
 For instance, functions that start with `"show"` -- usually show something.
 
@@ -307,29 +485,40 @@ These are exceptions. Generally functions names should be concise, but descripti
 
 ## Summary
 
+Functions are the main building blocks of scripts. They pack together a bunch of commands.
+
 A function declaration looks like this:
 
 ```js
 function name(parameters, delimited, by, comma) {
-  /* code */
+ /* ...code... */
 }
 ```
 
-- Values passed to function as parameters are copied to its local variables.
-- A function may access outer variables. But it works only one-way. The code outside of the function doesn't see its local variables.
-- A function can return a value. If it doesn't then its result is `undefined`.
+Let's briefly summarize their main features.
 
-It is possible for a function to access variables defined outside of it.
+**Local variables**
 
-But to make the code cleaner and easier to understand, it's recommended to use local variables and parameters instead as much as possible.
+- Values passed to function as parameters are copied to its local variables and are accessible in `code`.
+- A function may declare its own local variables e.g. using `let`.
+- A function may access outer variables. But it works only one-way: the code outside of the function doesn't see its local variables.
 
-It is always easier to understand a function which gets parameters, works with them and returns a result than a function which gets no parameters, but modifies outer variables as a side-effect.
+As a general advice, it's recommended for a function to use local variables and parameters as much as possible instead of referencing outer variables directly.
 
-Function naming:
+**Parameters**
+
+- Default values can be set after `=`.
+- The rest and spread operators can be used to convert a list of parameters into an array and vise versa.
+
+**Returning a value**
+
+- In Javascript, a function always returns a value.
+- If it doesn't, then the result is `undefined`.
+
+**Function naming**
 
 - A name should clearly describe what the function does. When we see a function call in the code, a good name instantly gives us an understanding what it does and returns.
 - A function is an action, so function names are usually verbal.
 - There is a bunch of commonly adapted verbal prefixes like `create…`, `show…`, `get…`, `check…` etc which can help. The main point is to be consistent about their meaning.
 
-Functions are the main building blocks of scripts. Now we covered the basics, so we actually can start creating and using them. But that's only the beginning of the path. We are going to return to them many times, going more deeply in their advanced features.
-
+Now we covered the basics, so we actually can start creating and using functions. But that's only the beginning of the path. We are going to return to functions many times, delving more deeply in their advanced features.

@@ -31,7 +31,7 @@ let result = 5 > 4; // assign the result of the comparison
 alert( result ); // true
 ```
 
-## Strings comparison
+## String comparison
 
 To see which string is greater than the other, the so-called "dictionary" or "lexicographical" order is used.
 
@@ -61,7 +61,7 @@ Strings `"Glow"` and `"Glee"` are compared character-by-character:
 2. `l` is the same as `l`.
 3. `o` is greater than `e`. Stop here. The first string is greater.
 
-```smart header="Not a dictionary, but Unicode"
+```smart header="Not a real dictionary, but Unicode order"
 The comparison algorithm given above is roughly equivalent to the one used in book dictionaries or phone books. But it's not exactly the same.
 
 For instance, case matters. A capital letter `"A"` is not equal to the lowercase `"a"`. Which one is greater? Actually, the lowercase `"a"` is. Why? Because the lowercase character has a greater index in the internal encoding table (Unicode). We'll get back to specific details and consequences in the chapter <info:string>.

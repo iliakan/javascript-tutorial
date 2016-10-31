@@ -95,67 +95,85 @@ for (begin; condition; step) {
 }
 ```
 
-Let's see these parts in an example. The loop below runs `alert(i)` for `i` from `0` up to (but not including) `3`:
+For instance, the loop below runs `alert(i)` for `i` from `0` up to (but not including) `3`:
 
 ```js run
-let i;
-
-for (i = 0; i < 3; i++) { // shows 0, then 1, then 2
-  alert( i );
+for (let i = 0; i < 3; i++) { // shows 0, then 1, then 2
+  alert(i);
 }
 ```
 
-Let's split the last example into parts:
+Let's examine the last example part-by-part:
 
-begin: `i=0`
-: Executes once upon entering the loop.
+| part  |          |                                                                            |
+|-------|----------|----------------------------------------------------------------------------|
+| begin | `i=0`    | Executes once upon entering the loop.                                      |
+| condition | `i<3`| Checked before every loop iteration, if fails the loop stops.              |
+| body | `alert(i)`| Runs again and again while the condition is truthy                         |
+| step| `i++`      | Executes after the body on each iteration, but before the condition check. |
 
-condition: `i<3`
-: Checked before every loop iteration, if fails the loop stops.
 
-body: `alert(i)`
-: Runs again and again while the condition is truthy
-
-step: `i++`
-: Executes after the body on each iteration, but before the condition check.
-
-The execution flow is:
+The general loop algorithm works like this:
 ```
 Begin
-  → (if condition → run body and run step)
-  → (if condition → run body and run step)
-  → ... repeat until the condition is falsy.
+→ (if condition → run body and run step)
+→ ... repeat while the condition is truthy
+```
+
+If you are new to loops, then maybe it would help if you go back to the example and reproduce how it runs step-by-step on a piece of paper.
+
+That's what exactly happens in our case:
+
+```js
+// for (let i = 0; i < 3; i++) alert(i)
+
+// begin
+let i = 0
+// if condition → run body and run step
+if (i < 3) { alert(i); i++ }
+// repeat while the condition is truthy
+if (i < 3) { alert(i); i++ }
+if (i < 3) { alert(i); i++ }
+// ...finish, because now i == 3
 ```
 
 ````smart header="Inline variable declaration"
-We can declare a "counter" variable right in the beginning of the loop.
+Here the "counter" variable `i` is declared right in the the loop. That's called an "inline" variable declaration. Such variable will be visible only inside the loop.
 
 ```js run no-beautify
 for (*!*let*/!* i = 0; i < 3; i++) {
   alert(i); // 0, 1, 2
 }
+alert(i); // error, no such variable
 ```
 
-The variable will be visible only inside the loop.
+We can use an existing variable as well:
+
+```js run no-beautify
+let i = 0;
+for (i = 0; i < 3; i++) { // use an existing variable
+  alert(i); // 0, 1, 2
+}
+alert(i); // 3, visible, because declared outside of the loop
+```
+
 ````
 
 ### Skipping parts
 
-Any part of the `for` can be skipped.
+Any part of the `for` loop can be skipped.
 
 For example, we can omit `begin` if we don't need to do anything at the loop start.
 
 Like here:
 
 ```js run
-let i = 0;
+let i = 0; // imagine we have i already declared and assigned
 
-for (; i < 3; i++) {
+for (; i < 3; i++) { // no need for "begin"
   alert( i ); // 0, 1, 2
 }
 ```
-
-It would work same as `for(let i=0; ...)`.
 
 We can also remove the `step` part:
 
@@ -164,9 +182,10 @@ let i = 0;
 
 for (; i < 3;) {
   alert( i );
-  // the loop became identical to while (i<3)
 }
 ```
+
+The loop became identical to `while (i<3)`.
 
 We can actually remove everything, thus creating an infinite loop:
 
@@ -218,7 +237,7 @@ The loop above uses `continue` to output only odd values:
 ```js run no-beautify
 for (let i = 0; i < 10; i++) {
 
-  // if true, skip the remaining part of the body 
+  // if true, skip the remaining part of the body
   *!*if (i % 2 == 0) continue;*/!*
 
   alert(i); // 1, then 3, 5, 7, 9
@@ -349,9 +368,9 @@ label: for(...)
 The call to a `break/continue` is only possible from inside the loop, and the label must be somewhere upwards from the directive.
 ````
 
-## The "for..in" loop
+## The "for..in" over objects
 
-To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we've studied before. 
+To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we've studied before.
 
 The syntax:
 
@@ -378,21 +397,21 @@ for(let key in user) {
 }
 ```
 
-Note that all "for" constructs allow to declare the looping variable inside the loop, like `key` here. We could use another variable name here instead of `key`, for instance, "prop" is also widely used for iterations.
+Note that all "for" constructs allow to declare the looping variable inside the loop, like `key` here. We could use another variable name here instead of `key`, for instance, `for(let prop in user)`.
 
 
-## The "for..of" loop
+## The "for..of" over iterables
 
 And the third (the last one) kind of the `for` loop. Again it has a totally different meaning from what we've seen before.
 
 This form iterates over arrays.
 
-Actually, we can do it with the `for(;;)` loop:
+Actually, we can do it with the previous form of `for(;;)` loop:
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
 
-// iterates over all elements:
+// loop over all elements:
 //   i is the number of the current element
 //   fruits[i] is the value of the current element
 for(let i = 0; i < fruits.length; i++) {
@@ -410,23 +429,21 @@ let fruits = ["Apple", "Orange", "Plum"];
 // iterates over all elements:
 //    fruit is the value of the current element
 for(let fruit of fruits) {
-  alert( fruit ); 
+  alert( fruit );
 }
 ```
 
 The `for..of` doesn't give access to the number of the current element, just its value, but in most cases that's enough.
 
-````smart header="Iterables"
-Later we'll learn the concept of *iterable* objects in Javascript. An iterable object must implement special functionality that allows to use `for..of` on it.
+Later we'll learn the concept of *iterables* in Javascript. Not only arrays can be used in `for..of`.
 
-There are many iterable objects. For instance, a string is iterable, `for..of` will list characters in the example:
+For instance, a string is iterable as well, `for..of` will list characters in the example:
 
 ```js run
 for(let char of "test") {
-  alert( char ); t, then e, then s, then t
+  alert( char ); //  t, then e, then s, then t
 }
 ```
-````
 
 
 ## Summary
@@ -436,14 +453,10 @@ There are 5 types of loops in JavaScript:
 - `while` -- the condition is checked before each iteration.
 - `do..while` -- the condition is checked after each iteration.
 - `for(;;)` -- the condition is checked before each iteration, additional settings available.
-- `for(key in obj)` -- to iterate over object properties.
-- `for(item of array)` -- to iterate over array items.
+- `for(key in obj)` -- to iterate over object property names.
+- `for(item of array)` -- to iterate over arrays (or other iterables as we'll see in the future).
 
-To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
-
-If we don't want to do anything more on this iteration and would like to forward on to the next one -- the `continue` directive does it.
-
-`Break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.
-
-To get an array of object property names, there is a method `Object.keys(obj)`.
-
+Breaking the loop:
+- To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
+- If we don't want to do anything more on this iteration and would like to forward on to the next one -- the `continue` directive does it.
+- Both `break` and `continue` can "break through" nesting using labels.

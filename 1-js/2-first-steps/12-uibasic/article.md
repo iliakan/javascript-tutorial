@@ -1,8 +1,10 @@
 # Interaction: alert, prompt, confirm
 
-This chapter covers basic UI operations: `alert`, `prompt` and `confirm`. They allow to ask a visitor for the input and show the results.
+This part of the tutorial aims to cover Javascript "as is", without environment-specific tweaks.
 
-They are browser-specific. For other environments like Node.JS there are other ways of getting the information. Also they are very simple, so we can use them for the start.
+But still the demo environment for the tutorial is a browser. So we should know at least a few user-interface functions.
+
+In this chapter we'll get familiar with the browser-specific functions `alert`, `prompt` and `confirm`. 
 
 [cut]
 
@@ -11,7 +13,7 @@ They are browser-specific. For other environments like Node.JS there are other w
 Syntax:
 
 ```js
-alert(message)
+alert(message);
 ```
 
 This shows a message and pauses the script execution until the user presses "OK".
@@ -19,7 +21,7 @@ This shows a message and pauses the script execution until the user presses "OK"
 For example:
 
 ```js run
-alert( "Hello" );
+alert("Hello");
 ```
 
 The small window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons etc, until he deals with the window. In this case -- until he presses "OK".
@@ -29,12 +31,18 @@ The small window with the message is called a *modal window*. The word "modal" m
 Function `prompt` accepts two arguments:
 
 ```js no-beautify
-result = prompt(title, default);
+result = prompt(title[, default]);
 ```
 
-It shows a modal window with the given `title`, a field for text, initially filled with the `default` string and buttons OK/CANCEL.
+It shows a modal window with a field for text and buttons OK/CANCEL.
 
-The visitor may type something in the field and press OK. Or he can cancel the input by pressing a CANCEL button or the `key:Esc` key.
+`title`
+: Is a modal window title
+
+`default`
+: An optional second parameter, the initial value for the text field.
+
+The visitor may type something in the field and press OK. Or he can cancel the input by pressing a CANCEL button or hitting the `key:Esc` key.
 
 The call to `prompt` returns the text from the field or `null` if the input is canceled.
 

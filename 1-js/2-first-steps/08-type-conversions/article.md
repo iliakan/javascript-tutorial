@@ -32,6 +32,26 @@ alert(typeof a); // string
 
 The string conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"` etc.
 
+For objects, the string conversion can be customized, we'll study that in future. But there are two most common cases to know:
+
+- A plain object becomes `[object Object]` when we output it or expicitly convert to a string:
+
+  ```js run
+  alert( {} ); // [object Object]
+  alert( {name: "John"} ); // [object Object]
+  ```
+
+- An array becomes a comma-delimited list of items when converted to a string:
+
+  ```js run
+  let arr = [1, 2, 3];
+
+  alert( arr ); // 1,2,3
+
+  alert( String(arr) === '1,2,3' ); // true 
+  ```
+
+
 ## ToNumber
 
 Numeric conversion happens in mathematical functions and expressions automatically.
@@ -137,46 +157,15 @@ alert( Boolean({}) ); // true, even if empty object
 ```
 ````
 
-
-## ToPrimitive
-
-If we convert an object to a string or a number, then it's a two-stage process. 
-
-1. The object is first converted to a primitive value.
-2. And then ToString/ToNumber rules are applied to it.
-
-The conversion is customizable, we'll study it later when we go deeper into objects. [todo in the chapter?]
-
-But for now let's see two most common cases.
-
-- A plain object becomes `[object Object]` when we output it or expicitly convert to a string:
-
-  ```js run
-  alert( {} ); // [object Object]
-  alert( {name: "John"} ); // [object Object]
-  ```
-
-- An array becomes a comma-delimited list of items:
-
-  ```js run
-  let arr = [1, 2, 3];
-
-  alert( arr ); // 1,2,3 (implicit conversion)
-  alert( String(arr) === '1,2,3' ); // true 
-  ```
-
-`ToBoolean` provides no customizability for objects. The rule is simple: all objects are truthy.
-
-We'll return to object conversions it in the chapter [todo].
-
-
 ## Summary
 
 There exist three most widely used type conversions: to string, to number and to boolean.
 
-**ToString** is usully obvious for primitive values, but depends on the object type for objects. For instance, arrays turn into a comma-delimited list of elements. 
+ToString
+: ToString is usully obvious for primitive values, but depends on the object type for objects. For instance, arrays turn into a comma-delimited list of elements. 
 
-**ToNumber** follows the rules:
+ToNumber
+: ToNumber follows the rules:
 
 | Value |  Becomes... |
 |-------|-------------|
@@ -185,17 +174,18 @@ There exist three most widely used type conversions: to string, to number and to
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | The string is read "as is", whitespaces from both sides are ignored. An empty string is  `0`. An error gives `NaN`. |
 
-**ToBoolean** is the simplest one:
+ToBoolean
+: ToBoolean is the simplest one:
 
 | Value |  Becomes... |
 |-------|-------------|
 |`0`, `null`, `undefined`, `NaN`, `""` |`false`|
 |any other value| `true` |
 
+
 Most of these rules are easy to understand and memorize. The notable exceptions where people usually make mistakes are:
 
 - `undefined` is `NaN` as a number.
 - `"0"` is true as a boolean.
 
-Objects can define their own methods of converting to a string or a number, we'll see them later. But they can't redefine the conversion to boolean.
 
