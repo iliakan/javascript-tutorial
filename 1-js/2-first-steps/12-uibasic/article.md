@@ -36,13 +36,7 @@ It shows a modal window with the given `title`, a field for text, initially fill
 
 The visitor may type something in the field and press OK. Or he can cancel the input by pressing a CANCEL button or the `key:Esc` key.
 
-The call to `prompt` returns the text from the field or `null` if te input is canceled.
-
-```warn header="Safari does not return `null`"
-Safari returns an empty string instead of `null` on cancellation. So we can't be sure whether the user actually entered an empty line or he cancelled the input.
-
-A compatible practice is to treat both an empty line and `null` the same, as a cancellation.
-```
+The call to `prompt` returns the text from the field or `null` if the input is canceled.
 
 As with `alert`, the `prompt` window is modal.
 

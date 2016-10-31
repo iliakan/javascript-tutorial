@@ -176,12 +176,12 @@ All other types are called "primitive", because their values can contain only a 
 
 In contrast, objects are used to store *keyed collections* of various data and more complex entities. In programming that's sometimes called an "associative array" or a "hash".
 
-An object is defined with the figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pairs, where `key` is a string (also called a "property name"), and `value` can be anything.
+An object is defined with the figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
 
-For instance, here we create a `user` object with two properties:
+For instance, here we create an object `user` with two properties:
 
 ```js
-let user = {     // an object
+let user = {     
   name: "John",  // key "name", value "John"
   age: 30        // key "age", value 30
 };
@@ -207,7 +207,7 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.png)
 
-...Or remove it with the help of `delete` operator:
+...Or remove the `age` property with the help of `delete` operator:
 
 ```js
 delete user.age;
@@ -215,15 +215,15 @@ delete user.age;
 
 ![user object 3](object-user-delete.png)
 
-Technically, the key may be any string, even with multiple words, for instance `"hello world"`, or even a sentence like `"likes to swim?"`.
+Technically, we can name the property using any string, like `"hello world"`, or even a sentence like `"likes to swim?"`. And sometimes that's handy.
 
-To work with such keys, there exists another way to access them, because the dot notation doesn't work:
+But to work with complex keys, there's another way to access them, because the dot notation stops working:
 
 ```js run
 user.likes to swim? = true; // syntax error!
 ```
 
-The dot assumes that the key is a valid variable identifier (no spaces and other limitations).
+That's because the dot only supports keys that are valid variable identifiers (no spaces and other limitations).
 
 There's a more powerful "square bracket notation" that works with any string:
 
@@ -240,9 +240,9 @@ alert(user["likes to swim?"]); // true
 delete user["likes to swim?"];
 ```
 
-Now everything is fine. Please note that the string must be properly quoted (any type of quotes will do).
+Now everything is fine. Please note that the string is properly quoted (any type of quotes will do).
 
-Square brackets are also the way to access a property by the name from the variable:
+Square brackets are also provide a way to access a property by the name from the variable:
 
 ```js
 let key = "likes to swim?";
@@ -251,7 +251,7 @@ let key = "likes to swim?";
 user[key] = true; 
 ```
 
-Here, the variable `key` is probably evaluated or calculated at run-time. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used the similar way.
+Here, the variable `key` is may be evaluated or calculated at run-time. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used in similar way.
 
 So, most of time, the dot notation is used to access known and simple object properties, but when we need something more complex, then we use square brackets.
 
@@ -268,7 +268,7 @@ They serve as a basis for many other, more specialized kinds of objects:
 
 These more advanced objects do not have types of their own, but belong to a single "object" data type. And they extend it in various ways. Of course we'll see how they do it.
 
-Objects in JavaScript are very powerful. Here we've just started to get the basics of the topic that is really huge. Now we can create plain objects and add/remove properties from them. But we'll be closely working with objects and learning more about them in further parts of the tutorial.
+Objects in JavaScript are very powerful. Here we've just started to get the basics of the topic that is really huge. Now we can create plain objects and add/remove properties from them. But we'll be consistently returning to objects and learn much more about them in further parts of the tutorial.
 
 ## Arrays
 
@@ -276,7 +276,7 @@ As we’ve just seen, objects in Javascript store arbitrary keyed values.
 
 But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on.
 
-For example, we need that to store a list of something: users, goods, HTML elements etc. Plain objects do not provide ways to set the order of elements. We can't directly access the n-th element in an object by its number. Also we can’t insert a new property between the existing ones. Objects are just not meant for such use.
+For example, we need that to store a list of something: users, goods, HTML elements etc. Plain objects do not provide ways to set the order of elements. We can't directly access the n-th property of an object by its number. Also we can’t insert a new property "between" the existing ones. Objects are just not meant for such use.
 
 There exists a special data structure named "an array", to store ordered collections.
 
@@ -318,7 +318,7 @@ A value of this type can be created using `Symbol(name)`:
 let id = Symbol("id");
 ```
 
-If you used Ruby language (or few others that have symbols too), then you may have heard a thing or two about symbols already. But stay tuned. Symbols in JavaScript are different. Please don't get trapped by the same word.
+If you used Ruby language (or few others that have symbols too), then you may feel proficient about symbols already. But stay tuned. Symbols in JavaScript are different. Please don't get trapped by the same word.
 
 `Symbol` is a special primitive type used for identifiers, which are guaranteed to be unique. So, even if we create many symbols with the same name, they are still unique, and not equal:
 
@@ -327,7 +327,7 @@ let id1 = Symbol("id");
 let id2 = Symbol("id");
 
 *!*
-alert(id1 == id2); // false
+alert(id1 == id2); // false (!)
 */!*
 ```
 
@@ -347,7 +347,7 @@ user.id = 123;
 alert( user.id ); // 123
 ```
 
-Now let's imagine that another script wants to work with that object, and it also would like to store an identifier in the object, for its own purposes. The script is written by another person, so the scripts are completely unaware for each other.
+Now let's imagine that another script wants to work with that object, and it also would like to store an identifier in the object, for its own purposes. The script is written by *another person*, so the scripts are completely unaware for each other.
 
 ...But if it tries to make use of the same `"id"` key, then it would occasionally overwrite our id. That's the conflict.
 
