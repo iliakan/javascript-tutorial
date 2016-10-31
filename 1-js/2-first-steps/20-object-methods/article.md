@@ -11,7 +11,7 @@ let user = {
 
 And, in the real world, a user can `act`: to select something from the shopping cart, to login, to logout etc. 
 
-Let's implement the same in Javascript.
+In Javascript, that's implemented as function properties, so called "methods".
 
 [cut]
 
@@ -36,9 +36,7 @@ Here we've just used a Function Expression to create the function and assign it 
 
 Then we can call it. The user now can speak!
 
-A function that is the property of an object is called its *method*.
-
-So, here we've got a method `sayHi` of the object `user`.
+We created a method `sayHi` of the object `user`.
 
 ```smart header="Object-oriented programming"
 When we write our code using objects to represent entities, that's called an [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP". 
