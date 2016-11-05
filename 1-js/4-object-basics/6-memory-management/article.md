@@ -1,32 +1,35 @@
 # Garbage collection
 
-Memory management in Javascript is performed automatically and invisibly to us. We create primitives, objects, functions... All that takes memory.
+We create primitives, objects, functions... All that takes memory. 
 
-What happens when something is not needed any more? How Javascript engine discovers that and cleans up?
-
+What happens when something is not needed any more? How Javascript engine discovers that and cleans up? Memory management in Javascript is performed automatically and invisibly to us.
 [cut]
 
 ## Reachability
 
 The main concept of memory management in Javascript is *reachability*. 
 
-Simply put, "reachable" values are those that are accessible now or in the future. They are guaranteed to be stored in memory.
+Simply put, "reachable" values are those that are accessible or useable somehow. They are guaranteed to be stored in memory.
 
-1. There's a base set of reachable values. For instance:
+Formally, here's the definition.
+
+1. There exists a base set of values that are considered reachable "by nature". 
 
     - Local variables and parameters of the current function.
     - Variables and parameters for other functions in the current chain of nested calls.
     - Global variables.
+    - ...and few less common cases.
 
     These variables are called *roots*.
 
-2. Any other value is retained in memory only while it's reachable from a root by a reference of by a chain of references.
+2. Any other value is considered reachable if it's reachable from a root by a reference of by a chain of references.
 
-There's a background process that runs by the engine itself called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that became unreachable.
+    For instance, if there's an object in a local variable, and that object has a property referencing another object, that object is considered reachable. And those that it references -- are also reachable. Detailed examples to follow.
 
-Note that only objects need reachability tracking, not primitives. For primitives things are very simple. They are copied as a whole on assignment, a single primitive can only be stored in one place, there can be no references for them. So if there was a string in a variable, and it was replaced with another string, then the old one can safely be junked.
 
-Objects from the other hand can be referenced from multiple variables. If two variables store a reference to the same object, then even if one of them is overwritten, the object is still accessible through the second one. That's why a special "garbage collector" is needed that watches the references.
+There's a background process in the Javascript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that became unreachable.
+
+The process of such tracking is not that simple. Objects can be referenced from multiple variables. If two variables store a reference to the same object, then even if one of them is overwritten, the object is still accessible through the second one. That's why a special "garbage collector" is needed that watches the references.
 
 The basic garbage collection algorithm is called "mark-and-sweep".
 
@@ -35,9 +38,9 @@ Regularly the following "garbage collection" steps are performed:
 - The garbage collector takes roots and follows all references from them.
 - It remembers all objects it meets and follows their references.
 - ...And so on until there are unvisited references.
-- All objects except those are removed.
+- After it, all objects that could not be visited, are considered unreachable and junked.
 
-Let's see examples to get the better picture.
+Let's see examples to get a better picture.
 
 ## A simple example
 
@@ -52,7 +55,7 @@ let user = {
 
 ![](memory-user-john.png)
 
-Here an on further pictures, arrows depict references. For instance, the global variable `"user"` references John (the object `{name: "John"}`). The `"name"` property is not a reference, it stores a primitive, so it's painted inside the object.
+The global variable `"user"` references John (the object `{name: "John"}`). Here and on further pictures, arrows depict references. The `"name"` property is not a reference, it stores a primitive, so it's painted inside the object.
 
 If the `user` is overwritten, the reference is lost:
 
@@ -170,26 +173,21 @@ One of the main problems is that the collection process must be atomic: no new l
 
 Essentially that means that the script execution must be paused to ensure that. Pauses may be small for simple scripts, but become noticeable (like 1000 ms or more) for big ones with many of objects. Such "hiccups" can be unpleasant and even disruptive for program systems that operate on real-time financial or medical data.
 
-So there are many optimizations to it.
-
-In this section we use 
-
-### Generational collection
-
-Most objects die very fast. For instance, local variables of functions usually don't exist for long. So a special memory area is created for them. 
-
-  This memory area is garbage-collected in a special way. Instead of 
-
-
 So many optimizations and variations of the algorithm exist.
 
 One of most widely used optimizations in JS engines is called "generational" garbage collection.
 
-Objects are split into two sets: "old ones" and "new ones". Each set has its own memory area.
+- Objects are split into two sets: "old ones" and "new ones". Each set has its own memory area.
+- A new object is created in the "new" memory area and, if survived long enough, migrates to the "old" one. 
+- The "new" area is garbage collected often. The "old" area is rarely cleaned up.
 
-A new object is created in the "new" memory area and, if survived long enough, migrates to the "old" one. The "new" area is usually small and is garbage collected often. The "old" area is big and rarely cleaned up.
+In practice that helps a lot, because many small objects are created and destroyed almost immediately. For instance, local variables of a function usually become unreachable when it finishes. And those objects that keep the general program state, like an object with the current visitor data, may be big, but rarely require attention.
 
-In practice that helps a lot, because many small objects are created and destroyed almost immediately. For instance when they are local variables of a function. And few objects survive for a long time, like the object with the current visitor data.
+There are other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And they are subjects to change as engines develop. 
+
+What's important is to know what garbage collection is and how it works in general. For ones that want to know more, there are books like "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones at al).
+
+If you are familiar with low-level programming, detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
 
 ## Summary
@@ -197,6 +195,3 @@ In practice that helps a lot, because many small objects are created and destroy
 - Objects are retained in memory while they are reachable.
 - Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole.
 - Modern engines implement advanced algorithms of garbage collector that try to evade stop-the-world problem of the old ones.
-
-If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
-

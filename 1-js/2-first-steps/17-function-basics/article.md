@@ -261,11 +261,12 @@ sumAll(1, 2); // 3
 sumAll(1, 2, 3); // 6
 ```
 
-Here `...args` means "gather all parameters" into an array `args`.
+Here `...args` means "gather all parameters into an array `args`".
 
 We also can put few first arguments into variables and gather only the rest:
 
 ```js run
+// titles will be an array of arguments from the 3rd one
 function showName(firstName, lastName, ...titles) {
   alert( firstName + ' ' + lastName ); // Julius Caesar
 
@@ -277,7 +278,7 @@ showName("Julius", "Caesar", "Consul", "Praetor", "Imperator");
 ```
 
 ````warn header="The rest operator `...` must be the last"
-The rest operator `…` gathers all remaining arguments, so the following has no sense:
+The rest operator `...` gathers all remaining arguments, so the following has no sense:
 
 ```js
 function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
@@ -305,18 +306,22 @@ showName("Julius", "Caesar");
 
 We can also use `for..of` to iterate over it.
 
-The downside is that `arguments` looks like an array, but it's not so. It does not support many useful array methods that we'll study later. Also we can't use it to capture "the rest"  of arguments, it always has all of them.
+The downside is that `arguments` looks like an array, but it's not a real array. It does not support many useful array methods that we'll study later. Also we can't use it to capture "the rest" of arguments starting from the given one.
 ````
 
 ### The spread operator [#spread-operator]
 
 The rest operator `...` allows to gather parameters in the array.
 
-But there's a reverse operator named "the spread". It also looks like `...` and allows to convert an array into a list of parameters, like this:
+But there's a reverse operator named "the spread". It has the same form three dots `...` and allows to pass  an array as a list of parameters in a function call.
+
+Like this:
 
 ```js run
+// we have array
 let fullName = ["Gaius", "Julius", "Caesar"];
 
+// the function has a list of arguments
 function showName(firstName, secondName, lastName) {
   alert(firstName);
   alert(secondName);
@@ -327,9 +332,11 @@ function showName(firstName, secondName, lastName) {
 showName(...fullName);
 ```
 
-As you can see, there are same three dots as the rest operator. But the meaning is different.
+To put it clear, if we used `showName(fullName)`, the function would receive a single argument -- the array `fullName`. The spread operator `showName(...fullName)` "unwraps" the array into multiple arguments.
 
-To put it simple:
+As we can see, the rest and spread operators look the same. But the meaning is different.
+
+There's a simple rule to distinguish them:
 - When `...` occurs in function parameters, it's called a "rest operator" and gathers parameters into the array.
 - When `...` occurs in a function call, it's called a "spread operator" and passes an array as the list of parameters.
 
@@ -339,7 +346,7 @@ When that may be useful?
 
 Let's see a more real-life example.
 
-There exist a built-in function [Math.max](mdn:js/Math/max) that takes a list of values and returns the greatest one:
+There exists a built-in function [Math.max](mdn:js/Math/max) that takes a list of values and returns the greatest one:
 
 ```js run
 alert( Math.max(5, 7, -8, 1) ); // 7
@@ -353,6 +360,27 @@ let arr = [5, 7, -8, 1];
 
 alert( Math.max(...arr) ); // 7
 ```
+
+We also can pass multiple arrays this way:
+
+```js run
+let arr1 = [1, -2, 3, 4];
+let arr2 = [8, 3, -8, 1];
+
+alert( Math.max(...arr1, ...arr2) ); // 8
+```
+
+...And even combine the spread operator with normal values:
+
+
+```js run
+let arr1 = [1, -2, 3, 4];
+let arr2 = [8, 3, -8, 1];
+
+alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
+```
+
+
 
 ## Returning a value
 

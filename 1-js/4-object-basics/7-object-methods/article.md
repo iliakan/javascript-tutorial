@@ -1,6 +1,6 @@
 # Object methods, "this"
 
-As we remember from the chapter <info:types>, objects to store keyed collections of data. We usually create objects to represent entities of the real world, like users, orders and so on:
+Objects often represent the entities of the real world, like users, orders and so on:
 
 ```js
 let user = {
@@ -9,7 +9,7 @@ let user = {
 };
 ```
 
-And, in the real world, a user can `act`: to select something from the shopping cart, to login, to logout etc. 
+And, in the real world, a user can `act`: to select something from the shopping cart, to login, to logout etc.
 
 In Javascript, that's implemented as function properties, so called "methods".
 
@@ -39,11 +39,11 @@ Then we can call it. The user now can speak!
 We created a method `sayHi` of the object `user`.
 
 ```smart header="Object-oriented programming"
-When we write our code using objects to represent entities, that's called an [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP". 
+When we write our code using objects to represent entities, that's called an [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
 
-OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the code and the interaction between them? That's an architecture. 
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the code and the interaction between them? That's an architecture.
 
-We will make use of OOP further when we get enough familarity with basic functions of the language. 
+We will make use of OOP further when we get enough familarity with basic functions of the language.
 ```
 
 Of course we could use a Function Declaration for the same purpose:
@@ -70,14 +70,14 @@ That would also work, but is longer. Also we get an "extra" function `sayHi` out
 
 In an object literal, there's a shorter syntax for methods:
 
-```js 
+```js
 // these objects do the same
 
 let user = {
-  sayHi: function() { 
+  sayHi: function() {
     alert("Hello");
   }
-}; 
+};
 
 let user = {
 *!*
@@ -85,7 +85,7 @@ let user = {
 */!*
     alert("Hello");
   }
-}; 
+};
 ```
 
 As demonstrated, we can omit a colon with the word `"function"`. And it actually looks better.
@@ -124,10 +124,10 @@ Here during the execution of `user.sayHi()`, the value of `this` will be `user`.
 
 Technically, it's also possible to access the object without `this`:
 
-```js 
+```js
 ...
   sayHi() {
-    alert( *!*user.name*/!* ); 
+    alert( *!*user.name*/!* );
   }
 ...
 ```
@@ -158,7 +158,7 @@ admin.sayHi(); // wops! inside sayHi(), the old name is used! error!
 
 The variant with `this.name` instead of `user.name` would work fine here.
 
-## "this" is free
+## "this" is not bound
 
 In Javascript, "this" keyword behaves unlike most other programming languages.
 
@@ -167,7 +167,7 @@ The "this" keyword can be used in any function. There's no syntax error in the c
 ```js
 function sayHi() {
   alert( this.name );
-} 
+}
 ```
 
 It is fully syntactically free. The function does not yet know what "this" value will be. It will be evaluated during the run-time.
@@ -234,7 +234,7 @@ On the last line the method `user.hi` is retrieved during the execution of the t
 
 If we want to understand why it happens -- the reason is in the details of how `obj.method()` call works.
 
-The method call has two successive operations in it: 
+The method call has two successive operations in it:
 - the dot `'.'` retrieves the property
 - brackets `()` execute it (assuming that's a function).
 
@@ -271,9 +271,9 @@ The result of a property access `'.'` is a value of the Reference Type. For `use
 
 Then, when brackets `()` are called on the Reference Type, they receive the full information about the object and it's method, and can set the right `this = base`.
 
-Any other operation just gets `base[name]` value and uses it, discarding the reference type as a whole. 
+Any other operation just gets `base[name]` value and uses it, discarding the reference type as a whole.
 
-So any operation on the result of dot `'.'` except a direct call discards `this`. 
+So any operation on the result of dot `'.'` except a direct call discards `this`.
 
 
 That's why the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj[method]()` syntax (they do the same here).
@@ -302,11 +302,11 @@ let user = { name: "John" };
 let admin = { name: "Admin" };
 
 // use call to pass different objects as "this"
-sayHi.call( user ); // John 
-sayHi.call( admin ); // Admin 
+sayHi.call( user ); // John
+sayHi.call( admin ); // Admin
 ```
 
-The first parameter of `call` is the intended value of `"this"`, the latter are arguments. 
+The first parameter of `call` is the intended value of `"this"`, the latter are arguments.
 
 So `sayHi.call(admin)` runs the function `sayHi` with `this = admin`, hence `this.name` in it becomes `"Admin"`.
 
