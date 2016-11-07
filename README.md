@@ -3,7 +3,7 @@
 
 Этот репозитарий содержит учебник JavaScript [https://learn.javascript.ru](https://learn.javascript.ru).
 
-Движок, написанный на io.js, находится в отдельном репозитарии https://github.com/iliakan/javascript-nodejs, а здесь &mdash; текст.
+Движок, написанный на [node.js](https://nodejs.org/en/), находится в отдельном репозитарии [https://github.com/iliakan/javascript-tutorial-server](https://github.com/iliakan/javascript-tutorial-server), а здесь &mdash; текст.
 
 Делать исправления и предлагать PR по коду нужно там, по тексту учебника — здесь.
 
