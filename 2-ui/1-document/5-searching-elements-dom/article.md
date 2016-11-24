@@ -348,13 +348,13 @@ IE тоже поддерживает XPath, но эта поддержка не 
 <td><code>querySelector</code></td>
 <td>CSS-селектор</td>
 <td>✔</td>
-<td>везде</td>
+<td>IE8+</td>
 </tr>
 <tr>
 <td><code>querySelectorAll</code></td>
 <td>CSS-селектор</td>
 <td>✔</td>
-<td>везде</td>
+<td>IE8+</td>
 </tr>
 </tbody>
 </table>
