@@ -1,3 +1,4 @@
+You are currently on the master branch. The actual contents is available at language branches.
 
 # The JavaScript Tutorial 
 
