@@ -618,7 +618,7 @@ httpGet('/article/promise/userNoGithub.json')
         throw error;
       }
     }
-  })
+  )
   .then(function showAvatar(githubUser) {
     let img = new Image();
     img.src = githubUser.avatar_url;
