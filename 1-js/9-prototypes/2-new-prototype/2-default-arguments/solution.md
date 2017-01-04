@@ -9,10 +9,9 @@ var originalOptions = {
 function Menu(options) {
   options = Object.create(options);
   options.width = 300;
-  options.width = 400;
 
   alert("width: " + options.width); // возьмёт width из наследника
-  alert(options.height); // возьмёт height из исходного объекта
+  alert("height: " + options.height); // возьмёт height из исходного объекта
 }
 
 var menu = new Menu(originalOptions);
