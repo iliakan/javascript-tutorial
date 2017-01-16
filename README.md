@@ -1,7 +1,5 @@
 The tutorial is available in two languages as of now.
 
-Please read [translate.md](translate.md) if you'd like to translate it into your language.
-
 You are currently on the master branch. The contents is available at per-language branches.
 
 # The JavaScript Tutorial [English]
