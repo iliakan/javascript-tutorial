@@ -83,13 +83,13 @@ alert( nameLengths ); // 4,3,10
 ```js run
 var arr = [1, -1, 2, -2, 3];
 
-function isPositive(number) {
-  return number > 0;
-}
-
 *!*
-alert( arr.every(isPositive) ); // false, не все положительные
-alert( arr.some(isPositive) ); // true, есть хоть одно положительное
+alert( arr.every(function(number) {
+  return number > 0;
+}); // false, не все положительные
+alert( arr.some(function(number) {
+  return number > 0;
+}); // true, есть хоть одно положительное
 */!*
 ```
 
