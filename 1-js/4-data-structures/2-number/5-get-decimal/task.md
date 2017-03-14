@@ -12,3 +12,4 @@ alert( getDecimal(1.2) ); // 0.2
 alert( getDecimal(-1.2) ); // 0.2
 ```
 
+P.S. Постарайтесь не использовать toFixed
