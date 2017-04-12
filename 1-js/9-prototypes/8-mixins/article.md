@@ -70,7 +70,7 @@ var eventMixin = {
    * Подписка на событие
    * Использование:
    *  menu.on('select', function(item) { ... }
-  */
+   */
   on: function(eventName, handler) {
     if (!this._eventHandlers) this._eventHandlers = {};
     if (!this._eventHandlers[eventName]) {
