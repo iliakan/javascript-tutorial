@@ -1,5 +1,5 @@
 // Для использования нужен Node.JS
-// Поставьте его: 
+// Поставьте webpack:
 //   npm i -g webpack
 // Поставьте babel-loader: 
 //   npm i babel-loader
