@@ -207,7 +207,7 @@ export default VARIABLE;
 А при импорте из такого модуля вместо:
 
 ```js
-let VARIABLE = require('./file');
+const VARIABLE = require('./file');
 ```
 
 Пишем:
