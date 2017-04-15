@@ -253,7 +253,7 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 В JavaScript существуют целых 3 (!) метода для взятия подстроки, с небольшими отличиями между ними.
 
 `substring(start [, end])`
-: Метод `substring(start, end)` возвращает подстроку с позиции `start` до, но не включая `end`.
+: Метод `substring(start, end)` возвращает подстроку с позиции `start` до `end`, но не включая `end`.
 
     ```js run
     var str = "*!*s*/!*tringify";
