@@ -157,7 +157,7 @@ function CoffeeMachine(power) {
 
   // что делать по окончании процесса
   function onReady() {
-    alert( 'Кофе готово!' );
+    alert( 'Кофе готов!' );
   }
 
   this.run = function() {
