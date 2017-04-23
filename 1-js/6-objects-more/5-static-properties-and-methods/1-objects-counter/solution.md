@@ -2,7 +2,7 @@
 
 ```js run
 function Article() {
-  this.created = new Date;
+  this.created = new Date();
 
 *!*
   Article.count++; // увеличиваем счетчик при каждом вызове

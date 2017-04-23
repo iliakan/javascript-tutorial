@@ -608,7 +608,7 @@ httpGet('/article/promise/user.json')
 
 httpGet('/article/promise/userNoGithub.json')
   .then(JSON.parse)
-  .then(user => loadUrl(`https://api.github.com/users/${user.name}`))
+  .then(user => httpGet(`https://api.github.com/users/${user.name}`))
   .then(
     JSON.parse,
     function githubError(error) {
@@ -618,7 +618,7 @@ httpGet('/article/promise/userNoGithub.json')
         throw error;
       }
     }
-  })
+  )
   .then(function showAvatar(githubUser) {
     let img = new Image();
     img.src = githubUser.avatar_url;
