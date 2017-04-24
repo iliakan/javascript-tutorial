@@ -43,7 +43,7 @@ The method `setTimeout` in-browser is a little special: it sets `this=window` fo
 
 The task is quite typical -- we want to pass an object method somewhere else (here -- to the scheduler) where it will be called. How to make sure that it will be called in the right context?
 
-## Solution 1: a wrapper
+f## Solution 1: a wrapper
 
 The simplest solution is to use an wrapping function:
 
@@ -54,7 +54,6 @@ let user = {
     alert(`Hello, ${this.firstName}!`);
   }
 };
-
 *!*
 setTimeout(function() {
   user.sayHi(); // Hello, John!
@@ -72,7 +71,7 @@ setTimeout(() => user.sayHi(), 1000); // Hello, John!
 
 Looks fine, but a slight vulnerability appears in our code structure.
 
-What is before `setTimeout` triggers (there's one second delay!) `user` changes value? Then, suddenly, the it will call the wrong object!
+What if before `setTimeout` triggers (there's one second delay!) `user` changes value? Then, suddenly, it will call the function from the wrong object!
 
 
 ```js run
