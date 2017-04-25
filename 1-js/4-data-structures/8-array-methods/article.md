@@ -89,7 +89,7 @@ alert( arr[1] ); // undefined
 
 Его синтаксис:
 
-`arr.splice(index[, deleteCount, elem1, ..., elemN])`
+`arr.splice(index, [deleteCount, elem1, ..., elemN])`
 : Удалить `deleteCount` элементов, начиная с номера `index`, а затем вставить `elem1, ..., elemN` на их место. Возвращает массив из удалённых элементов.
 
 Этот метод проще всего понять, рассмотрев примеры.
