@@ -109,6 +109,32 @@ switch (+a) {
     alert('no-no, see the code above, it executes');
 }
 ```
+
+Naturally, the expressions that get evaluated are, in this order:
+* the subject of `switch`
+* and then in sequence the expressions attached to the `case` clauses, until the one that triggers.
+
+The expressions attached to the remaining `case` clauses, on the other hand, will not run.
+
+```js run
+Point being that a and b get reassigned, not c:
+
+let x=0, a=0, b=0, c=0;
+switch (x=2) {
+  case (a=1):
+     console.log("1");
+     break;
+case (b=2):
+    console.log("2");
+    break;
+case (c=3):
+    console.log("3");
+    break;
+}
+
+alert(`x=${x}, a=${a}, b=${b} and c=${c}`);
+```
+
 ````
 
 ## Grouping of "case"
