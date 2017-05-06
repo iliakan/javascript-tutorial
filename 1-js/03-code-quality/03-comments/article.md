@@ -210,7 +210,7 @@ For that reason even if you're not concerned about styles, using a linter is rea
 
 ## Summary
 
-One of signs of a good developer is his comments. Good comments allow to maintain the code well, return to it after a long delay and use features more effectively.
+One of the signs of a good developer is his comments. Good comments allow to maintain the code well, return to it after a long delay and use features more effectively.
 
 Code style is important too, especially in the team. When other people look at your code, the impression is largely defined by the style. Good code is easier to read and understand.
 

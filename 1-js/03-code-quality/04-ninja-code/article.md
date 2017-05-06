@@ -221,7 +221,7 @@ Imagine, another developer wants only to check the email, and not output any mes
 
 ## Summary
 
-All "pieces of advice" above are from the real code... Sometimes, written by experienced developers. Maybe even more experienced than you are ;)
+All "pieces of advice" above are from real code... Sometimes, written by experienced developers. Maybe even more experienced than you are ;)
 
 - Follow some of them -- and your code will become full of surprises.
 - Follow many of them -- and your code will become truly yours, no one would want to change it.

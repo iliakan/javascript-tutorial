@@ -6,7 +6,7 @@ It's actually a part of the "educational minimum" of a developer.
 
 [cut]
 
-## Why we need tests?
+## Why do we need tests?
 
 When we write a function, we usually can imagine what it should do: which parameters give which results.
 
@@ -20,7 +20,7 @@ But such manual "re-runs" are imperfect.
 
 For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` works, but `f(2)` doesn't work. We fix the code and now `f(2)` works. Looks complete? But we forgot to re-test `f(1)`. That may lead to an error.
 
-That's very typical. When we develop something, we keep a lot of possible use cases and mind. But it's hard to expect from programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
+That's very typical. When we develop something, we keep a lot of possible use cases and mind. But it's hard to expect from a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
 
 **Automated testing means that tests are written separately, in addition to the code. They can be executed easily and check all the main use cases.**
 
