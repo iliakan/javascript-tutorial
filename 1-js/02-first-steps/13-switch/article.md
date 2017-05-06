@@ -129,7 +129,7 @@ switch (a) {
   case 3:                    // (*) grouped two cases
   case 5:
     alert('Wrong!');
-    alert('Why don't you take a math class?');
+    alert("Why don't you take a math class?");
     break;
 */!*
 
