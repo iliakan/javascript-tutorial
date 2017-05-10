@@ -1,3 +1,5 @@
+var kinput = document.getElementById('kinput');
+var area = document.getElementById('area');
 kinput.onkeydown = kinput.onkeyup = kinput.onkeypress = handle;
 
 var lastTime = Date.now();
