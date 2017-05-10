@@ -90,7 +90,7 @@ alert( "I don't know such values" );
 ```
 
 ````smart header="Any expresion can be a `switch/case` argument"
-Both `switch` and case allow arbitrary expresions.
+Both `switch` and case allow arbitrary expressions.
 
 For example:
 
@@ -109,6 +109,32 @@ switch (+a) {
     alert('no-no, see the code above, it executes');
 }
 ```
+
+Naturally, the expressions that get evaluated are, in this order:
+* the subject of `switch`
+* and then in sequence the expressions attached to the `case` clauses, until the one that triggers.
+
+The expressions attached to the remaining `case` clauses, on the other hand, will not run.
+
+```js run
+Point being that a and b get reassigned, not c:
+
+let x=0, a=0, b=0, c=0;
+switch (x=2) {
+  case (a=1):
+     console.log("1");
+     break;
+case (b=2):
+    console.log("2");
+    break;
+case (c=3):
+    console.log("3");
+    break;
+}
+
+alert(`x=${x}, a=${a}, b=${b} and c=${c}`);
+```
+
 ````
 
 ## Grouping of "case"
@@ -129,7 +155,7 @@ switch (a) {
   case 3:                    // (*) grouped two cases
   case 5:
     alert('Wrong!');
-    alert('Why don't you take a math class?');
+    alert("Why don't you take a math class?");
     break;
 */!*
 
@@ -144,7 +170,7 @@ The ability to "group" cases a side-effect of how `switch/case` works without `b
 
 ## Type matters
 
-Let's emphase that the equality check is always strict. The values must be of the same type to match.
+Let's emphasize that the equality check is always strict. The values must be of the same type to match.
 
 For example, let's consider the code:
 
@@ -169,4 +195,4 @@ switch (arg) {
 
 1. For `0`, `1`, the first `alert` runs.
 2. For `2` the second `alert` runs.
-3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execite.
+3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execute.

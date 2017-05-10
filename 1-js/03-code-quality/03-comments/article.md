@@ -145,6 +145,6 @@ Any subtle features of the code? Where they are used?
 
 ## Summary
 
-One of signs of a good developer is his comments. Good comments allow to maintain the code well, return to it after a long delay and use features more effectively.
+One of the signs of a good developer is his comments. Good comments allow to maintain the code well, return to it after a long delay and use features more effectively.
 
 Comments are also used for auto-documenting tools: they read them and generate HTML-docs (or in another format).

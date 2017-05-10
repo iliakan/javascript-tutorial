@@ -65,7 +65,7 @@ That's what happens above in detail:
 1. Function Declaration `(1)` creates the function and puts it into the variable named `sayHi`.
 2. Line `(2)` copies it into variable `func`.
 
-    Please note again: there are no parentheses after `sayHi`. If they were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
+    Please note again: there are no parentheses after `sayHi`. If there were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
 3. Now the function can be called both as `sayHi()` and `func()`.
 
 Note, that we could also have used a Function Expression to declare `sayHi`, in the first line:
@@ -141,7 +141,7 @@ The major difference between a real-life implementation and the example above is
 
 **The arguments of `ask` are called *callback functions* or just *callbacks*. The idea is that we pass a function and expect it to be "called back" in certain circumstances.**
 
-So, `showOk` becomes the callback for the "yes" answer and `showCancel` -- for the "no" answer.
+So, `showOk` becomes the callback for the "yes" answer, and likewise `showCancel` for the "no" answer.
 
 We can use Function Expressions to write the same much shorter:
 
@@ -190,7 +190,7 @@ First, the syntax: how to see what is what in the code.
     ```
 - *Function Expression:* a function, created inside an expression or inside another syntax construct.
 
-    Here the function is created at the right side of the "assignment expression =":
+    Here the function is created at the right-hand side of the "assignment expression =":
     ```js
     // Function Expression
     let sum = function(a, b) {
@@ -298,7 +298,7 @@ if (age < 18) {
 } else {
                            // \
   function welcome() {     //  |  
-    alert("Greetings!");   //  |  if age=16, the the execution does not go here,
+    alert("Greetings!");   //  |  if age=16, the execution does not go here,
   }                        //  |  so this "welcome" is never created
                            // /
 }

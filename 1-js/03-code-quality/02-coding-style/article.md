@@ -84,7 +84,7 @@ There are two types of indents:
 
     A horizantal identation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is a kind of an old holy war. Spaces are more common nowadays.
 
-    One of advantages of spaces over tabs is that they allow more flexible configurations of indents than the "Tab" symbol.
+    One advantage of spaces over tabs is that they allow more flexible configurations of indents than the "Tab" symbol.
 
     For instance, we can align the arguments with the opening bracket, like this:
 
@@ -119,11 +119,11 @@ There are two types of indents:
 
 ### A semicolon
 
-A semicolons should be after each statement. Even if could possibly be skipped.
+A semicolons should be after each statement. Even if it could possibly be skipped.
 
 There are languages where a semicolon is truly optional. It's rarely used there.
 
-But in JavaScript there are few cases when a line break is sometimes not interpreted as a semicolon. That leaves a place for programming errors, so semicolons should be at place.
+But in JavaScript there are few cases when a line break is sometimes not interpreted as a semicolon. That leaves a place for programming errors, so semicolons should be in place.
 
 ### Nesting levels
 
