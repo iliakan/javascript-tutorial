@@ -10,5 +10,7 @@ importance: 5
 
 Если же нажать `key:Esc`, то `<textarea>` снова превращается в `<div>`, изменения не сохраняются.
 
-[demo src="solution"].
+Демо:
+
+[demo src="solution"]
 
