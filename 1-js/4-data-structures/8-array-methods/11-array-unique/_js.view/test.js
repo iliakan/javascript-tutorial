@@ -4,12 +4,12 @@ describe("unique", function() {
       "харе", "харе", "кришна", "кришна", "8-()"
     ];
 
-    assert.deepEqual(unique(strings), ["кришна", "харе", "8-()"]);
+    assert.sameMembers(unique(strings), ["кришна", "харе", "8-()"]);
   });
 
   it("не изменяет исходный массив", function() {
     var strings = ["кришна", "кришна", "харе", "харе"];
     unique(strings);
-    assert.deepEqual(strings, ["кришна", "кришна", "харе", "харе"]);
+    assert.sameMembers(strings, ["кришна", "кришна", "харе", "харе"]);
   });
 });
