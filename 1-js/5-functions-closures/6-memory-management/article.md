@@ -191,7 +191,7 @@ function showTime() {
     function f() {
       var value = Math.random();
 
-      return function() {};
+      return function() { return value; };
     }
 
     // 3 функции, каждая ссылается на свой объект переменных,
