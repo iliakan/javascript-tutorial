@@ -3,12 +3,21 @@
 ```js run
 function Menu(options) {
   options = Object.create(options);
-  options.width = options.width || 300;
+  options.width = 300;
 
-  alert( options.width ); // возьмёт width из наследника
-  alert( options.height ); // возьмёт height из исходного объекта
-  ...
+  alert("width: " + options.width); // возьмёт width из наследника
+  alert("height: " + options.height); // возьмёт height из исходного объекта
 }
+
+var options = {
+  width: 100,
+  height: 200
+};
+
+var menu = new Menu(options);
+
+alert("original width: " + options.width); // width исходного объекта
+alert("original height: " + options.height); // height исходного объекта
 ```
 
-Все изменения будут происходить не в самом `options`, а в его наследнике, при этом исходный объект останется незатронутым.
+Все изменения будут происходить не в исходном `options`, а в его наследнике, при этом `options` останется незатронутым.

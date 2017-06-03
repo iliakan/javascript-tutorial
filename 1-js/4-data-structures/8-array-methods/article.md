@@ -387,7 +387,7 @@ alert( keys ); // name, age
 
 ## Итого
 
-Методы:
+Методы массивов:
 
 - `push/pop`, `shift/unshift`, `splice` -- для добавления и удаления элементов.
 - `join/split` -- для преобразования строки в массив и обратно.
@@ -396,5 +396,8 @@ alert( keys ); // name, age
 - `reverse` -- меняет порядок элементов на обратный.
 - `concat` -- объединяет массивы.
 - `indexOf/lastIndexOf` -- возвращают позицию элемента в массиве (не поддерживается в IE8-).
+
+Дополнительно:
+- `Object.keys(arr)` возвращает массив свойств объекта.
 
 Изученных нами методов достаточно в 95% случаях, но существуют и другие. Для знакомства с ними рекомендуется заглянуть в справочник <a href="http://javascript.ru/Array">Array</a> и [Array в Mozilla Developer Network](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array).
