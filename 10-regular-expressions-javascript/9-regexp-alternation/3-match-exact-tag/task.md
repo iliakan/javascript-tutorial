@@ -6,8 +6,8 @@
 
 Использование:
 
-```js
-var re = ваш регэксп
+```js run
+var re = /ваш регэксп/;
 
 alert( "<style> <styler> <style test>".match(re) ); // <style>, <style test>
 ```
