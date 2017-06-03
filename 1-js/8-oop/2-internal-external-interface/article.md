@@ -106,7 +106,7 @@ function CoffeeMachine(power) {
 
   // что делать по окончании процесса
   function onReady() {
-    alert( 'Кофе готово!' );
+    alert( 'Кофе готов!' );
   }
 
   this.run = function() {
@@ -157,7 +157,7 @@ function CoffeeMachine(power) {
 
   // что делать по окончании процесса
   function onReady() {
-    alert( 'Кофе готово!' );
+    alert( 'Кофе готов!' );
   }
 
   this.run = function() {
@@ -192,7 +192,7 @@ function CoffeeMachine(power) {
   }
 
   function onReady() {
-    alert( 'Кофе готово!' );
+    alert( 'Кофе готов!' );
   }
 
   this.run = function() {
@@ -231,7 +231,7 @@ function CoffeeMachine(power) {
 */!*
 
   function onReady() {
-    alert( 'Кофе готово!' );
+    alert( 'Кофе готов!' );
   }
 
   this.run = function() {
@@ -271,7 +271,7 @@ function CoffeeMachine(power) {
 */!*
 
   function onReady() {
-    alert( 'Кофе готово!' );
+    alert( 'Кофе готов!' );
   }
 
   this.run = function() {
