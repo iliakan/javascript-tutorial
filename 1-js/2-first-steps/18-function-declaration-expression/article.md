@@ -124,7 +124,7 @@ var sayHi = function(name) {
 
 Например, попробуем, в зависимости от условия, объявить функцию `sayHi` по-разному:
 
-```js run no-strict
+```js run
 var age = +prompt("Сколько вам лет?", 20);
 
 if (age >= 18) {
