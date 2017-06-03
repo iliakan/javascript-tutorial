@@ -201,11 +201,11 @@ say();
 ```js run
 function makeCounter() {
 *!*
-  var currentCount = 1;
+  var currentCount = 0;
 */!*
 
   return function() { // (**)
-    return currentCount++;
+    return ++currentCount;
   };
 }
 
@@ -227,7 +227,7 @@ alert( counter2() ); // 1
 
 Если подробнее описать происходящее:
 
-1. В строке `(*)` запускается `makeCounter()`. При этом создаётся `LexicalEnvironment` для переменных текущего вызова. В функции есть одна переменная `var currentCount`, которая станет свойством этого объекта. Она изначально инициализуется в `undefined`, затем, в процессе  выполнения, получит значение `1`:
+1. В строке `(*)` запускается `makeCounter()`. При этом создаётся `LexicalEnvironment` для переменных текущего вызова. В функции есть одна переменная `var currentCount`, которая станет свойством этого объекта. Она изначально инициализуется в `undefined`, затем, в процессе  выполнения, получит значение `0`:
 
     ```js
     function makeCounter() {
@@ -235,14 +235,14 @@ alert( counter2() ); // 1
       // LexicalEnvironment = { currentCount: undefined }
     */!*
 
-      var currentCount = 1;
+      var currentCount = 0;
 
     *!*
-      // LexicalEnvironment = { currentCount: 1 }
+      // LexicalEnvironment = { currentCount: 0 }
     */!*
 
       return function() { // [[Scope]] -> LexicalEnvironment (**)
-        return currentCount++;
+        return ++currentCount;
       };
     }
 
@@ -257,7 +257,7 @@ alert( counter2() ); // 1
 
 ```js
 function() { // [[Scope]] -> {currentCount: 1}
-  return currentCount++;
+  return ++currentCount;
 };
 ```
 
@@ -273,10 +273,10 @@ function() { // [[Scope]] -> {currentCount: 1}
 
 ```js run
 function makeCounter() {
-  var currentCount = 1;
+  var currentCount = 0;
 
   return function() {
-    return currentCount++;
+    return ++currentCount;
   };
 }
 
@@ -328,9 +328,9 @@ alert( f.test );
 function makeCounter() {
 *!*
   function counter() {
-    return counter.currentCount++;
+    return ++counter.currentCount;
   };
-  counter.currentCount = 1;
+  counter.currentCount = 0;
 */!*
 
   return counter;
