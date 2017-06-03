@@ -339,6 +339,58 @@ alert( triple(5) ); // = mul(3, 5) = 15
 
 Наш выигрыш состоит в том, что эта самостоятельная функция, во-первых, имеет понятное имя (`double`, `triple`), а во-вторых, повторные вызовы позволяют не указывать каждый раз первый аргумент, он уже фиксирован благодаря `bind`.
 
+## Пример: совместное использование call и bind
+
+Метод `[].forEach` привязанный к `Function.prototype.call` при помощи `bind`, для работы с «перебираемыми» объектами или примитивами, то есть с теми, у кого есть свойство `length`:
+
+```js run
+*!*
+var forEach = Function.prototype.call.bind([].forEach); // bind привязывает к call в качестве контекста метод [].forEach
+// в переменной forEach хранится [].forEach.call
+*/!*
+
+function showArguments() {
+  forEach(arguments, function(argument) { // работает с псевдомассивом arguments
+    alert(argument);
+  });
+}
+
+showArguments('Hello', 'World', '!');
+```
+
+Работает со строками:
+
+```js run
+forEach('Вася', function(char) {
+  alert(char);
+});
+```
+
+Работает с массивами:
+
+```js run
+forEach(['Вася', 'Петров'], function(element) {
+  alert(element);
+});
+```
+
+По аналогии с привязкой выше, можно привязать и другие некоторые методы, например:
+
+```js run
+*!*
+var map = Function.prototype.call.bind([].map); // bind привязывает к call в качестве контекста метод [].map
+// в переменной map хранится [].map.call
+*/!*
+
+function getFullNameArray() {
+  return map(arguments, function (argument) {
+    return 'Вася ' + argument;
+  });
+}
+
+alert(getFullNameArray('Петров', 'Иванов', 'Сидоров')); // ["Вася Петров", "Вася Иванов", "Вася Сидоров"]
+```
+
 ## Функция ask для задач
 
 В задачах этого раздела предполагается, что объявлена следующая "функция вопросов" `ask`:
