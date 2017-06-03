@@ -228,11 +228,12 @@ let activeUsers = [
 // и потому хранится отдельно
 let weakMap = new WeakMap();
 
-weakMap[activeUsers[0]] = 1;
-weakMap[activeUsers[1]] = 2;
-weakMap[activeUsers[2]] = 3;
+weakMap.set(activeUsers[0], 1);
+weakMap.set(activeUsers[1], 2);
+weakMap.set(activeUsers[2], 3);
+weakMap.set('Katya', 4); //Будет ошибка TypeError: "Katya" is not a non-null object
 
-alert( weakMap[activeUsers[0]] ); // 1
+alert( weakMap.get(activeUsers[0]) ); // 1
 
 activeUsers.splice(0, 1); // Вася более не активный пользователь
 
@@ -247,6 +248,7 @@ activeUsers.splice(0, 1); // Петя более не активный поль�
 
 У WeakMap есть ряд ограничений:
 
+- Только объекты в качестве ключей. 
 - Нет свойства `size`.
 - Нельзя перебрать элементы итератором или `forEach`.
 - Нет метода `clear()`.
