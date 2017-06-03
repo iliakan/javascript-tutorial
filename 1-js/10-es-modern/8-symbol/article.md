@@ -181,7 +181,7 @@ let obj = {
 }
 
 // один символ в объекте
-alert( Object.getOwnPropertySymbols(obj) ); // Symbol(Symbol.iterator)
+alert( Object.getOwnPropertySymbols(obj)[0].toString() ); // Symbol(Symbol.iterator)
 
 // и одно обычное свойство
 alert( Object.getOwnPropertyNames(obj) ); // iterator
@@ -198,4 +198,3 @@ alert( Object.getOwnPropertyNames(obj) ); // iterator
 Системные символы доступны как свойства функции `Symbol`, например `Symbol.iterator`.
 
 Мы можем создавать и свои символы, использовать их в объектах. Записывать их как свойства `Symbol`, разумеется, нельзя. Если нужен глобально доступный символ, то используется `Symbol.for(имя)`.
-
