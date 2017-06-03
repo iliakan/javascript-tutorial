@@ -14,7 +14,7 @@ importance: 2
 
 ```js
 getMaxSubSum([-1, *!*2, 3*/!*, -9]) = 5 (сумма выделенных)
-getMaxSubSum([*!*2, -1, 2, 3*/!*, -9]) = 6
+getMaxSubSum([*!*2, -1, 2, 3*/!*, -9]) = 5
 getMaxSubSum([-1, 2, 3, -9, *!*11*/!*]) = 11
 getMaxSubSum([-2, -1, *!*1, 2*/!*]) = 3
 getMaxSubSum([*!*100*/!*, -9, 2, -3, 5]) = 100
