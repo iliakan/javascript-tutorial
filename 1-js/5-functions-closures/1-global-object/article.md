@@ -64,7 +64,7 @@ var g = function(arg) { /*...*/ };
 Кстати, тот факт, что к началу выполнения кода переменные и функции *уже* содержатся в `window`, можно легко проверить, выведя их:
 
 ```js run untrusted refresh
-alert("a" in window); // *!*true*/!*,  т.к. есть свойство window.a
+alert(a in window); // *!*true*/!*,  т.к. есть свойство window.a
 alert(a); // равно *!*undefined*/!*,  присваивание будет выполнено далее
 alert(f); // *!*function ...*/!*,  готовая к выполнению функция
 alert(g); // *!*undefined*/!*, т.к. это переменная, а не Function Declaration
