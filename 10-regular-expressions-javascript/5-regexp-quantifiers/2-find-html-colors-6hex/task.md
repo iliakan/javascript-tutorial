@@ -4,7 +4,7 @@
 
 Пример использования:
 
-```
+```js run
 var re = /*...ваше регулярное выражение...*/
 
 var str = "color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2"
