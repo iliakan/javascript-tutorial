@@ -33,8 +33,8 @@ The [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a 
 
 JavaScript provides methods:
 
-- `JSON.stringify` to convert objects into JSON.
-- `JSON.parse` to convert JSON back into an object.
+- `JSON.stringify` to convert objects into JSON-string.
+- `JSON.parse` to convert JSON-string back into an object.
 
 For instance, here's we `JSON.stringify` a student:
 ```js run
