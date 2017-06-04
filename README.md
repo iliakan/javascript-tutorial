@@ -1,6 +1,6 @@
 The tutorial is available in two languages as of now.
 
-This repository was hosting both of them for some time, but now it's split into two. Please follow a link below.
+This repository was hosting both of them for some time, but now it's split into two repositories. Please follow the links below.
 
 If you'd like to translate it into your language, feel free to contact me at iliakan@gmail.com.
 
