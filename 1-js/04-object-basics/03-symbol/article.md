@@ -102,7 +102,7 @@ Symbolic properties do not participate in `for..in` loop.
 For instance:
 
 ```js run
-let id = Symbol("id");
+let id = Symbol.for("id");
 let user = {
   name: "John",
   age: 30,
