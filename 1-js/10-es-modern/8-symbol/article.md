@@ -184,7 +184,7 @@ let obj = {
 alert( Object.getOwnPropertySymbols(obj)[0].toString() ); // Symbol(Symbol.iterator)
 
 // и одно обычное свойство
-alert( Object.getOwnPropertyNames(obj) ); // iterator
+alert( Object.getOwnPropertyNames(obj)[0].toString() ); // iterator
 ```
 
 ## Итого
