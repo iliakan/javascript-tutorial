@@ -2,7 +2,7 @@ The tutorial is available in two languages as of now.
 
 This repository was hosting both of them for some time, but now it's split into two repositories. Please follow the links below.
 
-If you'd like to translate it into your language then fork the repository and go ahead. I can publish the translation with your credits on a domain like `fr.javascript.info`. 
+**If you'd like to translate it into your language then fork the repository and go ahead.** I can publish the translation with your credits on a domain like `fr.javascript.info` when at least one part of the tutorial is ready.
 
 You can build your own work using the tutorial while adhering to the "open" license [CC-NC-BY-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/deed).
 
